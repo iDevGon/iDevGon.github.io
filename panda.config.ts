@@ -20,4 +20,9 @@ export default defineConfig({
   theme: {
     extend: {},
   },
+  globalCss: {
+    body: {
+      fontSize: '62.5%',
+    },
+  },
 });
