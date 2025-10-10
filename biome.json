@@ -51,6 +51,9 @@
         "useHtmlLang": "error",
         "useKeyWithClickEvents": "warn"
       }
+    },
+    "domains": {
+      "react": "recommended"
     }
   },
   "javascript": {
