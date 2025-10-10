@@ -1,7 +1,16 @@
 {
-    "recommendations": [
-        "dbaeumer.vscode-eslint",
-        "esbenp.prettier-vscode"
-    ]
+  "recommendations": [
+    // Biome - Fast formatter/linter
+    "biomejs.biome",
+    
+    // React 개발
+    "dsznajder.es7-react-js-snippets",
+    
+    // TypeScript
+    "ms-vscode.vscode-typescript-next",
+    
+    // 유틸리티
+    "christian-kohler.path-intellisense",
+    "esbenp.prettier-vscode"
+  ]
 }
-
