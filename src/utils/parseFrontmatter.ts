@@ -31,10 +31,10 @@ export function parseFrontmatter(markdown: string): ParsedMarkdown {
 
   return {
     data: {
-      title: data.title ?? 'Untitled',
-      author: data.author ?? 'Unknown',
-      date: data.date ?? '',
-      tags: data.tags ?? [],
+      title: (data.title as string) ?? 'Untitled',
+      author: (data.author as string) ?? 'Unknown',
+      date: (data.date as string) ?? '',
+      tags: (data.tags as string[]) ?? [],
     },
     content,
   };

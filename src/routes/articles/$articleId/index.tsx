@@ -24,12 +24,19 @@ function getArticle(id: string): Article | null {
 
   const { data, content } = parseFrontmatter(rawContent);
 
+  const EXCERPT_LENGTH = 150;
+  const excerpt = content
+    .replace(/[#*`>\-[\]]/g, '')
+    .trim()
+    .slice(0, EXCERPT_LENGTH);
+
   return {
     id,
     title: data.title,
     author: data.author,
     date: data.date,
     tags: data.tags,
+    excerpt,
     content,
   };
 }
