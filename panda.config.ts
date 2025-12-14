@@ -62,6 +62,7 @@ export default defineConfig({
   conditions: {
     light: '[data-color-mode=light] &',
     dark: '[data-color-mode=dark] &',
+    print: '@media print',
   },
   globalCss: {
     "*": {
@@ -70,6 +71,37 @@ export default defineConfig({
     },
     "html,body": {
       fontSize: '62.5%',
+    },
+    // A4 인쇄 설정
+    "@page": {
+      size: 'A4',
+      margin: '15mm',
+    },
+    "@media print": {
+      "html, body": {
+        width: '210mm',
+        height: '297mm',
+        margin: 0,
+        padding: 0,
+        fontSize: '10pt',
+        WebkitPrintColorAdjust: 'exact',
+        printColorAdjust: 'exact',
+      },
+      ".no-print": {
+        display: 'none !important',
+      },
+      "a": {
+        color: '#3182ce !important',
+        textDecoration: 'underline',
+      },
+      "h1, h2, h3, h4": {
+        pageBreakAfter: 'avoid',
+        breakAfter: 'avoid',
+      },
+      "p, li": {
+        orphans: 3,
+        widows: 3,
+      },
     },
   },
 });
