@@ -1,0 +1,301 @@
+{
+  "profile": {
+    "name": "천곤홍",
+    "email": "ghcheondev@gmail.com",
+    "phone": "010-2675-0229",
+    "github": [
+      { "name": "DevGon", "url": "https://github.com/GonhongCheon" },
+      { "name": "Sarkh91", "url": "https://github.com/sarkh91" },
+      { "name": "Howard-cheon (Work)", "url": "https://github.com/howard-cheon" }
+    ]
+  },
+  "introduction": {
+    "title": "긍정 에너지 100%, 프론트엔드 개발자 천곤홍 입니다.",
+    "summary": "React.js, Next.js, Vue.js, Nuxt, TypeScript 개발하는 프론트엔드 개발자입니다. 커머스 스타트업에서 웹 개발을 하며, 레거시 코드를 마이그레이션하고, 새로운 기술을 도입하여 개발 경험을 향상시킨 경험이 있습니다. 비즈니스를 성장에 기여하는 일을 중요하게 여깁니다. 유저를 자사 서비스로 이끌만한 기능을 개발하는 것을 즐기고, 유저의 행동을 추적, 연구하는 데이터 트래킹, 더욱 나은 서비스를 만들기 위해 가설을 세우고 실험하는 그로스 개발을 한 경험이 있습니다.",
+    "highlights": [
+      {
+        "title": "저는 긍정적입니다.",
+        "description": "개발자의 중요한 능력 중 하나는, 타인과의 커뮤니케이션 능력이라고 생각합니다. 저는 타인과 협업하는 과정에서 긍정적으로 대화하고, 긍정적인 피드백을 주고받고자 노력합니다."
+      },
+      {
+        "title": "저는 유저의 관점을 지향합니다.",
+        "description": "이를 위해 기능 개발을 하면서 유저가 이를 사용하는 데 불편함이 없을지, 어떻게 해야 유저 경험이 더 좋을지를 생각하고 고민합니다. 그리고 이를 개발에 녹여내고자 노력합니다."
+      },
+      {
+        "title": "저는 공부하고 배웁니다.",
+        "description": "개발자는 항상 완벽할 수 없고, 한 자리에 머물러 있어서는 안 된다고 생각합니다. 저는 발전지향적인 사람이고, 더 나은 개발자가 되고자 늘 노력하고 공부합니다."
+      }
+    ]
+  },
+  "experiences": [
+    {
+      "company": "펫프렌즈",
+      "companyUrl": "https://m.pet-friends.co.kr/",
+      "position": "프론트엔드 개발자",
+      "period": { "start": "2022.01", "end": null },
+      "description": "반려동물 쇼핑몰 1위 기업으로, IMM인베스트먼트, GS리테일 등으로부터 투자 유치",
+      "projects": [
+        {
+          "title": "Tailwind CSS 마이그레이션",
+          "period": { "start": "2025.11", "end": null },
+          "description": "스타일 라이브러리를 Tailwind CSS로 전환하여 개발 생산성과 유지보수성을 향상시키는 작업을 진행 중입니다.",
+          "achievements": [
+            "기존 컴포넌트 Tailwind 기반 마이그레이션",
+            "디자인 시스템 Tailwind 통합"
+          ]
+        },
+        {
+          "title": "카테고리/상품상세 BFF 마이그레이션",
+          "period": { "start": "2025.11", "end": "2025.12" },
+          "description": "카테고리 페이지와 상품상세 페이지의 Node.js 서버를 선셋하고 BFF(Backend For Frontend)로 전환하는 작업을 진행했습니다.",
+          "achievements": [
+            "카테고리 페이지 BFF 전환 및 컴포넌트 구조 리팩토링",
+            "장바구니 담기 버튼 영역 신규 API 연동",
+            "옵션 모달 신규 API 연동 및 로직 리팩토링"
+          ]
+        },
+        {
+          "title": "검색 성능 최적화",
+          "period": { "start": "2025.10", "end": "2025.11" },
+          "description": "검색 페이지의 React Query 캐싱 전략을 개선하여 사용자 경험을 향상시켰습니다.",
+          "achievements": [
+            "React Query 캐싱 전략 최적화",
+            "검색 시 캐시 무효화 로직 개선",
+            "페이징 성능 개선"
+          ]
+        },
+        {
+          "title": "홈 화면 기능화 및 리뉴얼",
+          "period": { "start": "2025.09", "end": "2025.11" },
+          "description": "홈 화면의 하드코딩된 구좌들을 HQ어드민 기반으로 기능화하고, 홈 리뉴얼 프로젝트를 진행했습니다.",
+          "achievements": [
+            "첫상품 큰 구좌 HQ 기능화",
+            "홈 숏컷 DB 저장 및 HQ 기능화",
+            "홈 리뉴얼 배포"
+          ]
+        },
+        {
+          "title": "Lambda@Edge SEO 리다이렉트 레포화",
+          "period": { "start": "2025.11", "end": "2025.11" },
+          "description": "www 도메인을 m 도메인으로 리다이렉트하는 Lambda@Edge 함수를 레포지토리화하여 유지보수를 용이하게 했습니다.",
+          "achievements": [
+            "seo-redirect Lambda 함수 레포화",
+            "배포 자동화 구축"
+          ]
+        },
+        {
+          "title": "빌드 성능 최적화 (배럴파일 제거)",
+          "period": { "start": "2025.09", "end": "2025.10" },
+          "description": "배럴파일(index.ts) 제거를 통해 빌드 및 번들 성능을 최적화했습니다.",
+          "achievements": [
+            "Errors, Store, Containers 배럴파일 제거",
+            "Tree-shaking 효율 개선",
+            "빌드 시간 단축"
+          ]
+        },
+        {
+          "title": "CRM 시크릿 쿠폰 페이지 개발",
+          "period": { "start": "2025.04", "end": "2025.11" },
+          "description": "CRM 시크릿 쿠폰 페이지 개발 및 멀티저니 기능 고도화 작업을 진행했습니다.",
+          "achievements": [
+            "다중쿠폰 고도화 개발",
+            "비회원 멀티저니 작업",
+            "카테고리 상품 페이지 추가",
+            "개인화 작업 (2차 카테고리 그룹핑, 필터 개선)",
+            "브랜드 구좌 렌더링 버그 수정"
+          ]
+        },
+        {
+          "title": "스타일 라이브러리 마이그레이션 (Vanilla Extract)",
+          "period": { "start": "2025.04", "end": "2025.06" },
+          "description": "프론트엔드 스타일 라이브러리를 stitches에서 Vanilla Extract로 마이그레이션하여 빌드 성능과 런타임 성능을 개선했습니다.",
+          "achievements": [
+            "stitches → Vanilla Extract 마이그레이션",
+            "리액트 어드민 Panda CSS 전환",
+            "Zero-runtime CSS 도입으로 번들 사이즈 최적화"
+          ]
+        },
+        {
+          "title": "펫프 데브툴 개발",
+          "period": { "start": "2025.02", "end": "2025.04" },
+          "description": "실험 정보 및 강제할당의 편의성 제공을 위한 펫프 데브툴을 개발했습니다.",
+          "achievements": [
+            "실험 관리 도구 개발",
+            "실험군 강제 할당 기능",
+            "API 연동 작업"
+          ]
+        },
+        {
+          "title": "동영상 플레이어 개발 (Vimeo 전환)",
+          "period": { "start": "2025.02", "end": "2025.04" },
+          "description": "Vimeo 선셋에 따라 다양한 동영상 유형을 재생 가능한 React-Player로 동영상 플레이어를 교체하는 작업을 진행했습니다.",
+          "achievements": [
+            "Vimeo → React-Player 전환",
+            "iOS 호환성 버그 수정",
+            "HQ어드민 상품 동영상 PreSigned 업로드 구현"
+          ]
+        },
+        {
+          "title": "병원 광고 기능 개발",
+          "period": { "start": "2024.12", "end": "2025.02" },
+          "description": "병원 광고 서비스의 프론트엔드 전체 기능을 개발했습니다.",
+          "achievements": [
+            "병원 광고 컴포넌트 개발",
+            "상담 페이지 개발",
+            "SEO 정보 추가",
+            "앰플리튜드 이벤트 연동"
+          ]
+        },
+        {
+          "title": "HQ어드민 Vue 마이그레이션",
+          "period": { "start": "2024.06", "end": "2024.12" },
+          "description": "HQ어드민의 Vue 환경을 마이그레이션하여 개발 경험을 개선하고 안정성을 높였습니다.",
+          "achievements": [
+            "Vue 마이그레이션 상용 배포",
+            "샘플링 배너 기능 개발",
+            "상품 관리 기능 개선",
+            "대량 상품 등록/수정 기능"
+          ]
+        },
+        {
+          "title": "A/B 테스트 실험 개발 (30+ 실험)",
+          "period": { "start": "2024.02", "end": null },
+          "description": "다양한 A/B 테스트 실험을 개발하여 비즈니스 성장에 기여했습니다.",
+          "achievements": [
+            "상품 쿠폰 할인가 노출 실험",
+            "주문 쿠폰 할인가 표기 실험",
+            "PB상품 추가적립 뱃지 실험",
+            "상품 상세 이미지 교체 실험",
+            "브랜드 가중치 실험",
+            "할인구좌 실험"
+          ]
+        },
+        {
+          "title": "검색 페이지 Vue.js → Next14 마이그레이션 및 SSR, SEO",
+          "period": { "start": "2023.10", "end": "2024.02" },
+          "description": "펫프렌즈의 검색 페이지를 Vue.js 기반에서 Next14로 마이그레이션하면서 서버사이드 렌더링(SSR)을 도입하여 초기 렌더링 속도 향상 및 SEO를 향상시켰습니다.",
+          "achievements": [
+            "Performance: 40점대 → 60~70점대 (SSR)",
+            "Accessibility: 80점대 → 90점대",
+            "SEO: 80점대 → 100점",
+            "Sitemap, 리치스니펫 작업",
+            "라인업 필터 개발 (이나바, 로얄캐닌 등)"
+          ]
+        },
+        {
+          "title": "광고 솔루션 프론트엔드 기능 개발",
+          "period": { "start": "2023.03", "end": "2023.06" },
+          "description": "광고 솔루션인 CitrusAd를 도입하여 자사 서비스에 광고 상품 및 추천 상품을 노출시켜 비즈니스 향상에 기여했습니다.",
+          "achievements": [
+            "광고 상품 라벨 및 툴팁 UI 개발",
+            "타사 솔루션 자사 서비스 통합"
+          ]
+        },
+        {
+          "title": "메인 페이지 레거시 코드 마이그레이션 (Vue → Next.js)",
+          "period": { "start": "2022.11", "end": "2023.06" },
+          "description": "기존 Vue2 기반의 레거시 코드와 서비스를 Next12 기반으로 마이그레이션하여 성능을 개선하고, SEO를 향상시켰습니다.",
+          "achievements": [
+            "Performance: 40점대 → 90점대",
+            "Accessibility: 80점대 → 90점대",
+            "SEO: 80점대 → 90~100점대"
+          ]
+        },
+        {
+          "title": "On Demand 이미지 리사이징",
+          "period": { "start": "2023.05", "end": "2023.07" },
+          "description": "AWS S3에 저장된 이미지를 GET요청을 했을 때, CloudFront의 원본 응답 동작에 Lambda@Edge를 연동해서 이미지를 리사이징 처리했습니다.",
+          "achievements": [
+            "URL 쿼리를 통한 이미지 해상도, 품질, 확장자 처리",
+            "클라이언트 페이지 렌더링 속도 50% 이상 향상"
+          ]
+        },
+        {
+          "title": "Datadog 연동",
+          "period": { "start": "2023.01", "end": "2023.05" },
+          "description": "Datadog 연동을 통한 이슈 트래킹 및 E2E 성능 측정 및 분석을 진행했습니다.",
+          "achievements": [
+            "이슈 트래킹 시스템 구축",
+            "E2E 성능 측정 및 분석"
+          ]
+        },
+        {
+          "title": "개발환경 마이그레이션 (Vue cli → Vite)",
+          "period": { "start": "2022.10", "end": "2022.12" },
+          "description": "Vue2 기반의 프로젝트의 개발환경을 Vue cli에서 Vite로 마이그레이션하여, 개발 경험을 크게 향상시켰습니다.",
+          "achievements": [
+            "HMR 속도 10초 이상 → 1초 미만으로 개선"
+          ]
+        },
+        {
+          "title": "그로스 개발",
+          "period": { "start": "2022.01", "end": "2022.10" },
+          "description": "Amplitude Experiment를 이용한 A/B테스트 및 다양한 데이터 트래킹 툴 연동을 진행했습니다.",
+          "achievements": [
+            "Amplitude Experiment A/B테스트",
+            "Braze, 네이버 애널리틱스, 페이스북 픽셀, Amplitude 연동"
+          ]
+        },
+        {
+          "title": "국가 동물 등록 프론트 UI/UX 및 기능 개발",
+          "period": { "start": "2022.01", "end": "2022.05" },
+          "description": "동물 등록제를 위해 강아지를 국가 시스템에 등록하는 서비스를 개발했습니다.",
+          "achievements": [
+            "국가 동물 등록 홍보 페이지 및 진입 페이지 개발",
+            "Form 페이지 UI 및 유효성 로직 구현",
+            "월 평균 500~1,000건 이상의 서비스 이용 달성"
+          ]
+        }
+      ]
+    },
+    {
+      "company": "주식회사 이피엔스",
+      "companyUrl": "http://epiens.com/",
+      "position": "개발본부/프론트엔드 파트 개발자",
+      "period": { "start": "2020.03", "end": "2022.01" },
+      "description": "라이브 커머스 기업, 쉐리샵, 트루알엑스 등의 커머스 쇼핑몰 제작 및 운영하는 스타트업, 클리오로부터 투자 유치",
+      "projects": [
+        {
+          "title": "트루알엑스 프로덕트 개발",
+          "period": { "start": "2021.02", "end": "2021.11" },
+          "description": "트루알엑스 커머스 쇼핑몰의 프론트엔드 구조 설계 및 개발을 담당했습니다.",
+          "achievements": [
+            "프론트엔드 구조 설계 및 개발 (Nuxt2)",
+            "SSR 개발 및 SEO",
+            "어드민 페이지 개발"
+          ]
+        },
+        {
+          "title": "쉐리샵 프로덕트 개발",
+          "period": { "start": "2020.03", "end": "2022.01" },
+          "description": "비디오 커머스 쇼핑몰 쉐리샵의 프론트엔드 전반을 담당했습니다.",
+          "achievements": [
+            "프론트엔드 구조 설계 및 개발 (Vue2)",
+            "데이터 트래킹 연동 (네이버 광고, 페이스북 픽셀, 구글 Ads)",
+            "동영상 플레이어 UI 커스텀 개발",
+            "어드민 페이지 개발 (상품 관리, 실시간 방송 관리, 대시보드)",
+            "아임포트(現 포트원) 연동 및 결제 시스템 개발"
+          ]
+        }
+      ]
+    }
+  ],
+  "skills": [
+    "JavaScript",
+    "TypeScript",
+    "React.js",
+    "Next.js",
+    "Vue.js",
+    "Nuxt.js",
+    "HTML/CSS",
+    "Tailwind CSS",
+    "Vanilla Extract",
+    "Panda CSS",
+    "React Query",
+    "Amplitude",
+    "Braze",
+    "Sentry",
+    "Datadog",
+    "AWS Lambda@Edge"
+  ]
+}
