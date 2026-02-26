@@ -13,7 +13,7 @@
     "erasableSyntaxOnly": true,
     "baseUrl": ".",
     "paths": {
-      "styled-system/*": ["../../apps/blog/styled-system/*"]
+      "styled-system/*": ["./styled-system/*"]
     }
   },
   "include": ["src"]

@@ -1,6 +1,5 @@
 import {
   cloneElement,
-  forwardRef,
   type HTMLAttributes,
   isValidElement,
   type ReactElement,
@@ -10,6 +9,7 @@ import {
 
 type SlotProps = HTMLAttributes<HTMLElement> & {
   children?: ReactNode;
+  ref?: Ref<HTMLElement>;
 };
 
 function mergeRefs<T>(...refs: (Ref<T> | undefined)[]): Ref<T> {
@@ -58,30 +58,26 @@ function mergeProps(
   return merged;
 }
 
-export const Slot = forwardRef<HTMLElement, SlotProps>(
-  ({ children, ...slotProps }, forwardedRef) => {
-    if (!isValidElement(children)) {
-      console.warn(
-        'Slot component expects a single valid React element as children',
-      );
-      return null;
-    }
-
-    const childElement = children as ReactElement<
-      HTMLAttributes<HTMLElement> & { ref?: Ref<HTMLElement> }
-    >;
-
-    const mergedProps = mergeProps(
-      slotProps as Record<string, unknown>,
-      childElement.props as unknown as Record<string, unknown>,
+export function Slot({ children, ref, ...slotProps }: SlotProps) {
+  if (!isValidElement(children)) {
+    console.warn(
+      'Slot component expects a single valid React element as children',
     );
-    const mergedRef = mergeRefs(forwardedRef, childElement.props.ref);
+    return null;
+  }
 
-    return cloneElement(childElement, {
-      ...mergedProps,
-      ref: mergedRef,
-    });
-  },
-);
+  const childElement = children as ReactElement<
+    HTMLAttributes<HTMLElement> & { ref?: Ref<HTMLElement> }
+  >;
 
-Slot.displayName = 'Slot';
+  const mergedProps = mergeProps(
+    slotProps as Record<string, unknown>,
+    childElement.props as unknown as Record<string, unknown>,
+  );
+  const mergedRef = mergeRefs(ref, childElement.props.ref);
+
+  return cloneElement(childElement, {
+    ...mergedProps,
+    ref: mergedRef,
+  });
+}
