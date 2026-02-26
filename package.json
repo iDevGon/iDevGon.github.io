@@ -1,47 +1,20 @@
 {
-  "name": "idevgon-github-io",
+  "name": "@idevgon/root",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "pnpm prepare && vite",
-    "build": "tsc -b && vite build",
+    "dev": "pnpm --filter @idevgon/blog dev",
+    "build": "pnpm --filter @idevgon/blog build",
     "lint": "biome lint .",
     "lint:fix": "biome lint --write .",
     "format": "biome format .",
     "format:fix": "biome format --write .",
     "check": "biome check .",
     "check:fix": "biome check --write .",
-    "fix": "pnpm check:fix",
-    "preview": "vite preview",
-    "predeploy": "pnpm build",
-    "prepare": "panda codegen",
-    "deploy": "gh-pages -d dist",
-    "deploy:local": "pnpm build && pnpm preview"
-  },
-  "dependencies": {
-    "@giscus/react": "^3.1.0",
-    "@ssgoi/react": "^2.5.6",
-    "@tanstack/react-router": "^1.132.47",
-    "dayjs": "^1.11.18",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1",
-    "zustand": "^5.0.8"
+    "fix": "pnpm check:fix"
   },
   "devDependencies": {
-    "@biomejs/biome": "^2.2.5",
-    "@pandacss/dev": "^1.4.1",
-    "@tanstack/router-plugin": "^1.132.51",
-    "@types/node": "^24.6.0",
-    "@types/react": "^19.1.16",
-    "@types/react-dom": "^19.1.9",
-    "@vitejs/plugin-react": "^5.0.4",
-    "babel-plugin-react-compiler": "19.1.0-rc.3",
-    "typescript": "~5.9.3",
-    "vite": "npm:rolldown-vite@7.1.14",
-    "vite-plugin-react": "^4.0.1"
+    "@biomejs/biome": "^2.2.5"
   },
   "pnpm": {
     "overrides": {
