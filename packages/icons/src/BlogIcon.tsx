@@ -2,6 +2,8 @@ import type { SVGProps } from 'react';
 
 export const BlogIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    role="img"
+    aria-label="Blog"
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"

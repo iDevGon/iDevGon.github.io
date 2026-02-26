@@ -2,6 +2,8 @@ import type { SVGProps } from 'react';
 
 export const SunIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
+    role="img"
+    aria-label="Light mode"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="none"
