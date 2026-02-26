@@ -74,21 +74,21 @@ export const Header = () => {
           className={navLinkStyle}
           activeProps={{ className: `${navLinkStyle} ${activeNavStyle}` }}
         >
-          Articles
+          생각들
         </Link>
         <Link
           to="/resume"
           className={navLinkStyle}
           activeProps={{ className: `${navLinkStyle} ${activeNavStyle}` }}
         >
-          Resume
+          이력서
         </Link>
         <Link
           to="/contact"
           className={navLinkStyle}
           activeProps={{ className: `${navLinkStyle} ${activeNavStyle}` }}
         >
-          Contact
+          연락처
         </Link>
         <ColorModeSwitch />
       </nav>

@@ -90,7 +90,7 @@ function RouteComponent() {
       <Container>
         <div className={pageStyle}>
           <Typo asChild variant="h1">
-            <h1 className={titleStyle}>Contact</h1>
+            <h1 className={titleStyle}>연락처</h1>
           </Typo>
           <Typo asChild variant="body1">
             <p className={subtitleStyle}>

@@ -43,7 +43,7 @@ function RouteComponent() {
               textWrap: 'balance',
             })}
           >
-            Articles
+            생각들
           </h1>
         </Typo>
 
@@ -58,12 +58,12 @@ function RouteComponent() {
               color: 'textSecondary',
             })}
           >
-            <Typo variant="h3">아직 작성된 글이 없습니다.</Typo>
+            <Typo variant="h3">아직 여러분과 나눌 이야기가 부족해요. 😅</Typo>
             <Typo
               variant="body1"
               className={css({ marginTop: '0.75rem', color: 'textSecondary' })}
             >
-              곧 새로운 글로 찾아뵙겠습니다.
+              조금 더 경험을 쌓고, 생각을 정리해서 곧 돌아올게요.
             </Typo>
           </Flex>
         ) : (

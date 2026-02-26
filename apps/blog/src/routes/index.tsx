@@ -20,7 +20,7 @@ const heroStyle = css({
 });
 
 const greetingStyle = css({
-  fontSize: '1.6rem',
+  fontSize: '3rem',
   color: 'primary',
   fontWeight: 600,
   marginBottom: '1.2rem',
@@ -62,7 +62,7 @@ function RouteComponent() {
       <Container>
         <div className={heroStyle}>
           <Typo asChild variant="body1">
-            <span className={greetingStyle}>안녕하세요!</span>
+            <span className={greetingStyle}>안녕하세요! 👋🏻</span>
           </Typo>
           <Typo asChild variant="h1">
             <h1 className={nameStyle}>
@@ -78,12 +78,12 @@ function RouteComponent() {
             </p>
           </Typo>
           <div className={buttonGroupStyle}>
-            <Button to="/articles">Articles</Button>
+            <Button to="/articles">생각들</Button>
             <Button to="/resume" outline>
-              Resume
+              이력서
             </Button>
             <Button to="/contact" outline>
-              Contact
+              연락처
             </Button>
           </div>
         </div>
