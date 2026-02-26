@@ -1,5 +1,11 @@
-import { type CSSProperties, createContext, use, useMemo, type ReactNode } from 'react';
 import { Typo } from '@idevgon/design-system';
+import {
+  type CSSProperties,
+  createContext,
+  type ReactNode,
+  use,
+  useMemo,
+} from 'react';
 import {
   legendColorStyle,
   legendItemStyle,
@@ -12,9 +18,14 @@ import {
   yearMarkerStyle,
 } from './styles';
 import type { TimelineChartProps, TimelineItem } from './types';
-import { formatDuration, formatPeriod, getMonthsDiff, parseDate } from './utils';
+import {
+  formatDuration,
+  formatPeriod,
+  getMonthsDiff,
+  parseDate,
+} from './utils';
 
-const DEFAULT_COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'];
+const DEFAULT_COLORS = ['#4F7CAC', '#C0E0DE', '#162521', '#3C474B', '#9EEFE5'];
 
 const DEFAULT_BAR_HEIGHT = 40;
 const BAR_GAP = 5;
@@ -36,7 +47,10 @@ const TimelineContext = createContext<TimelineContextValue | null>(null);
 
 function useTimeline() {
   const ctx = use(TimelineContext);
-  if (!ctx) throw new Error('Timeline compound components must be used within <TimelineChart>');
+  if (!ctx)
+    throw new Error(
+      'Timeline compound components must be used within <TimelineChart>',
+    );
   return ctx;
 }
 
@@ -51,7 +65,8 @@ function Title({ children }: { children: ReactNode }) {
 }
 
 function Bars() {
-  const { items, colors, barHeight, now, earliestStart, totalMonths } = useTimeline();
+  const { items, colors, barHeight, now, earliestStart, totalMonths } =
+    useTimeline();
 
   return (
     <>
@@ -69,16 +84,22 @@ function Bars() {
           <div
             key={item.id}
             className={timelineBarStyle}
-            style={{
-              '--bar-left': `${leftPercent}%`,
-              '--bar-width': `${Math.max(widthPercent, 5)}%`,
-              '--bar-top': `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
-              '--bar-height': `${barHeight}px`,
-              '--bar-color': colors[idx % colors.length],
-            } as CSSProperties}
+            style={
+              {
+                '--bar-left': `${leftPercent}%`,
+                '--bar-width': `${Math.max(widthPercent, 5)}%`,
+                '--bar-top': `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
+                '--bar-height': `${barHeight}px`,
+                '--bar-color': colors[idx % colors.length],
+              } as CSSProperties
+            }
             title={`${item.label}: ${formatPeriod(item.startDate, item.endDate)} (${formatDuration(duration)})`}
           >
-            {widthPercent > 15 && <span>{item.label}</span>}
+            {widthPercent > 15 && (
+              <Typo asChild variant="caption">
+                <span>{item.label}</span>
+              </Typo>
+            )}
           </div>
         );
       })}
@@ -97,13 +118,18 @@ function YearMarkers() {
         const leftPercent = (offset / totalMonths) * 100;
 
         return (
-          <span
-            key={year}
-            className={yearMarkerStyle}
-            style={{ '--marker-left': `${Math.max(leftPercent, 2)}%` } as CSSProperties}
-          >
-            {year}
-          </span>
+          <Typo asChild variant="caption" key={year}>
+            <span
+              className={yearMarkerStyle}
+              style={
+                {
+                  '--marker-left': `${Math.max(leftPercent, 2)}%`,
+                } as CSSProperties
+              }
+            >
+              {year}
+            </span>
+          </Typo>
         );
       })}
     </div>
@@ -124,7 +150,11 @@ function Legend() {
           <div key={item.id} className={legendItemStyle}>
             <span
               className={legendColorStyle}
-              style={{ '--legend-color': colors[idx % colors.length] } as CSSProperties}
+              style={
+                {
+                  '--legend-color': colors[idx % colors.length],
+                } as CSSProperties
+              }
             />
             <Typo variant="caption">
               {item.label} ({formatDuration(duration)})

@@ -1,9 +1,9 @@
-import { lazy, Suspense } from 'react';
+import { Container, Flex, Typo } from '@idevgon/design-system';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute, Link } from '@tanstack/react-router';
+import { lazy, Suspense } from 'react';
 import remarkGfm from 'remark-gfm';
 import { css } from 'styled-system/css';
-import { Container, Flex } from '@idevgon/design-system';
 import { TagList } from '@/components/TagList';
 import { getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
@@ -23,12 +23,16 @@ function RouteComponent() {
     return (
       <SsgoiTransition id={`/articles/detail/${articleId}`}>
         <Container className={css({ padding: '4' })}>
-          <h1 className={css({ fontSize: '2.4rem', fontWeight: 'bold' })}>
-            Article Not Found
-          </h1>
-          <p className={css({ marginTop: '4', color: 'textSecondary' })}>
-            요청하신 아티클을 찾을 수 없습니다.
-          </p>
+          <Typo asChild variant="h1">
+            <h1 className={css({ fontSize: '2.4rem', fontWeight: 'bold' })}>
+              Article Not Found
+            </h1>
+          </Typo>
+          <Typo asChild variant="body1">
+            <p className={css({ marginTop: '4', color: 'textSecondary' })}>
+              요청하신 아티클을 찾을 수 없습니다.
+            </p>
+          </Typo>
           <Link
             to="/articles"
             className={css({
@@ -64,23 +68,33 @@ function RouteComponent() {
 
         {/* 아티클 헤더 */}
         <header className={css({ marginBottom: '8' })}>
-          <h1
-            className={css({
-              fontSize: '3.2rem',
-              fontWeight: 'bold',
-              lineHeight: '1.2',
-              marginBottom: '4',
-              textWrap: 'balance',
-            })}
-          >
-            {article.title}
-          </h1>
+          <Typo asChild variant="h1">
+            <h1
+              className={css({
+                fontSize: '3.2rem',
+                fontWeight: 'bold',
+                lineHeight: '1.2',
+                marginBottom: '4',
+                textWrap: 'balance',
+              })}
+            >
+              {article.title}
+            </h1>
+          </Typo>
 
           <Flex
-            className={css({ gap: '4', color: 'textSecondary', fontSize: '1.4rem' })}
+            className={css({
+              gap: '4',
+              color: 'textSecondary',
+              fontSize: '1.4rem',
+            })}
           >
-            <span>{article.author}</span>
-            <span>{article.date}</span>
+            <Typo asChild variant="body2">
+              <span>{article.author}</span>
+            </Typo>
+            <Typo asChild variant="body2">
+              <span>{article.date}</span>
+            </Typo>
           </Flex>
 
           <TagList tags={article.tags} />
@@ -89,7 +103,9 @@ function RouteComponent() {
         {/* 마크다운 본문 */}
         <article className={markdownStyles}>
           <Suspense fallback={null}>
-            <Markdown remarkPlugins={REMARK_PLUGINS}>{article.content}</Markdown>
+            <Markdown remarkPlugins={REMARK_PLUGINS}>
+              {article.content}
+            </Markdown>
           </Suspense>
         </article>
       </Container>

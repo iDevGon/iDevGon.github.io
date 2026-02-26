@@ -1,8 +1,8 @@
+import { Flex, Typo } from '@idevgon/design-system';
 import { Link } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
-import { Flex } from '@idevgon/design-system';
-import type { ArticleMeta } from '@/interfaces/article';
 import { TagList } from '@/components/TagList';
+import type { ArticleMeta } from '@/interfaces/article';
 
 export function ArticleCard({ article }: { article: ArticleMeta }) {
   return (
@@ -24,35 +24,47 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
         },
       })}
     >
-      <h2
-        className={css({
-          fontSize: '1.8rem',
-          fontWeight: 'semibold',
-          marginBottom: '2',
-          transition: 'color 0.2s',
-        })}
-      >
-        {article.title}
-      </h2>
+      <Typo asChild variant="h2">
+        <h2
+          className={css({
+            fontSize: '1.8rem',
+            fontWeight: 'semibold',
+            marginBottom: '2',
+            transition: 'color 0.2s',
+          })}
+        >
+          {article.title}
+        </h2>
+      </Typo>
 
       <Flex
-        className={css({ gap: '4', color: 'textSecondary', fontSize: '1.4rem' })}
+        className={css({
+          gap: '4',
+          color: 'textSecondary',
+          fontSize: '1.4rem',
+        })}
       >
-        <span>{article.author}</span>
-        <span>{article.date}</span>
+        <Typo asChild variant="body2">
+          <span>{article.author}</span>
+        </Typo>
+        <Typo asChild variant="body2">
+          <span>{article.date}</span>
+        </Typo>
       </Flex>
 
       {article.excerpt && (
-        <p
-          className={css({
-            marginTop: '3',
-            fontSize: '1.4rem',
-            color: 'textSecondary',
-            lineHeight: '1.6',
-          })}
-        >
-          {article.excerpt}
-        </p>
+        <Typo asChild variant="body2">
+          <p
+            className={css({
+              marginTop: '3',
+              fontSize: '1.4rem',
+              color: 'textSecondary',
+              lineHeight: '1.6',
+            })}
+          >
+            {article.excerpt}
+          </p>
+        </Typo>
       )}
 
       <TagList tags={article.tags} />

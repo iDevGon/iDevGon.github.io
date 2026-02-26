@@ -1,8 +1,8 @@
+import { Container, Typo } from '@idevgon/design-system';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { css } from 'styled-system/css';
-import { Container } from '@idevgon/design-system';
 import { Button } from '@/components/Button';
 
 export const Route = createFileRoute('/')({
@@ -61,19 +61,30 @@ function RouteComponent() {
     <SsgoiTransition id="/">
       <Container>
         <div className={heroStyle}>
-          <span className={greetingStyle}>안녕하세요!</span>
-          <h1 className={nameStyle}>
-            만 {careerYear}년차 프론트엔드 개발자
-            <br />
-            <span className={nameHighlight}>천곤홍</span>입니다.
-          </h1>
-          <p className={descriptionStyle}>
-            사용자 경험에 대한 고민과 깔끔한 코드를 추구하는 개발자입니다.
-          </p>
+          <Typo asChild variant="body1">
+            <span className={greetingStyle}>안녕하세요!</span>
+          </Typo>
+          <Typo asChild variant="h1">
+            <h1 className={nameStyle}>
+              만 {careerYear}년차 프론트엔드 개발자
+              <br />
+              <strong className={nameHighlight}>천곤홍</strong>
+              입니다.
+            </h1>
+          </Typo>
+          <Typo asChild variant="body1">
+            <p className={descriptionStyle}>
+              사용자 경험에 대한 고민과 깔끔한 코드를 추구하는 개발자입니다.
+            </p>
+          </Typo>
           <div className={buttonGroupStyle}>
             <Button to="/articles">Articles</Button>
-            <Button to="/resume" outline>Resume</Button>
-            <Button to="/contact" outline>Contact</Button>
+            <Button to="/resume" outline>
+              Resume
+            </Button>
+            <Button to="/contact" outline>
+              Contact
+            </Button>
           </div>
         </div>
       </Container>

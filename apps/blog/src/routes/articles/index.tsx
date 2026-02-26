@@ -1,7 +1,7 @@
+import { Container, Flex, Typo } from '@idevgon/design-system';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
-import { Container, Flex } from '@idevgon/design-system';
 import { getArticles } from '@/utils/articleLoader';
 import { ArticleCard } from './components/-ArticleCard';
 import { Pagination } from './components/-Pagination';
@@ -33,28 +33,52 @@ function RouteComponent() {
   return (
     <SsgoiTransition id="/articles">
       <Container className={css({ padding: '4' })}>
-        <h1
-          className={css({
-            fontSize: '2.8rem',
-            fontWeight: 700,
-            marginBottom: '3.2rem',
-            color: 'textPrimary',
-            textWrap: 'balance',
-          })}
-        >
-          Articles
-        </h1>
+        <Typo asChild variant="h1">
+          <h1
+            className={css({
+              fontSize: '2.8rem',
+              fontWeight: 700,
+              marginBottom: '3.2rem',
+              color: 'textPrimary',
+              textWrap: 'balance',
+            })}
+          >
+            Articles
+          </h1>
+        </Typo>
 
         {/* 아티클 목록 */}
-        <Flex direction="column" className={css({ gap: '4' })}>
-          {articles.map((article) => (
-            <ArticleCard key={article.id} article={article} />
-          ))}
-        </Flex>
+        {allArticles.length === 0 ? (
+          <Flex
+            direction="column"
+            align="center"
+            className={css({
+              padding: '16',
+              textAlign: 'center',
+              color: 'textSecondary',
+            })}
+          >
+            <Typo variant="h3">아직 작성된 글이 없습니다.</Typo>
+            <Typo
+              variant="body1"
+              className={css({ marginTop: '0.75rem', color: 'textSecondary' })}
+            >
+              곧 새로운 글로 찾아뵙겠습니다.
+            </Typo>
+          </Flex>
+        ) : (
+          <>
+            <Flex direction="column" className={css({ gap: '4' })}>
+              {articles.map((article) => (
+                <ArticleCard key={article.id} article={article} />
+              ))}
+            </Flex>
 
-        {/* 페이지네이션 */}
-        {totalPages > 1 && (
-          <Pagination currentPage={currentPage} totalPages={totalPages} />
+            {/* 페이지네이션 */}
+            {totalPages > 1 && (
+              <Pagination currentPage={currentPage} totalPages={totalPages} />
+            )}
+          </>
         )}
       </Container>
     </SsgoiTransition>

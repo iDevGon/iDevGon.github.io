@@ -1,3 +1,4 @@
+import { Typo } from '@idevgon/design-system';
 import dayjs from 'dayjs';
 import { css } from 'styled-system/css';
 
@@ -19,9 +20,11 @@ export const Footer = () => {
 
   return (
     <footer className={`${footerStyle} no-print`}>
-      <p className={footerTextStyle}>
-        &copy; {year} DevGon. All rights reserved.
-      </p>
+      <Typo asChild variant="body2">
+        <p className={footerTextStyle}>
+          &copy; {year} DevGon. All rights reserved.
+        </p>
+      </Typo>
     </footer>
   );
 };

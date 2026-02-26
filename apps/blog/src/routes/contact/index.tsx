@@ -1,8 +1,8 @@
+import { Container, Typo } from '@idevgon/design-system';
+import { BlogIcon, EmailIcon, GithubIcon } from '@idevgon/icons';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
-import { Container } from '@idevgon/design-system';
-import { EmailIcon, GithubIcon, BlogIcon } from '@idevgon/icons';
 
 export const Route = createFileRoute('/contact/')({
   component: RouteComponent,
@@ -89,10 +89,14 @@ function RouteComponent() {
     <SsgoiTransition id="/contact">
       <Container>
         <div className={pageStyle}>
-          <h1 className={titleStyle}>Contact</h1>
-          <p className={subtitleStyle}>
-            궁금한 점이 있으시면 언제든 연락해 주세요.
-          </p>
+          <Typo asChild variant="h1">
+            <h1 className={titleStyle}>Contact</h1>
+          </Typo>
+          <Typo asChild variant="body1">
+            <p className={subtitleStyle}>
+              궁금한 점이 있으시면 언제든 연락해 주세요.
+            </p>
+          </Typo>
 
           <div className={contactListStyle}>
             <a href="mailto:rhcksrhd93@gmail.com" className={contactItemStyle}>
@@ -100,8 +104,12 @@ function RouteComponent() {
                 <EmailIcon width={20} height={20} aria-hidden="true" />
               </div>
               <div className={contactInfoStyle}>
-                <span className={contactLabelStyle}>Email</span>
-                <span className={contactLinkStyle}>ghcheondev@gmail.com</span>
+                <Typo asChild variant="caption">
+                  <span className={contactLabelStyle}>Email</span>
+                </Typo>
+                <Typo asChild variant="body1">
+                  <span className={contactLinkStyle}>ghcheondev@gmail.com</span>
+                </Typo>
               </div>
             </a>
 
@@ -115,8 +123,12 @@ function RouteComponent() {
                 <GithubIcon width={20} height={20} aria-hidden="true" />
               </div>
               <div className={contactInfoStyle}>
-                <span className={contactLabelStyle}>GitHub</span>
-                <span className={contactLinkStyle}>github.com/iDevGon</span>
+                <Typo asChild variant="caption">
+                  <span className={contactLabelStyle}>GitHub</span>
+                </Typo>
+                <Typo asChild variant="body1">
+                  <span className={contactLinkStyle}>github.com/iDevGon</span>
+                </Typo>
               </div>
             </a>
 
@@ -130,8 +142,12 @@ function RouteComponent() {
                 <BlogIcon width={20} height={20} aria-hidden="true" />
               </div>
               <div className={contactInfoStyle}>
-                <span className={contactLabelStyle}>Blog</span>
-                <span className={contactLinkStyle}>iDevGon.github.io</span>
+                <Typo asChild variant="caption">
+                  <span className={contactLabelStyle}>Blog</span>
+                </Typo>
+                <Typo asChild variant="body1">
+                  <span className={contactLinkStyle}>iDevGon.github.io</span>
+                </Typo>
               </div>
             </a>
           </div>

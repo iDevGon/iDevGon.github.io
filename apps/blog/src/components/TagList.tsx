@@ -1,5 +1,5 @@
+import { Flex, Typo } from '@idevgon/design-system';
 import { css } from 'styled-system/css';
-import { Flex } from '@idevgon/design-system';
 
 const tagStyle = css({
   padding: '1 2',
@@ -15,9 +15,9 @@ export function TagList({ tags }: { tags: string[] }) {
   return (
     <Flex className={css({ gap: '2', marginTop: '3' })} wrap="wrap">
       {tags.map((tag) => (
-        <span key={tag} className={tagStyle}>
-          #{tag}
-        </span>
+        <Typo asChild variant="caption" key={tag}>
+          <span className={tagStyle}>#{tag}</span>
+        </Typo>
       ))}
     </Flex>
   );

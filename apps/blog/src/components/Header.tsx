@@ -1,3 +1,4 @@
+import { Typo } from '@idevgon/design-system';
 import { Link } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
 import { ColorModeSwitch } from '@/components/ColorModeSwitch';
@@ -63,7 +64,9 @@ export const Header = () => {
     <header className={`${headerStyle} no-print`}>
       <Link to="/" className={logoAreaStyle}>
         <Logo width={32} height={36} />
-        <span className={logoTextStyle}>DevGon</span>
+        <Typo asChild variant="body1">
+          <span className={logoTextStyle}>DevGon</span>
+        </Typo>
       </Link>
       <nav className={navAreaStyle}>
         <Link
