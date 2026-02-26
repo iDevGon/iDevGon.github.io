@@ -4,10 +4,8 @@ export const timelineContainerStyle = css({
   marginTop: '2rem',
   marginBottom: '3rem',
   _print: {
-    marginTop: '1rem',
-    marginBottom: '1.5rem',
-    pageBreakInside: 'avoid',
-    breakInside: 'avoid',
+    marginTop: '0.5rem',
+    marginBottom: '0.5rem',
   },
 });
 
@@ -28,7 +26,7 @@ export const timelineBarStyle = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  color: 'white',
+  color: 'var(--bar-text-color)',
   fontSize: '1.2rem',
   fontWeight: 'bold',
   transition: 'transform 0.2s, box-shadow 0.2s',

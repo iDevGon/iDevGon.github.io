@@ -21,6 +21,7 @@ import type { TimelineChartProps, TimelineItem } from './types';
 import {
   formatDuration,
   formatPeriod,
+  getContrastTextColor,
   getMonthsDiff,
   parseDate,
 } from './utils';
@@ -91,6 +92,9 @@ function Bars() {
                 '--bar-top': `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
                 '--bar-height': `${barHeight}px`,
                 '--bar-color': colors[idx % colors.length],
+                '--bar-text-color': getContrastTextColor(
+                  colors[idx % colors.length],
+                ),
               } as CSSProperties
             }
             title={`${item.label}: ${formatPeriod(item.startDate, item.endDate)} (${formatDuration(duration)})`}
