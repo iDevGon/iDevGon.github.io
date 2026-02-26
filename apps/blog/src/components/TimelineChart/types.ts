@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export interface TimelineItem {
   id: string;
   label: string;
@@ -7,10 +9,8 @@ export interface TimelineItem {
 
 export interface TimelineChartProps {
   items: TimelineItem[];
-  title?: string;
   colors?: string[];
-  showLegend?: boolean;
-  showYearMarkers?: boolean;
   barHeight?: number;
   className?: string;
+  children?: ReactNode;
 }

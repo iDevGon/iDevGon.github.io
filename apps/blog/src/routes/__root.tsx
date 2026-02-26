@@ -54,7 +54,8 @@ const mainContentStyle = css({
 });
 
 const RootLayout = () => {
-  const { colorMode, setColorMode } = useColorMode();
+  const colorMode = useColorMode((s) => s.colorMode);
+  const setColorMode = useColorMode((s) => s.setColorMode);
 
   useEffect(() => {
     if (colorMode === 'system') {
@@ -71,8 +72,11 @@ const RootLayout = () => {
   return (
     <Ssgoi config={ssgoiConfig}>
       <div data-color-mode={resolvedColorMode} className={rootLayoutStyle}>
+        <a href="#main-content" className="skip-link">
+          본문으로 건너뛰기
+        </a>
         <Header />
-        <main className={mainContentStyle}>
+        <main id="main-content" className={mainContentStyle}>
           <Outlet />
         </main>
         <Footer />

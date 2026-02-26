@@ -1,3 +1,4 @@
+import { createContext, use, useMemo, type ReactNode } from 'react';
 import { Typo } from '@idevgon/design-system';
 import {
   legendColorStyle,
@@ -11,6 +12,7 @@ import {
   yearMarkerStyle,
 } from './styles';
 import type { TimelineChartProps, TimelineItem } from './types';
+import { formatDuration, formatPeriod, getMonthsDiff, parseDate } from './utils';
 
 const DEFAULT_COLORS = ['#3B82F6', '#10B981', '#F59E0B', '#EF4444', '#8B5CF6'];
 
@@ -19,148 +21,200 @@ const BAR_GAP = 5;
 const YEAR_MARKERS_HEIGHT = 30;
 const CHART_PADDING_TOP = 20;
 
-function parseDate(dateStr: string): Date {
-  const [year, month] = dateStr.split('.').map(Number);
-  return new Date(year, (month || 1) - 1);
+interface TimelineContextValue {
+  items: TimelineItem[];
+  colors: string[];
+  barHeight: number;
+  now: Date;
+  earliestStart: Date;
+  totalMonths: number;
+  years: number[];
+  chartHeight: number;
 }
 
-function getMonthsDiff(start: Date, end: Date): number {
+const TimelineContext = createContext<TimelineContextValue | null>(null);
+
+function useTimeline() {
+  const ctx = use(TimelineContext);
+  if (!ctx) throw new Error('Timeline compound components must be used within <TimelineChart>');
+  return ctx;
+}
+
+// --- Compound Components ---
+
+function Title({ children }: { children: ReactNode }) {
   return (
-    (end.getFullYear() - start.getFullYear()) * 12 +
-    (end.getMonth() - start.getMonth())
+    <Typo variant="body2" asChild>
+      <p className={timelineTitleStyle}>{children}</p>
+    </Typo>
   );
 }
 
-function formatDuration(months: number): string {
-  const years = (months / 12).toFixed(1);
-  return `${years}년`;
-}
-
-function formatPeriod(startDate: string, endDate?: string | null): string {
-  return `${startDate} ~ ${endDate ?? '현재'}`;
-}
-
-export function TimelineChart({
-  items,
-  title,
-  colors = DEFAULT_COLORS,
-  showLegend = true,
-  showYearMarkers = true,
-  barHeight = DEFAULT_BAR_HEIGHT,
-  className,
-}: TimelineChartProps) {
-  const now = new Date();
-
-  // 전체 기간 계산
-  const allStartDates = items.map((item) => parseDate(item.startDate));
-  const earliestStart = new Date(
-    Math.min(...allStartDates.map((d) => d.getTime())),
-  );
-  const totalMonths = getMonthsDiff(earliestStart, now);
-
-  // 연도 마커 생성
-  const startYear = earliestStart.getFullYear();
-  const endYear = now.getFullYear();
-  const years: number[] = [];
-  for (let y = startYear; y <= endYear; y++) {
-    years.push(y);
-  }
-
-  // 차트 높이 계산
-  const chartHeight =
-    CHART_PADDING_TOP +
-    items.length * (barHeight + BAR_GAP) +
-    YEAR_MARKERS_HEIGHT;
+function Bars() {
+  const { items, colors, barHeight, now, earliestStart, totalMonths } = useTimeline();
 
   return (
-    <div className={`${timelineContainerStyle} ${className ?? ''}`}>
-      {title && (
-        <Typo variant="body2" asChild>
-          <p className={timelineTitleStyle}>{title}</p>
-        </Typo>
-      )}
+    <>
+      {items.map((item, idx) => {
+        const startDate = parseDate(item.startDate);
+        const endDate = item.endDate ? parseDate(item.endDate) : now;
 
-      <div
-        className={timelineChartStyle}
-        style={{ height: `${chartHeight}px` }}
-      >
-        {/* Timeline Bars */}
-        {items.map((item, idx) => {
-          const startDate = parseDate(item.startDate);
-          const endDate = item.endDate ? parseDate(item.endDate) : now;
+        const startOffset = getMonthsDiff(earliestStart, startDate);
+        const duration = getMonthsDiff(startDate, endDate);
 
-          const startOffset = getMonthsDiff(earliestStart, startDate);
-          const duration = getMonthsDiff(startDate, endDate);
+        const leftPercent = (startOffset / totalMonths) * 100;
+        const widthPercent = (duration / totalMonths) * 100;
 
-          const leftPercent = (startOffset / totalMonths) * 100;
-          const widthPercent = (duration / totalMonths) * 100;
+        return (
+          <div
+            key={item.id}
+            className={timelineBarStyle}
+            style={{
+              left: `${leftPercent}%`,
+              width: `${Math.max(widthPercent, 5)}%`,
+              top: `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
+              height: `${barHeight}px`,
+              backgroundColor: colors[idx % colors.length],
+            }}
+            title={`${item.label}: ${formatPeriod(item.startDate, item.endDate)} (${formatDuration(duration)})`}
+          >
+            {widthPercent > 15 && <span>{item.label}</span>}
+          </div>
+        );
+      })}
+    </>
+  );
+}
 
-          return (
-            <div
-              key={item.id}
-              className={timelineBarStyle}
+function YearMarkers() {
+  const { years, earliestStart, totalMonths } = useTimeline();
+
+  return (
+    <div className={timelineYearMarkersStyle}>
+      {years.map((year) => {
+        const yearStart = new Date(year, 0);
+        const offset = getMonthsDiff(earliestStart, yearStart);
+        const leftPercent = (offset / totalMonths) * 100;
+
+        return (
+          <span
+            key={year}
+            className={yearMarkerStyle}
+            style={{ left: `${Math.max(leftPercent, 2)}%` }}
+          >
+            {year}
+          </span>
+        );
+      })}
+    </div>
+  );
+}
+
+function Legend() {
+  const { items, colors, now } = useTimeline();
+
+  return (
+    <div className={timelineLegendStyle}>
+      {items.map((item, idx) => {
+        const startDate = parseDate(item.startDate);
+        const endDate = item.endDate ? parseDate(item.endDate) : now;
+        const duration = getMonthsDiff(startDate, endDate);
+
+        return (
+          <div key={item.id} className={legendItemStyle}>
+            <span
+              className={legendColorStyle}
               style={{
-                left: `${leftPercent}%`,
-                width: `${Math.max(widthPercent, 5)}%`,
-                top: `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
-                height: `${barHeight}px`,
                 backgroundColor: colors[idx % colors.length],
               }}
-              title={`${item.label}: ${formatPeriod(item.startDate, item.endDate)} (${formatDuration(duration)})`}
-            >
-              {widthPercent > 15 && <span>{item.label}</span>}
-            </div>
-          );
-        })}
-
-        {/* Year Markers */}
-        {showYearMarkers && (
-          <div className={timelineYearMarkersStyle}>
-            {years.map((year) => {
-              const yearStart = new Date(year, 0);
-              const offset = getMonthsDiff(earliestStart, yearStart);
-              const leftPercent = (offset / totalMonths) * 100;
-
-              return (
-                <span
-                  key={year}
-                  className={yearMarkerStyle}
-                  style={{ left: `${Math.max(leftPercent, 2)}%` }}
-                >
-                  {year}
-                </span>
-              );
-            })}
+            />
+            <Typo variant="caption">
+              {item.label} ({formatDuration(duration)})
+            </Typo>
           </div>
-        )}
+        );
+      })}
+    </div>
+  );
+}
+
+// --- Root Component ---
+
+function TimelineChartRoot({
+  items,
+  colors = DEFAULT_COLORS,
+  barHeight = DEFAULT_BAR_HEIGHT,
+  className,
+  children,
+}: TimelineChartProps) {
+  const now = useMemo(() => new Date(), []);
+
+  const ctx = useMemo(() => {
+    const allStartDates = items.map((item) => parseDate(item.startDate));
+    const earliestStart = new Date(
+      Math.min(...allStartDates.map((d) => d.getTime())),
+    );
+    const totalMonths = getMonthsDiff(earliestStart, now);
+
+    const startYear = earliestStart.getFullYear();
+    const endYear = now.getFullYear();
+    const years: number[] = [];
+    for (let y = startYear; y <= endYear; y++) {
+      years.push(y);
+    }
+
+    const chartHeight =
+      CHART_PADDING_TOP +
+      items.length * (barHeight + BAR_GAP) +
+      YEAR_MARKERS_HEIGHT;
+
+    return {
+      items,
+      colors,
+      barHeight,
+      now,
+      earliestStart,
+      totalMonths,
+      years,
+      chartHeight,
+    };
+  }, [items, colors, barHeight, now]);
+
+  return (
+    <TimelineContext value={ctx}>
+      <div className={`${timelineContainerStyle} ${className ?? ''}`}>
+        {children}
       </div>
+    </TimelineContext>
+  );
+}
 
-      {/* Legend */}
-      {showLegend && (
-        <div className={timelineLegendStyle}>
-          {items.map((item, idx) => {
-            const startDate = parseDate(item.startDate);
-            const endDate = item.endDate ? parseDate(item.endDate) : now;
-            const duration = getMonthsDiff(startDate, endDate);
+function Chart({ children }: { children?: ReactNode }) {
+  const { chartHeight } = useTimeline();
 
-            return (
-              <div key={item.id} className={legendItemStyle}>
-                <span
-                  className={legendColorStyle}
-                  style={{
-                    backgroundColor: colors[idx % colors.length],
-                  }}
-                />
-                <Typo variant="caption">
-                  {item.label} ({formatDuration(duration)})
-                </Typo>
-              </div>
-            );
-          })}
-        </div>
+  return (
+    <div
+      className={timelineChartStyle}
+      style={{ height: `${chartHeight}px` }}
+    >
+      {children ?? (
+        <>
+          <Bars />
+          <YearMarkers />
+        </>
       )}
     </div>
   );
 }
+
+// --- Export as compound component ---
+
+export const TimelineChart = Object.assign(TimelineChartRoot, {
+  Title,
+  Chart,
+  Bars,
+  YearMarkers,
+  Legend,
+});
 
 export type { TimelineChartProps, TimelineItem };

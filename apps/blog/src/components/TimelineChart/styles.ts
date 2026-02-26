@@ -58,6 +58,7 @@ export const yearMarkerStyle = css({
   fontSize: '1.1rem',
   color: 'textSecondary',
   transform: 'translateX(-50%)',
+  fontVariantNumeric: 'tabular-nums',
 });
 
 export const timelineTitleStyle = css({

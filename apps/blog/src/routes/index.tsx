@@ -33,6 +33,7 @@ const nameStyle = css({
   lineHeight: 1.1,
   color: 'textPrimary',
   marginBottom: '1.6rem',
+  textWrap: 'balance',
 });
 
 const nameHighlight = css({
