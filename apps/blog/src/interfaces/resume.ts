@@ -50,6 +50,7 @@ export interface Education {
     start: string;
     end: string | null;
   };
+  graduated?: boolean;
 }
 
 export interface Certification {

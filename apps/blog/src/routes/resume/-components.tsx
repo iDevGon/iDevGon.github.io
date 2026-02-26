@@ -1,4 +1,5 @@
 import { Typo } from '@idevgon/design-system';
+import { EmailIcon, LinkIcon, PhoneIcon } from '@idevgon/icons';
 import type {
   Certification,
   Education,
@@ -25,6 +26,7 @@ import {
   othersItemStyle,
   othersListStyle,
   periodStyle,
+  profileItemStyle,
   profileSectionStyle,
   projectCardStyle,
   projectDescriptionStyle,
@@ -43,15 +45,18 @@ export function ProfileSection({ profile }: { profile: Profile }) {
         <h1>{profile.name}</h1>
       </Typo>
       <div className={profileSectionStyle}>
-        <Typo variant="body2">
-          이메일:{' '}
+        <Typo variant="body2" className={profileItemStyle}>
+          <EmailIcon width={16} height={16} />
           <a href={`mailto:${profile.email}`} className={linkStyle}>
             {profile.email}
           </a>
         </Typo>
-        <Typo variant="body2">연락처: {profile.phone}</Typo>
-        <Typo variant="body2">
-          링크:{' '}
+        <Typo variant="body2" className={profileItemStyle}>
+          <PhoneIcon width={16} height={16} />
+          {profile.phone}
+        </Typo>
+        <Typo variant="body2" className={profileItemStyle}>
+          <LinkIcon width={16} height={16} />
           <span className={githubListStyle}>
             {profile.github.map((gh) => (
               <a
@@ -218,6 +223,7 @@ export function EducationSection({ education }: { education: Education[] }) {
           </Typo>
           <Typo variant="caption" className={periodStyle}>
             {edu.period.start} ~ {edu.period.end ?? '현재'}
+            {edu.graduated && ' (졸업)'}
           </Typo>
         </div>
       ))}
@@ -241,7 +247,7 @@ export function CertificationsSection({
             <h3>{cert.name}</h3>
           </Typo>
           <Typo variant="body2" className={certificationInfoStyle}>
-            {cert.issuer} | {cert.date}
+            {cert.issuer} | {cert.date} (발급)
           </Typo>
         </div>
       ))}

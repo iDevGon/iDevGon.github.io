@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
 import { Ssgoi, type SsgoiConfig } from '@ssgoi/react';
 import { drill, fade } from '@ssgoi/react/view-transitions';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
+import { useEffect } from 'react';
 import { css } from 'styled-system/css';
-import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { Header } from '@/components/Header';
 import { useColorMode } from '@/store';
 
 const ssgoiConfig: SsgoiConfig = {
@@ -46,11 +46,19 @@ const rootLayoutStyle = css({
   background: 'background',
   color: 'textPrimary',
   transition: 'background-color 0.3s ease, color 0.3s ease',
+  _print: {
+    background: '#ffffff !important',
+    color: '#1a1a1a !important',
+    minHeight: 'auto',
+  },
 });
 
 const mainContentStyle = css({
   flex: 1,
   paddingTop: '6rem',
+  _print: {
+    paddingTop: 0,
+  },
 });
 
 const RootLayout = () => {
@@ -66,8 +74,7 @@ const RootLayout = () => {
     }
   }, [colorMode, setColorMode]);
 
-  const resolvedColorMode =
-    colorMode === 'system' ? 'light' : colorMode;
+  const resolvedColorMode = colorMode === 'system' ? 'light' : colorMode;
 
   return (
     <Ssgoi config={ssgoiConfig}>

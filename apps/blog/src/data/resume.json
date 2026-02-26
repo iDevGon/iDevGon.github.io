@@ -204,7 +204,8 @@
     {
       "school": "협성대학교",
       "major": "경영학과 학사",
-      "period": { "start": "2010.03", "end": "2017.08" }
+      "period": { "start": "2010.03", "end": "2017.08" },
+      "graduated": true
     }
   ],
   "certifications": [

@@ -5,19 +5,22 @@ export const printPageStyle = css({
   _print: {
     width: '100%',
     maxWidth: 'none',
-    padding: 0,
-    margin: 0,
+    paddingInline: '10mm',
+    paddingBlock: '8mm',
+    margin: '0 auto',
     fontSize: '10pt',
     lineHeight: 1.5,
   },
 });
 
 export const sectionStyle = css({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
   marginBottom: '4rem',
   _print: {
-    marginBottom: '2rem',
-    pageBreakInside: 'avoid',
-    breakInside: 'avoid',
+    marginBottom: '0.8rem',
+    gap: '0.6rem',
   },
 });
 
@@ -26,6 +29,12 @@ export const profileSectionStyle = css({
   flexDirection: 'column',
   gap: '0.8rem',
   marginBottom: '2rem',
+});
+
+export const profileItemStyle = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.6rem',
 });
 
 export const linkStyle = css({
@@ -59,9 +68,9 @@ export const experienceCardStyle = css({
   marginBottom: '3rem',
   _print: {
     borderColor: '#3182ce !important',
-    marginBottom: '1.5rem',
-    pageBreakInside: 'avoid',
-    breakInside: 'avoid',
+    marginBottom: '1rem',
+    pageBreakBefore: 'auto',
+    pageBreakAfter: 'auto',
   },
 });
 
@@ -113,7 +122,7 @@ export const dividerStyle = css({
   borderColor: 'border',
   margin: '3rem 0',
   _print: {
-    margin: '1.5rem 0',
+    margin: '0.6rem 0',
     borderColor: '#e5e7eb !important',
   },
 });

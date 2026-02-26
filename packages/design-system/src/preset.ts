@@ -42,7 +42,11 @@ export const idevgonPreset = definePreset({
       semanticTokens: {
         colors: {
           background: {
-            value: { base: '{colors.brand.primary}', _light: '#F8F9FA', _dark: '#1A1D23' },
+            value: {
+              base: '{colors.brand.primary}',
+              _light: '#F8F9FA',
+              _dark: '#1A1D23',
+            },
           },
           surface: {
             value: { base: '#FFFFFF', _light: '#FFFFFF', _dark: '#242830' },
@@ -157,6 +161,8 @@ export const idevgonPreset = definePreset({
         margin: 0,
         padding: 0,
         fontSize: '10pt',
+        backgroundColor: '#ffffff !important',
+        color: '#1a1a1a !important',
         WebkitPrintColorAdjust: 'exact',
         printColorAdjust: 'exact',
       },

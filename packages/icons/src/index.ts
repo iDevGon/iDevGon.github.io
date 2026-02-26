@@ -1,5 +1,7 @@
-export { SunIcon } from './SunIcon';
-export { MoonIcon } from './MoonIcon';
+export { BlogIcon } from './BlogIcon';
 export { EmailIcon } from './EmailIcon';
 export { GithubIcon } from './GithubIcon';
-export { BlogIcon } from './BlogIcon';
+export { LinkIcon } from './LinkIcon';
+export { MoonIcon } from './MoonIcon';
+export { PhoneIcon } from './PhoneIcon';
+export { SunIcon } from './SunIcon';
