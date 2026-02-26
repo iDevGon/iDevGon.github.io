@@ -1,9 +1,19 @@
 import { Typo } from '@idevgon/design-system';
-import type { Experience, Introduction, Profile } from '../../interfaces/resume';
-import { formatPeriod } from './-utils';
+import type {
+  Certification,
+  Education,
+  Experience,
+  Introduction,
+  Other,
+  Profile,
+} from '../../interfaces/resume';
 import {
   achievementListStyle,
+  certificationCardStyle,
+  certificationInfoStyle,
   descriptionStyle,
+  educationCardStyle,
+  educationInfoStyle,
   experienceCardStyle,
   experienceCardWrapperStyle,
   githubListStyle,
@@ -12,6 +22,8 @@ import {
   highlightsWrapperStyle,
   introSummaryStyle,
   linkStyle,
+  othersItemStyle,
+  othersListStyle,
   periodStyle,
   profileSectionStyle,
   projectCardStyle,
@@ -22,6 +34,7 @@ import {
   skillsWrapperStyle,
   skillTagStyle,
 } from './-styles';
+import { formatPeriod } from './-utils';
 
 export function ProfileSection({ profile }: { profile: Profile }) {
   return (
@@ -58,7 +71,11 @@ export function ProfileSection({ profile }: { profile: Profile }) {
   );
 }
 
-export function IntroductionSection({ introduction }: { introduction: Introduction }) {
+export function IntroductionSection({
+  introduction,
+}: {
+  introduction: Introduction;
+}) {
   return (
     <section className={sectionStyle}>
       <Typo variant="h2" asChild>
@@ -75,7 +92,9 @@ export function IntroductionSection({ introduction }: { introduction: Introducti
               <h3>{highlight.title}</h3>
             </Typo>
             <Typo variant="body2" asChild>
-              <p className={highlightDescriptionStyle}>{highlight.description}</p>
+              <p className={highlightDescriptionStyle}>
+                {highlight.description}
+              </p>
             </Typo>
           </div>
         ))}
@@ -144,7 +163,13 @@ function ExperienceCard({ experience }: { experience: Experience }) {
   );
 }
 
-export function ExperienceSection({ experiences, children }: { experiences: Experience[]; children?: React.ReactNode }) {
+export function ExperienceSection({
+  experiences,
+  children,
+}: {
+  experiences: Experience[];
+  children?: React.ReactNode;
+}) {
   return (
     <section className={sectionStyle}>
       <Typo variant="h2" asChild>
@@ -168,9 +193,86 @@ export function SkillsSection({ skills }: { skills: string[] }) {
       </Typo>
       <div className={skillsWrapperStyle}>
         {skills.map((skill) => (
-          <span key={skill} className={skillTagStyle}>
-            {skill}
-          </span>
+          <Typo asChild variant="body2" key={skill}>
+            <span className={skillTagStyle}>{skill}</span>
+          </Typo>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function EducationSection({ education }: { education: Education[] }) {
+  return (
+    <section className={sectionStyle}>
+      <Typo variant="h2" asChild>
+        <h2>학력</h2>
+      </Typo>
+      {education.map((edu) => (
+        <div key={`${edu.school}-${edu.major}`} className={educationCardStyle}>
+          <Typo variant="h3" asChild>
+            <h3>{edu.school}</h3>
+          </Typo>
+          <Typo variant="body2" className={educationInfoStyle}>
+            {edu.major}
+          </Typo>
+          <Typo variant="caption" className={periodStyle}>
+            {edu.period.start} ~ {edu.period.end ?? '현재'}
+          </Typo>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+export function CertificationsSection({
+  certifications,
+}: {
+  certifications: Certification[];
+}) {
+  return (
+    <section className={sectionStyle}>
+      <Typo variant="h2" asChild>
+        <h2>자격증</h2>
+      </Typo>
+      {certifications.map((cert) => (
+        <div key={cert.name} className={certificationCardStyle}>
+          <Typo variant="h3" asChild>
+            <h3>{cert.name}</h3>
+          </Typo>
+          <Typo variant="body2" className={certificationInfoStyle}>
+            {cert.issuer} | {cert.date}
+          </Typo>
+        </div>
+      ))}
+    </section>
+  );
+}
+
+export function OthersSection({ others }: { others: Other[] }) {
+  return (
+    <section className={sectionStyle}>
+      <Typo variant="h2" asChild>
+        <h2>기타</h2>
+      </Typo>
+      <div className={othersListStyle}>
+        {others.map((item) => (
+          <div key={item.title} className={othersItemStyle}>
+            {item.url ? (
+              <Typo variant="body2">
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={linkStyle}
+                >
+                  {item.title}
+                </a>
+              </Typo>
+            ) : (
+              <Typo variant="body2">{item.title}</Typo>
+            )}
+          </div>
         ))}
       </div>
     </section>

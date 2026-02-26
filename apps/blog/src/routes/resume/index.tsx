@@ -1,20 +1,20 @@
+import { Container } from '@idevgon/design-system';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { Container } from '@idevgon/design-system';
 import { TimelineChart } from '../../components/TimelineChart';
 import resumeData from '../../data/resume.json';
 import type { ResumeData } from '../../interfaces/resume';
-import { experiencesToTimelineItems } from './-utils';
 import {
-  dividerStyle,
-  printPageStyle,
-} from './-styles';
-import {
+  CertificationsSection,
+  EducationSection,
   ExperienceSection,
   IntroductionSection,
+  OthersSection,
   ProfileSection,
   SkillsSection,
 } from './-components';
+import { dividerStyle, printPageStyle } from './-styles';
+import { experiencesToTimelineItems } from './-utils';
 
 export const Route = createFileRoute('/resume/')({
   component: RouteComponent,
@@ -43,6 +43,15 @@ function RouteComponent() {
         <hr className={dividerStyle} />
 
         <SkillsSection skills={data.skills} />
+        <hr className={dividerStyle} />
+
+        <EducationSection education={data.education} />
+        <hr className={dividerStyle} />
+
+        <CertificationsSection certifications={data.certifications} />
+        <hr className={dividerStyle} />
+
+        <OthersSection others={data.others} />
       </Container>
     </SsgoiTransition>
   );

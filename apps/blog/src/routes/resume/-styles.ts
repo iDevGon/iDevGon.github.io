@@ -156,3 +156,49 @@ export const skillsWrapperStyle = css({
   marginTop: '1.6rem',
 });
 
+export const educationCardStyle = css({
+  padding: '1.6rem',
+  borderRadius: '0.8rem',
+  backgroundColor: 'surfaceHover',
+  marginBottom: '1.2rem',
+  _print: {
+    backgroundColor: '#f3f4f6 !important',
+    pageBreakInside: 'avoid',
+    breakInside: 'avoid',
+  },
+});
+
+export const educationInfoStyle = css({
+  marginTop: '0.4rem',
+  color: 'textSecondary',
+});
+
+export const certificationCardStyle = css({
+  padding: '1.6rem',
+  borderRadius: '0.8rem',
+  backgroundColor: 'surfaceHover',
+  marginBottom: '1.2rem',
+  _print: {
+    backgroundColor: '#f3f4f6 !important',
+    pageBreakInside: 'avoid',
+    breakInside: 'avoid',
+  },
+});
+
+export const certificationInfoStyle = css({
+  marginTop: '0.4rem',
+  color: 'textSecondary',
+});
+
+export const othersListStyle = css({
+  marginTop: '1.6rem',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
+});
+
+export const othersItemStyle = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.8rem',
+});

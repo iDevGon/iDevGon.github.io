@@ -43,9 +43,32 @@ export interface Experience {
   projects: Project[];
 }
 
+export interface Education {
+  school: string;
+  major: string;
+  period: {
+    start: string;
+    end: string | null;
+  };
+}
+
+export interface Certification {
+  name: string;
+  date: string;
+  issuer: string;
+}
+
+export interface Other {
+  title: string;
+  url?: string;
+}
+
 export interface ResumeData {
   profile: Profile;
   introduction: Introduction;
   experiences: Experience[];
   skills: string[];
+  education: Education[];
+  certifications: Certification[];
+  others: Other[];
 }
