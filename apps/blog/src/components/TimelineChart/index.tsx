@@ -1,4 +1,4 @@
-import { createContext, use, useMemo, type ReactNode } from 'react';
+import { type CSSProperties, createContext, use, useMemo, type ReactNode } from 'react';
 import { Typo } from '@idevgon/design-system';
 import {
   legendColorStyle,
@@ -70,12 +70,12 @@ function Bars() {
             key={item.id}
             className={timelineBarStyle}
             style={{
-              left: `${leftPercent}%`,
-              width: `${Math.max(widthPercent, 5)}%`,
-              top: `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
-              height: `${barHeight}px`,
-              backgroundColor: colors[idx % colors.length],
-            }}
+              '--bar-left': `${leftPercent}%`,
+              '--bar-width': `${Math.max(widthPercent, 5)}%`,
+              '--bar-top': `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
+              '--bar-height': `${barHeight}px`,
+              '--bar-color': colors[idx % colors.length],
+            } as CSSProperties}
             title={`${item.label}: ${formatPeriod(item.startDate, item.endDate)} (${formatDuration(duration)})`}
           >
             {widthPercent > 15 && <span>{item.label}</span>}
@@ -100,7 +100,7 @@ function YearMarkers() {
           <span
             key={year}
             className={yearMarkerStyle}
-            style={{ left: `${Math.max(leftPercent, 2)}%` }}
+            style={{ '--marker-left': `${Math.max(leftPercent, 2)}%` } as CSSProperties}
           >
             {year}
           </span>
@@ -124,9 +124,7 @@ function Legend() {
           <div key={item.id} className={legendItemStyle}>
             <span
               className={legendColorStyle}
-              style={{
-                backgroundColor: colors[idx % colors.length],
-              }}
+              style={{ '--legend-color': colors[idx % colors.length] } as CSSProperties}
             />
             <Typo variant="caption">
               {item.label} ({formatDuration(duration)})
@@ -195,7 +193,7 @@ function Chart({ children }: { children?: ReactNode }) {
   return (
     <div
       className={timelineChartStyle}
-      style={{ height: `${chartHeight}px` }}
+      style={{ '--chart-height': `${chartHeight}px` } as CSSProperties}
     >
       {children ?? (
         <>

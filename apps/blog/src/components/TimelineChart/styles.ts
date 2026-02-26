@@ -16,6 +16,7 @@ export const timelineChartStyle = css({
   backgroundColor: 'surfaceHover',
   borderRadius: '0.8rem',
   overflow: 'hidden',
+  height: 'var(--chart-height)',
   _print: {
     backgroundColor: '#fafafa !important',
   },
@@ -32,6 +33,11 @@ export const timelineBarStyle = css({
   fontWeight: 'bold',
   transition: 'transform 0.2s, box-shadow 0.2s',
   cursor: 'default',
+  left: 'var(--bar-left)',
+  width: 'var(--bar-width)',
+  top: 'var(--bar-top)',
+  height: 'var(--bar-height)',
+  backgroundColor: 'var(--bar-color)',
   _hover: {
     transform: 'scaleY(1.1)',
     boxShadow: '0 4px 12px rgba(0,0,0,0.2)',
@@ -59,6 +65,7 @@ export const yearMarkerStyle = css({
   color: 'textSecondary',
   transform: 'translateX(-50%)',
   fontVariantNumeric: 'tabular-nums',
+  left: 'var(--marker-left)',
 });
 
 export const timelineTitleStyle = css({
@@ -83,4 +90,5 @@ export const legendColorStyle = css({
   width: '16px',
   height: '16px',
   borderRadius: '0.4rem',
+  backgroundColor: 'var(--legend-color)',
 });
