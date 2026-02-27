@@ -1,5 +1,5 @@
 import { Container, Typo } from '@idevgon/design-system';
-import { BlogIcon, EmailIcon, GithubIcon } from '@idevgon/icons';
+import { BlogIcon, EmailIcon, GithubIcon, PhoneIcon } from '@idevgon/icons';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
@@ -13,11 +13,12 @@ const pageStyle = css({
 });
 
 const titleStyle = css({
-  fontSize: '2.8rem',
+  fontSize: { base: '2.4rem', tablet: '2.8rem' },
   fontWeight: 700,
   color: 'textPrimary',
   marginBottom: '1.2rem',
   textWrap: 'balance',
+  letterSpacing: '-0.02em',
 });
 
 const subtitleStyle = css({
@@ -36,8 +37,8 @@ const contactListStyle = css({
 const contactItemStyle = css({
   display: 'flex',
   alignItems: 'center',
-  gap: '1.6rem',
-  padding: '2rem',
+  gap: { base: '1.2rem', tablet: '1.6rem' },
+  padding: { base: '1.6rem', tablet: '2rem' },
   borderRadius: '1.2rem',
   backgroundColor: 'cardBg',
   border: '1px solid',
@@ -45,7 +46,7 @@ const contactItemStyle = css({
   transition: 'border-color 0.2s ease, transform 0.2s ease',
   '&:hover': {
     borderColor: 'borderHover',
-    transform: 'translateX(4px)',
+    transform: { base: 'none', tablet: 'translateX(4px)' },
   },
 });
 
@@ -109,6 +110,20 @@ function RouteComponent() {
                 </Typo>
                 <Typo asChild variant="body1">
                   <span className={contactLinkStyle}>ghcheondev@gmail.com</span>
+                </Typo>
+              </div>
+            </a>
+
+            <a href="tel:010-2675-0229" className={contactItemStyle}>
+              <div className={iconStyle}>
+                <PhoneIcon width={20} height={20} aria-hidden="true" />
+              </div>
+              <div className={contactInfoStyle}>
+                <Typo asChild variant="caption">
+                  <span className={contactLabelStyle}>Phone</span>
+                </Typo>
+                <Typo asChild variant="body1">
+                  <span className={contactLinkStyle}>010-2675-0229</span>
                 </Typo>
               </div>
             </a>

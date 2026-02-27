@@ -55,6 +55,8 @@ const rootLayoutStyle = css({
 
 const mainContentStyle = css({
   flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
   paddingTop: '6rem',
   _print: {
     paddingTop: 0,

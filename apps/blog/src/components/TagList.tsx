@@ -2,10 +2,10 @@ import { Flex, Typo } from '@idevgon/design-system';
 import { css } from 'styled-system/css';
 
 const tagStyle = css({
-  padding: '1 2',
+  padding: '3 5',
   borderRadius: 'md',
   background: 'tagBg',
-  fontSize: '1.2rem',
+  fontSize: '1.4rem',
   color: 'tagText',
 });
 
@@ -13,10 +13,10 @@ export function TagList({ tags }: { tags: string[] }) {
   if (tags.length === 0) return null;
 
   return (
-    <Flex className={css({ gap: '2', marginTop: '3' })} wrap="wrap">
+    <Flex style={{ gap: '0.8rem', marginTop: '1.2rem' }} wrap="wrap">
       {tags.map((tag) => (
-        <Typo asChild variant="caption" key={tag}>
-          <span className={tagStyle}>#{tag}</span>
+        <Typo asChild variant="body2" key={tag}>
+          <span className={tagStyle} style={{ padding: '0.3rem 0.7rem' }}>#{tag}</span>
         </Typo>
       ))}
     </Flex>

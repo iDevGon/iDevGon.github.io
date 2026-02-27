@@ -32,6 +32,9 @@ const DEFAULT_BAR_HEIGHT = 40;
 const BAR_GAP = 5;
 const YEAR_MARKERS_HEIGHT = 30;
 const CHART_PADDING_TOP = 20;
+const CHART_PADDING_BOTTOM = 10;
+const CHART_PADDING_LEFT = 16;
+const CHART_PADDING_RIGHT = 16;
 
 interface TimelineContextValue {
   items: TimelineItem[];
@@ -42,6 +45,8 @@ interface TimelineContextValue {
   totalMonths: number;
   years: number[];
   chartHeight: number;
+  paddingLeft: number;
+  paddingRight: number;
 }
 
 const TimelineContext = createContext<TimelineContextValue | null>(null);
@@ -66,8 +71,16 @@ function Title({ children }: { children: ReactNode }) {
 }
 
 function Bars() {
-  const { items, colors, barHeight, now, earliestStart, totalMonths } =
-    useTimeline();
+  const {
+    items,
+    colors,
+    barHeight,
+    now,
+    earliestStart,
+    totalMonths,
+    paddingLeft,
+    paddingRight,
+  } = useTimeline();
 
   return (
     <>
@@ -87,8 +100,8 @@ function Bars() {
             className={timelineBarStyle}
             style={
               {
-                '--bar-left': `${leftPercent}%`,
-                '--bar-width': `${Math.max(widthPercent, 5)}%`,
+                '--bar-left': `calc(${paddingLeft}px + ${leftPercent} * (100% - ${paddingLeft + paddingRight}px) / 100)`,
+                '--bar-width': `calc(${Math.max(widthPercent, 5)} * (100% - ${paddingLeft + paddingRight}px) / 100)`,
                 '--bar-top': `${CHART_PADDING_TOP + idx * (barHeight + BAR_GAP)}px`,
                 '--bar-height': `${barHeight}px`,
                 '--bar-color': colors[idx % colors.length],
@@ -112,7 +125,8 @@ function Bars() {
 }
 
 function YearMarkers() {
-  const { years, earliestStart, totalMonths } = useTimeline();
+  const { years, earliestStart, totalMonths, paddingLeft, paddingRight } =
+    useTimeline();
 
   return (
     <div className={timelineYearMarkersStyle}>
@@ -127,7 +141,7 @@ function YearMarkers() {
               className={yearMarkerStyle}
               style={
                 {
-                  '--marker-left': `${Math.max(leftPercent, 2)}%`,
+                  '--marker-left': `calc(${paddingLeft}px + ${Math.max(leftPercent, 2)} * (100% - ${paddingLeft + paddingRight}px) / 100)`,
                 } as CSSProperties
               }
             >
@@ -198,7 +212,8 @@ function TimelineChartRoot({
     const chartHeight =
       CHART_PADDING_TOP +
       items.length * (barHeight + BAR_GAP) +
-      YEAR_MARKERS_HEIGHT;
+      YEAR_MARKERS_HEIGHT +
+      CHART_PADDING_BOTTOM;
 
     return {
       items,
@@ -209,6 +224,8 @@ function TimelineChartRoot({
       totalMonths,
       years,
       chartHeight,
+      paddingLeft: CHART_PADDING_LEFT,
+      paddingRight: CHART_PADDING_RIGHT,
     };
   }, [items, colors, barHeight, now]);
 

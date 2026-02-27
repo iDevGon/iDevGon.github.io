@@ -47,7 +47,7 @@ export const timelineBarStyle = css({
 
 export const timelineYearMarkersStyle = css({
   position: 'absolute',
-  bottom: '0',
+  bottom: '10px',
   left: '0',
   right: '0',
   height: '30px',
