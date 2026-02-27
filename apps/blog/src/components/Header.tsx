@@ -1,4 +1,3 @@
-import { Typo } from '@idevgon/design-system';
 import { Link } from '@tanstack/react-router';
 import { useState } from 'react';
 import { css } from 'styled-system/css';
@@ -28,12 +27,6 @@ const logoAreaStyle = css({
   gap: '0.8rem',
   textDecoration: 'none',
   color: 'textPrimary',
-});
-
-const logoTextStyle = css({
-  fontSize: '1.8rem',
-  fontWeight: 700,
-  letterSpacing: '-0.02em',
 });
 
 const desktopNavStyle = css({
@@ -140,10 +133,7 @@ export const Header = () => {
   return (
     <header className={`${headerStyle} no-print`}>
       <Link to="/" className={logoAreaStyle}>
-        <Logo width={32} height={36} />
-        <Typo asChild variant="body1">
-          <span className={logoTextStyle}>DevGon</span>
-        </Typo>
+        <Logo height={36} />
       </Link>
 
       {/* Desktop Navigation */}
