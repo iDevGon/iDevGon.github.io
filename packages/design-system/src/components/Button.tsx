@@ -5,16 +5,20 @@ export const buttonStyle = cva({
   base: {
     color: 'white',
     backgroundColor: 'primary',
-    borderRadius: '0.8rem',
-    padding: '1rem 2rem',
+    borderRadius: '0.6rem',
+    padding: { base: '0.8rem 1.6rem', tablet: '1rem 2rem' },
     fontSize: '1.4rem',
     fontWeight: 500,
     cursor: 'pointer',
     textDecoration: 'none',
-    display: 'inline-block',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '0.6rem',
     transition: 'all 0.2s ease',
     '&:active': {
       backgroundColor: 'primary.dark',
+      transform: 'scale(0.98)',
     },
     '&:hover': {
       backgroundColor: 'primary.light',

@@ -13,6 +13,10 @@ export const idevgonPreset = definePreset({
           '20%': { transform: 'rotate(0deg) scale(1)' },
           '100%': { transform: 'rotate(0deg) scale(1)' },
         },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
@@ -21,6 +25,10 @@ export const idevgonPreset = definePreset({
           '0%': { opacity: '0', transform: 'translateX(-10px)' },
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
+        blink: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
       },
       breakpoints: {
         mobile: '0px',
@@ -28,6 +36,13 @@ export const idevgonPreset = definePreset({
         desktop: '1024px',
       },
       tokens: {
+        radii: {
+          sm: { value: '0.4rem' },
+          md: { value: '0.8rem' },
+          lg: { value: '1.2rem' },
+          xl: { value: '1.6rem' },
+          full: { value: '9999px' },
+        },
         colors: {
           brand: {
             primary: { value: '#4F7CAC' },
@@ -36,6 +51,16 @@ export const idevgonPreset = definePreset({
             secondary: { value: '#C0E0DE' },
             secondaryLight: { value: '#D4EDEB' },
             secondaryDark: { value: '#9CCBC8' },
+          },
+        },
+        fonts: {
+          sans: {
+            value:
+              "'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Noto Sans KR', sans-serif",
+          },
+          mono: {
+            value:
+              "'JetBrains Mono', 'Fira Code', 'SF Mono', Menlo, Consolas, monospace",
           },
         },
       },
@@ -131,13 +156,19 @@ export const idevgonPreset = definePreset({
   },
   globalCss: {
     '*': {
-      fontFamily: 'Roboto, Noto Sans KR, sans-serif',
       boxSizing: 'border-box',
     },
     'html, body': {
       fontSize: '62.5%',
       margin: 0,
       padding: 0,
+      fontFamily: '{fonts.sans}',
+    },
+    html: {
+      scrollBehavior: 'smooth',
+      WebkitFontSmoothing: 'antialiased',
+      MozOsxFontSmoothing: 'grayscale',
+      textRendering: 'optimizeLegibility',
     },
     body: {
       backgroundColor: 'background',
@@ -149,9 +180,27 @@ export const idevgonPreset = definePreset({
       color: 'inherit',
       textDecoration: 'none',
     },
+    'code, pre, kbd, samp': {
+      fontFamily: '{fonts.mono}',
+    },
     '::selection': {
       backgroundColor: '{colors.brand.primary}',
       color: 'white',
+    },
+    '.skip-link': {
+      position: 'absolute',
+      top: '-4rem',
+      left: '1.6rem',
+      background: 'primary',
+      color: 'white',
+      padding: '0.8rem 1.6rem',
+      borderRadius: '0.4rem',
+      fontSize: '1.4rem',
+      zIndex: 1000,
+      transition: 'top 0.2s ease',
+      '&:focus': {
+        top: '1rem',
+      },
     },
     '@page': { size: 'A4', margin: '15mm' },
     '@media print': {

@@ -12,6 +12,8 @@ export const Flex = styled('div', {
     justify: {
       start: { justifyContent: 'flex-start' },
       center: { justifyContent: 'center' },
+      'space-between': { justifyContent: 'space-between' },
+      end: { justifyContent: 'flex-end' },
     },
     align: {
       start: { alignItems: 'flex-start' },

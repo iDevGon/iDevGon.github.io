@@ -7,7 +7,7 @@ const cardStyle = cva({
     borderRadius: '1.2rem',
     border: '1px solid',
     borderColor: 'border',
-    padding: '2.4rem',
+    padding: { base: '1.6rem', tablet: '2.4rem' },
     transition: 'all 0.2s ease',
   },
   variants: {

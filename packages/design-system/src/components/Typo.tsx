@@ -3,13 +3,30 @@ import { cva, type RecipeVariantProps } from 'styled-system/css';
 import { Slot } from './Slot';
 
 const typoStyle = cva({
-  base: {},
+  base: {
+    letterSpacing: '-0.01em',
+  },
   variants: {
     variant: {
-      h1: { fontSize: '3.2rem', fontWeight: 'bold', lineHeight: '1.2' },
-      h2: { fontSize: '2.4rem', fontWeight: 'bold', lineHeight: '1.3' },
-      h3: { fontSize: '2rem', fontWeight: 'semibold', lineHeight: '1.4' },
-      body1: { fontSize: '1.6rem', lineHeight: '1.5' },
+      h1: {
+        fontSize: { base: '2.6rem', tablet: '3.2rem' },
+        fontWeight: 'bold',
+        lineHeight: '1.2',
+        letterSpacing: '-0.025em',
+      },
+      h2: {
+        fontSize: { base: '2rem', tablet: '2.4rem' },
+        fontWeight: 'bold',
+        lineHeight: '1.3',
+        letterSpacing: '-0.02em',
+      },
+      h3: {
+        fontSize: { base: '1.7rem', tablet: '2rem' },
+        fontWeight: 'semibold',
+        lineHeight: '1.4',
+        letterSpacing: '-0.015em',
+      },
+      body1: { fontSize: '1.6rem', lineHeight: '1.6' },
       body2: { fontSize: '1.4rem', lineHeight: '1.5' },
       caption: { fontSize: '1.2rem', lineHeight: '1.4' },
     },

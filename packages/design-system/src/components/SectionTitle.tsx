@@ -2,12 +2,13 @@ import type { ReactNode } from 'react';
 import { css } from 'styled-system/css';
 
 const sectionTitleStyle = css({
-  fontSize: '2.4rem',
+  fontSize: { base: '2rem', tablet: '2.4rem' },
   fontWeight: 700,
   color: 'textPrimary',
   marginBottom: '2.4rem',
   position: 'relative',
   paddingBottom: '1.2rem',
+  letterSpacing: '-0.02em',
   '&::after': {
     content: '""',
     position: 'absolute',
