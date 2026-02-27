@@ -22,6 +22,7 @@ import {
   highlightDescriptionStyle,
   highlightsWrapperStyle,
   introSummaryStyle,
+  introSummaryWrapperStyle,
   linkStyle,
   othersItemStyle,
   othersListStyle,
@@ -53,7 +54,9 @@ export function ProfileSection({ profile }: { profile: Profile }) {
         </Typo>
         <Typo variant="body2" className={profileItemStyle}>
           <PhoneIcon width={16} height={16} />
-          {profile.phone}
+          <a href={`tel:${profile.phone}`} className={linkStyle}>
+            {profile.phone}
+          </a>
         </Typo>
         <Typo variant="body2" className={profileItemStyle}>
           <LinkIcon width={16} height={16} />
@@ -86,9 +89,13 @@ export function IntroductionSection({
       <Typo variant="h2" asChild>
         <h2>{introduction.title}</h2>
       </Typo>
-      <Typo variant="body1" asChild>
-        <p className={introSummaryStyle}>{introduction.summary}</p>
-      </Typo>
+      <div className={introSummaryWrapperStyle}>
+        {introduction.summary.map((paragraph) => (
+          <Typo key={paragraph} variant="body1" asChild>
+            <p className={introSummaryStyle}>{paragraph}</p>
+          </Typo>
+        ))}
+      </div>
 
       <div className={highlightsWrapperStyle}>
         {introduction.highlights.map((highlight) => (

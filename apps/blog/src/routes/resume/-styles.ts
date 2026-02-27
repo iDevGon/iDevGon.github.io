@@ -17,7 +17,7 @@ export const sectionStyle = css({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  marginBottom: '4rem',
+  marginBottom: { base: '3rem', tablet: '4rem' },
   _print: {
     marginBottom: '0.8rem',
     gap: '0.6rem',
@@ -50,7 +50,7 @@ export const githubListStyle = css({
 });
 
 export const highlightCardStyle = css({
-  padding: '1.6rem',
+  padding: { base: '1.2rem', tablet: '1.6rem' },
   borderRadius: '0.8rem',
   backgroundColor: 'surfaceHover',
   marginBottom: '1.2rem',
@@ -64,8 +64,8 @@ export const highlightCardStyle = css({
 export const experienceCardStyle = css({
   borderLeft: '3px solid',
   borderColor: 'primary',
-  paddingLeft: '2rem',
-  marginBottom: '3rem',
+  paddingLeft: { base: '1.2rem', tablet: '2rem' },
+  marginBottom: { base: '2rem', tablet: '3rem' },
   _print: {
     borderColor: '#3182ce !important',
     marginBottom: '1rem',
@@ -75,7 +75,7 @@ export const experienceCardStyle = css({
 });
 
 export const projectCardStyle = css({
-  padding: '1.6rem',
+  padding: { base: '1.2rem', tablet: '1.6rem' },
   borderRadius: '0.8rem',
   backgroundColor: 'surface',
   marginBottom: '1.6rem',
@@ -96,11 +96,11 @@ export const achievementListStyle = css({
 
 export const skillTagStyle = css({
   display: 'inline-block',
-  padding: '0.4rem 1.2rem',
+  padding: { base: '0.3rem 0.8rem', tablet: '0.4rem 1.2rem' },
   borderRadius: '2rem',
   backgroundColor: 'tagBg',
   color: 'tagText',
-  fontSize: '1.4rem',
+  fontSize: { base: '1.2rem', tablet: '1.4rem' },
   marginRight: '0.8rem',
   marginBottom: '0.8rem',
   _print: {
@@ -120,15 +120,21 @@ export const dividerStyle = css({
   border: 'none',
   borderTop: '1px solid',
   borderColor: 'border',
-  margin: '3rem 0',
+  margin: { base: '2rem 0', tablet: '3rem 0' },
   _print: {
     margin: '0.6rem 0',
     borderColor: '#e5e7eb !important',
   },
 });
 
-export const introSummaryStyle = css({
+export const introSummaryWrapperStyle = css({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '1.2rem',
   marginTop: '1.6rem',
+});
+
+export const introSummaryStyle = css({
   lineHeight: '1.8',
 });
 

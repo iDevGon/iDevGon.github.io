@@ -17,7 +17,7 @@ export interface IntroductionHighlight {
 
 export interface Introduction {
   title: string;
-  summary: string;
+  summary: string[];
   highlights: IntroductionHighlight[];
 }
 
