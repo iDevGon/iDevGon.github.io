@@ -15,6 +15,42 @@ export const Route = createFileRoute('/articles/detail/$articleId/')({
   component: RouteComponent,
 });
 
+const backLinkStyle = css({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  marginBottom: '2.4rem',
+  color: 'textMuted',
+  fontSize: '1.4rem',
+  fontFamily: '{fonts.mono}',
+  transition: 'color 0.2s',
+  _hover: { color: 'primary' },
+});
+
+const articleTitleStyle = css({
+  fontSize: { base: '2.4rem', tablet: '3.2rem' },
+  fontWeight: 'bold',
+  lineHeight: '1.2',
+  marginBottom: '1.6rem',
+  textWrap: 'balance',
+  letterSpacing: '-0.025em',
+});
+
+const metaStyle = css({
+  gap: { base: '0.8rem', tablet: '1.6rem' },
+  color: 'textMuted',
+  fontSize: { base: '1.2rem', tablet: '1.4rem' },
+  fontFamily: '{fonts.mono}',
+  letterSpacing: '0.01em',
+});
+
+const headerStyle = css({
+  marginBottom: { base: '3.2rem', tablet: '4rem' },
+  paddingBottom: '2.4rem',
+  borderBottom: '1px solid',
+  borderColor: 'border',
+});
+
 function RouteComponent() {
   const { articleId } = Route.useParams();
   const article = getArticle(articleId);
@@ -42,7 +78,7 @@ function RouteComponent() {
               _hover: { textDecoration: 'underline' },
             })}
           >
-            ← 목록으로 돌아가기
+            &larr; 목록으로 돌아가기
           </Link>
         </Container>
       </SsgoiTransition>
@@ -52,43 +88,16 @@ function RouteComponent() {
   return (
     <SsgoiTransition id={`/articles/detail/${articleId}`}>
       <Container className={css({ padding: '4' })}>
-        {/* 뒤로가기 링크 */}
-        <Link
-          to="/articles"
-          className={css({
-            display: 'inline-block',
-            marginBottom: '4',
-            color: 'textSecondary',
-            fontSize: '1.4rem',
-            _hover: { color: 'primary' },
-          })}
-        >
-          ← 목록으로
+        <Link to="/articles" className={backLinkStyle}>
+          &larr; cd ..
         </Link>
 
-        {/* 아티클 헤더 */}
-        <header className={css({ marginBottom: '8' })}>
+        <header className={headerStyle}>
           <Typo asChild variant="h1">
-            <h1
-              className={css({
-                fontSize: '3.2rem',
-                fontWeight: 'bold',
-                lineHeight: '1.2',
-                marginBottom: '4',
-                textWrap: 'balance',
-              })}
-            >
-              {article.title}
-            </h1>
+            <h1 className={articleTitleStyle}>{article.title}</h1>
           </Typo>
 
-          <Flex
-            className={css({
-              gap: '4',
-              color: 'textSecondary',
-              fontSize: '1.4rem',
-            })}
-          >
+          <Flex className={metaStyle}>
             <Typo asChild variant="body2">
               <span>{article.author}</span>
             </Typo>
@@ -100,7 +109,6 @@ function RouteComponent() {
           <TagList tags={article.tags} />
         </header>
 
-        {/* 마크다운 본문 */}
         <article className={markdownStyles}>
           <Suspense fallback={null}>
             <Markdown remarkPlugins={REMARK_PLUGINS}>

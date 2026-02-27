@@ -8,6 +8,7 @@ export interface ArticleFrontmatter {
 export interface ArticleMeta extends ArticleFrontmatter {
   id: string;
   excerpt: string;
+  plainText: string;
 }
 
 export interface Article extends ArticleMeta {

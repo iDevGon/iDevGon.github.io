@@ -51,11 +51,25 @@ export function getArticles(): ArticleMeta[] {
         date: data.date,
         tags: data.tags,
         excerpt,
+        plainText,
       };
     })
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return cachedArticles;
+}
+
+export function getAllTags(): string[] {
+  const articles = getArticles();
+  const tagCount = new Map<string, number>();
+  for (const article of articles) {
+    for (const tag of article.tags) {
+      tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+    }
+  }
+  return [...tagCount.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([tag]) => tag);
 }
 
 export function getArticle(id: string): Article | null {
@@ -79,6 +93,7 @@ export function getArticle(id: string): Article | null {
     date: data.date,
     tags: data.tags,
     excerpt,
+    plainText,
     content,
   };
 }
