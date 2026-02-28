@@ -57,7 +57,7 @@ const mainContentStyle = css({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: '6rem',
+  paddingTop: 'calc(6rem + env(safe-area-inset-top, 0px))',
   _print: {
     paddingTop: 0,
   },
@@ -77,6 +77,19 @@ const RootLayout = () => {
   }, [colorMode, setColorMode]);
 
   const resolvedColorMode = colorMode === 'system' ? 'light' : colorMode;
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-color-mode', resolvedColorMode);
+    document.documentElement.style.colorScheme = resolvedColorMode;
+    const themeColor = resolvedColorMode === 'dark' ? '#1A1D23' : '#F8F9FA';
+    let meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'theme-color';
+      document.head.appendChild(meta);
+    }
+    meta.content = themeColor;
+  }, [resolvedColorMode]);
 
   return (
     <Ssgoi config={ssgoiConfig}>
