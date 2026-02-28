@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { css } from 'styled-system/css';
 import { ColorModeSwitch } from '@/components/ColorModeSwitch';
 import { Logo } from '@/components/Logo';
@@ -28,6 +28,10 @@ const logoAreaStyle = css({
   gap: '0.8rem',
   textDecoration: 'none',
   color: 'textPrimary',
+  transition: 'opacity 0.2s ease',
+  _hover: {
+    opacity: 0.7,
+  },
 });
 
 const desktopNavStyle = css({
@@ -68,10 +72,11 @@ const hamburgerLineStyle = css({
 const mobileMenuStyle = css({
   display: { base: 'flex', tablet: 'none' },
   flexDirection: 'column',
-  position: 'absolute',
+  position: 'fixed',
   top: '6rem',
   left: 0,
   right: 0,
+  zIndex: 99,
   background: 'color-mix(in srgb, var(--colors-surface) 35%, transparent)',
   backdropFilter: 'blur(20px) saturate(1.8)',
   WebkitBackdropFilter: 'blur(20px) saturate(1.8)',
@@ -131,8 +136,28 @@ const NAV_LINKS = [
 
 export const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const menuRef = useRef<HTMLElement>(null);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const handleClickOutside = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node;
+      if (menuRef.current?.contains(target) || hamburgerRef.current?.contains(target)) return;
+      setMobileMenuOpen(false);
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+    };
+  }, [mobileMenuOpen]);
 
   return (
+    <>
     <header className={`${headerStyle} no-print`}>
       <Link to="/" className={logoAreaStyle}>
         <Logo height={36} />
@@ -157,6 +182,7 @@ export const Header = () => {
       <div className={mobileActionsStyle}>
         <ColorModeSwitch />
         <button
+          ref={hamburgerRef}
           type="button"
           className={hamburgerStyle}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -185,25 +211,26 @@ export const Header = () => {
           />
         </button>
       </div>
-
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <nav className={mobileMenuStyle}>
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={mobileNavLinkStyle}
-              activeProps={{
-                className: `${mobileNavLinkStyle} ${activeMobileNavStyle}`,
-              }}
-              onClick={() => setMobileMenuOpen(false)}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-      )}
     </header>
+
+    {/* Mobile Menu - header 바깥에 위치해야 backdrop-filter 독립 적용 */}
+    {mobileMenuOpen && (
+      <nav ref={menuRef} className={mobileMenuStyle}>
+        {NAV_LINKS.map((link) => (
+          <Link
+            key={link.to}
+            to={link.to}
+            className={mobileNavLinkStyle}
+            activeProps={{
+              className: `${mobileNavLinkStyle} ${activeMobileNavStyle}`,
+            }}
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            {link.label}
+          </Link>
+        ))}
+      </nav>
+    )}
+    </>
   );
 };

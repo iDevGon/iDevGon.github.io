@@ -12,7 +12,7 @@ const switchStyle = css({
   border: 'none',
   background: 'none',
   cursor: 'pointer',
-  color: 'textSecondary',
+  color: 'textPrimary',
   touchAction: 'manipulation',
   transition: 'color 0.2s ease, transform 0.2s ease',
   _hover: {
