@@ -2,9 +2,22 @@ import { Container, Flex, Typo } from '@idevgon/design-system';
 import { SearchIcon } from '@idevgon/icons';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { css } from 'styled-system/css';
 import { getAllTags, getArticles } from '@/utils/articleLoader';
+import {
+  articleListStyle,
+  containerPaddingStyle,
+  emptyStateStyle,
+  emptySubtextStyle,
+  headerStyle,
+  noResultStyle,
+  pageStyle,
+  searchResultCountStyle,
+  searchToggleStyle,
+  titleStyle,
+} from './-styles';
 import { ArticleCard } from './components/-ArticleCard';
+import { ArticleFilters } from './components/-ArticleFilters';
+import { ArticleSearch } from './components/-ArticleSearch';
 import { Pagination } from './components/-Pagination';
 
 const ITEMS_PER_PAGE = 10;
@@ -20,155 +33,6 @@ export const Route = createFileRoute('/articles/')({
     page: Number(search.page) || 1,
     tag: typeof search.tag === 'string' ? search.tag : undefined,
   }),
-});
-
-const pageStyle = css({
-  animation: 'fadeIn 0.8s ease',
-});
-
-const titleStyle = css({
-  fontSize: { base: '2.4rem', tablet: '2.8rem' },
-  fontWeight: 700,
-  color: 'textPrimary',
-  letterSpacing: '-0.02em',
-  textWrap: 'balance',
-});
-
-const headerStyle = css({
-  display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  marginBottom: '3.2rem',
-});
-
-const searchToggleStyle = css({
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '3.2rem',
-  height: '3.2rem',
-  borderRadius: '50%',
-  border: 'none',
-  background: 'transparent',
-  color: 'textMuted',
-  cursor: 'pointer',
-  transition: 'color 0.15s, background 0.15s',
-  _hover: {
-    color: 'textPrimary',
-    background: 'backgroundAlt',
-  },
-  '&[data-active="true"]': {
-    background: 'backgroundAlt',
-    color: 'primary',
-  },
-});
-
-const searchPanelStyle = css({
-  display: 'grid',
-  gridTemplateRows: '0fr',
-  transition: 'grid-template-rows 0.2s ease',
-  '& > div': {
-    overflow: 'hidden',
-  },
-  '&[data-open="true"]': {
-    gridTemplateRows: '1fr',
-  },
-});
-
-const searchPanelInnerStyle = css({
-  paddingBottom: '2rem',
-});
-
-const searchInputStyle = css({
-  width: '100%',
-  padding: {
-    base: '1rem 4.8rem 1rem 3.6rem',
-    tablet: '1.2rem 5.2rem 1.2rem 4rem',
-  },
-  fontSize: { base: '1.4rem', tablet: '1.6rem' },
-  border: '1px solid',
-  borderColor: 'border',
-  borderRadius: '0.8rem',
-  background: 'surface',
-  color: 'textPrimary',
-  outline: 'none',
-  transition: 'border-color 0.2s, box-shadow 0.2s',
-  _focus: {
-    borderColor: 'primary',
-    boxShadow:
-      '0 0 0 3px color-mix(in srgb, token(colors.primary) 12%, transparent)',
-  },
-  _placeholder: {
-    color: 'textMuted',
-  },
-});
-
-const searchIconStyle = css({
-  position: 'absolute',
-  left: { base: '1.2rem', tablet: '1.4rem' },
-  top: '50%',
-  transform: 'translateY(-50%)',
-  color: 'textMuted',
-  pointerEvents: 'none',
-});
-
-const searchSubmitStyle = css({
-  position: 'absolute',
-  right: { base: '0.8rem', tablet: '1rem' },
-  top: '50%',
-  transform: 'translateY(-50%)',
-  display: 'inline-flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  width: '3.2rem',
-  height: '3.2rem',
-  borderRadius: '0.6rem',
-  border: 'none',
-  background: 'primary',
-  color: 'white',
-  cursor: 'pointer',
-  transition: 'background 0.15s',
-  _hover: {
-    background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
-  },
-});
-
-const tagFilterStyle = css({
-  marginTop: '1.2rem',
-  gap: '0.6rem',
-  flexWrap: 'wrap',
-});
-
-const tagButtonStyle = css({
-  padding: '0.4rem 1rem',
-  borderRadius: 'md',
-  border: '1px solid',
-  borderColor: 'border',
-  background: 'surface',
-  color: 'textSecondary',
-  fontSize: '1.3rem',
-  cursor: 'pointer',
-  transition: 'all 0.2s',
-  whiteSpace: 'nowrap',
-  _hover: {
-    borderColor: 'primary',
-    color: 'primary',
-  },
-  '&[data-selected="true"]': {
-    borderColor: 'primary',
-    background: 'primary',
-    color: 'white',
-    _hover: {
-      background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
-      color: 'white',
-    },
-  },
-});
-
-const noResultStyle = css({
-  padding: { base: '4rem 0', tablet: '6rem 0' },
-  textAlign: 'center',
-  color: 'textMuted',
 });
 
 function RouteComponent() {
@@ -290,7 +154,7 @@ function RouteComponent() {
   };
 
   return (
-    <Container className={`${pageStyle} ${css({ padding: '4' })}`}>
+    <Container className={`${pageStyle} ${containerPaddingStyle}`}>
       <div className={headerStyle}>
         <Typo asChild variant="h1">
           <h1 className={titleStyle}>생각들</h1>
@@ -310,63 +174,21 @@ function RouteComponent() {
         )}
       </div>
 
-      <div className={searchPanelStyle} data-open={searchOpen}>
-        <div>
-          <div className={searchPanelInnerStyle}>
-            <div className={css({ position: 'relative' })}>
-              <SearchIcon
-                className={searchIconStyle}
-                width="18"
-                height="18"
-                aria-hidden="true"
-              />
-              <input
-                ref={inputRef}
-                type="search"
-                className={searchInputStyle}
-                placeholder="제목이나 내용으로 검색..."
-                onKeyDown={handleSearchKeyDown}
-                aria-label="글 검색"
-              />
-              <button
-                type="button"
-                className={searchSubmitStyle}
-                onClick={submitSearch}
-                aria-label="검색"
-              >
-                <SearchIcon width="16" height="16" aria-hidden="true" />
-              </button>
-            </div>
-
-            {allTags.length > 0 && (
-              <Flex className={tagFilterStyle}>
-                {allTags.map((tagName) => (
-                  <button
-                    type="button"
-                    key={tagName}
-                    className={tagButtonStyle}
-                    data-selected={selectedTags.has(tagName.toLowerCase())}
-                    onClick={() => handleTagClick(tagName)}
-                    aria-pressed={selectedTags.has(tagName.toLowerCase())}
-                  >
-                    #{tagName}
-                  </button>
-                ))}
-              </Flex>
-            )}
-          </div>
-        </div>
-      </div>
+      <ArticleSearch
+        searchOpen={searchOpen}
+        inputRef={inputRef}
+        onSearchKeyDown={handleSearchKeyDown}
+        onSubmit={submitSearch}
+      >
+        <ArticleFilters
+          allTags={allTags}
+          selectedTags={selectedTags}
+          onTagClick={handleTagClick}
+        />
+      </ArticleSearch>
 
       {isSearching && (
-        <p
-          className={css({
-            fontSize: '1.3rem',
-            color: 'textMuted',
-            fontFamily: '{fonts.mono}',
-            marginBottom: '1.6rem',
-          })}
-        >
+        <p className={searchResultCountStyle}>
           {filteredArticles.length} / {allArticles.length} posts
         </p>
       )}
@@ -375,19 +197,12 @@ function RouteComponent() {
         <Flex
           direction="column"
           align="center"
-          className={css({
-            padding: '16',
-            textAlign: 'center',
-            color: 'textSecondary',
-          })}
+          className={emptyStateStyle}
         >
           <Typo variant="h3">아직 여러분과 나눌 이야기가 부족해요. 😅</Typo>
           <Typo
             variant="body1"
-            className={css({
-              marginTop: '0.75rem',
-              color: 'textSecondary',
-            })}
+            className={emptySubtextStyle}
           >
             조금 더 경험을 쌓고, 생각을 정리해서 곧 돌아올게요.
           </Typo>
@@ -398,7 +213,7 @@ function RouteComponent() {
         </div>
       ) : (
         <>
-          <Flex direction="column" className={css({ gap: '1.6rem' })}>
+          <Flex direction="column" className={articleListStyle}>
             {articles.map((article) => (
               <ArticleCard key={article.id} article={article} />
             ))}

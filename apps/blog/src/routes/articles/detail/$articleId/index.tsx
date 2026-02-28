@@ -1,5 +1,4 @@
 import { Container, Flex, Typo } from '@idevgon/design-system';
-import Giscus from '@giscus/react';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { lazy, Suspense } from 'react';
@@ -11,6 +10,7 @@ import { getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
 
 const Markdown = lazy(() => import('react-markdown'));
+const Giscus = lazy(() => import('@giscus/react').then((m) => ({ default: m.default })));
 const REMARK_PLUGINS = [remarkGfm];
 
 export const Route = createFileRoute('/articles/detail/$articleId/')({
@@ -20,6 +20,36 @@ export const Route = createFileRoute('/articles/detail/$articleId/')({
 const articleLayoutStyle = css({
   maxWidth: '72rem',
   marginInline: 'auto',
+});
+
+const containerPaddingStyle = css({
+  padding: '4',
+});
+
+const notFoundTitleStyle = css({
+  fontSize: '2.4rem',
+  fontWeight: 'bold',
+});
+
+const notFoundBodyStyle = css({
+  marginTop: '4',
+  color: 'textSecondary',
+});
+
+const notFoundLinkStyle = css({
+  display: 'inline-block',
+  marginTop: '4',
+  color: 'primary',
+  _hover: { textDecoration: 'underline' },
+});
+
+const giscusWrapperStyle = css({
+  maxWidth: '72rem',
+  marginInline: 'auto',
+  marginTop: '4.8rem',
+  paddingTop: '3.2rem',
+  borderTop: '1px solid',
+  borderColor: 'border',
 });
 
 const GISCUS_THEME_MAP = {
@@ -72,25 +102,20 @@ function RouteComponent() {
   if (!article) {
     return (
       <SsgoiTransition id={`/articles/detail/${articleId}`}>
-        <Container className={css({ padding: '4' })}>
+        <Container className={containerPaddingStyle}>
           <Typo asChild variant="h1">
-            <h1 className={css({ fontSize: '2.4rem', fontWeight: 'bold' })}>
+            <h1 className={notFoundTitleStyle}>
               Article Not Found
             </h1>
           </Typo>
           <Typo asChild variant="body1">
-            <p className={css({ marginTop: '4', color: 'textSecondary' })}>
+            <p className={notFoundBodyStyle}>
               요청하신 아티클을 찾을 수 없습니다.
             </p>
           </Typo>
           <Link
             to="/articles"
-            className={css({
-              display: 'inline-block',
-              marginTop: '4',
-              color: 'primary',
-              _hover: { textDecoration: 'underline' },
-            })}
+            className={notFoundLinkStyle}
           >
             &larr; 목록으로 돌아가기
           </Link>
@@ -101,7 +126,7 @@ function RouteComponent() {
 
   return (
     <SsgoiTransition id={`/articles/detail/${articleId}`}>
-      <Container className={css({ padding: '4' })}>
+      <Container className={containerPaddingStyle}>
         <div className={articleLayoutStyle}>
           <Link to="/articles" className={backLinkStyle}>
             &larr; cd ..
@@ -133,30 +158,23 @@ function RouteComponent() {
           </Suspense>
         </article>
 
-        <div
-          className={css({
-            maxWidth: '72rem',
-            marginInline: 'auto',
-            marginTop: '4.8rem',
-            paddingTop: '3.2rem',
-            borderTop: '1px solid',
-            borderColor: 'border',
-          })}
-        >
-          <Giscus
-            repo="iDevGon/iDevGon.github.io"
-            repoId="R_kgDOP8gvzw"
-            category="Comment"
-            categoryId="DIC_kwDOP8gvz84Cwh-G"
-            mapping="pathname"
-            strict="0"
-            reactionsEnabled="1"
-            emitMetadata="0"
-            inputPosition="top"
-            theme={GISCUS_THEME_MAP[colorMode]}
-            lang="ko"
-            loading="lazy"
-          />
+        <div className={giscusWrapperStyle}>
+          <Suspense fallback={null}>
+            <Giscus
+              repo="iDevGon/iDevGon.github.io"
+              repoId="R_kgDOP8gvzw"
+              category="Comment"
+              categoryId="DIC_kwDOP8gvz84Cwh-G"
+              mapping="pathname"
+              strict="0"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme={GISCUS_THEME_MAP[colorMode]}
+              lang="ko"
+              loading="lazy"
+            />
+          </Suspense>
         </div>
       </Container>
     </SsgoiTransition>
