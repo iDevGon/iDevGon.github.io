@@ -21,6 +21,7 @@ export function parseFrontmatter(markdown: string): ParsedMarkdown {
         author: 'Unknown',
         date: '',
         tags: [],
+        description: undefined,
       },
       content: markdown,
     };
@@ -35,6 +36,7 @@ export function parseFrontmatter(markdown: string): ParsedMarkdown {
       author: (data.author as string) ?? 'Unknown',
       date: (data.date as string) ?? '',
       tags: (data.tags as string[]) ?? [],
+      description: (data.description as string) ?? undefined,
     },
     content,
   };

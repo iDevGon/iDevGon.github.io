@@ -41,6 +41,7 @@ cat > "$FILEPATH" << EOF
 title: ${TITLE}
 author: DevGon
 date: ${DATE}
+description:
 tags:
 $(echo -e "$TAGS_YAML" | sed '/^$/d')
 ---

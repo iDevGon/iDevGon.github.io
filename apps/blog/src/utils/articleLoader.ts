@@ -50,6 +50,7 @@ export function getArticles(): ArticleMeta[] {
         author: data.author,
         date: data.date,
         tags: data.tags,
+        description: data.description,
         excerpt,
         plainText,
       };
@@ -92,6 +93,7 @@ export function getArticle(id: string): Article | null {
     author: data.author,
     date: data.date,
     tags: data.tags,
+    description: data.description,
     excerpt,
     plainText,
     content,

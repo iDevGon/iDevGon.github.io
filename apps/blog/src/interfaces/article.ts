@@ -3,6 +3,7 @@ export interface ArticleFrontmatter {
   author: string;
   date: string;
   tags: string[];
+  description?: string;
 }
 
 export interface ArticleMeta extends ArticleFrontmatter {

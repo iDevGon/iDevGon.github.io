@@ -1,10 +1,12 @@
 import { Container, Flex, Typo } from '@idevgon/design-system';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useMemo } from 'react';
 import remarkGfm from 'remark-gfm';
 import { css } from 'styled-system/css';
 import { TagList } from '@/components/TagList';
+import { useBlogPostingJsonLd } from '@/hooks/useJsonLd';
+import { useSeo } from '@/hooks/useSeo';
 import { useColorMode } from '@/store';
 import { getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
@@ -99,6 +101,36 @@ function RouteComponent() {
   const { articleId } = Route.useParams();
   const article = getArticle(articleId);
   const { colorMode } = useColorMode();
+
+  const articleMeta = useMemo(
+    () =>
+      article
+        ? {
+            publishedTime: article.date,
+            author: article.author,
+            tags: article.tags,
+          }
+        : undefined,
+    [article],
+  );
+
+  useSeo({
+    title: article?.title ?? 'Article Not Found',
+    description: article?.description ?? article?.excerpt ?? '',
+    path: `/articles/detail/${articleId}`,
+    type: article ? 'article' : 'website',
+    article: articleMeta,
+  });
+
+  useBlogPostingJsonLd({
+    title: article?.title ?? '',
+    description: article?.description ?? article?.excerpt ?? '',
+    datePublished: article?.date ?? '',
+    author: article?.author ?? 'DevGon',
+    tags: article?.tags ?? [],
+    url: `/articles/detail/${articleId}`,
+  });
+
   if (!article) {
     return (
       <SsgoiTransition id={`/articles/detail/${articleId}`}>

@@ -1,6 +1,7 @@
 import { Container } from '@idevgon/design-system';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
+import { useSeo } from '@/hooks/useSeo';
 import { TimelineChart } from '../../components/TimelineChart';
 import resumeData from '../../data/resume.json';
 import type { ResumeData } from '../../interfaces/resume';
@@ -24,6 +25,14 @@ const data = resumeData as ResumeData;
 const timelineItems = experiencesToTimelineItems(data.experiences);
 
 function RouteComponent() {
+  useSeo({
+    title: '이력서',
+    description:
+      '프론트엔드 개발자 DevGon의 이력서. 경력, 기술 스택, 프로젝트 경험을 확인할 수 있습니다.',
+    path: '/resume',
+    noindex: true,
+  });
+
   return (
     <SsgoiTransition id="/resume">
       <Container className={printPageStyle}>

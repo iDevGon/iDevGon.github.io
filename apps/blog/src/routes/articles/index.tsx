@@ -2,6 +2,7 @@ import { Container, Flex, Typo } from '@idevgon/design-system';
 import { SearchIcon } from '@idevgon/icons';
 import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useSeo } from '@/hooks/useSeo';
 import { getAllTags, getArticles } from '@/utils/articleLoader';
 import {
   articleListStyle,
@@ -36,6 +37,13 @@ export const Route = createFileRoute('/articles/')({
 });
 
 function RouteComponent() {
+  useSeo({
+    title: '생각들',
+    description:
+      'DevGon의 프론트엔드 개발 아티클 모음. React, TypeScript 등 웹 개발 경험을 공유합니다.',
+    path: '/articles',
+  });
+
   const { page, tag } = Route.useSearch();
   const navigate = useNavigate();
   const currentPage = page ?? 1;

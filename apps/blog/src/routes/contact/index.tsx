@@ -3,6 +3,7 @@ import { BlogIcon, EmailIcon, GithubIcon, PhoneIcon } from '@idevgon/icons';
 import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
+import { useSeo } from '@/hooks/useSeo';
 
 export const Route = createFileRoute('/contact/')({
   component: RouteComponent,
@@ -86,6 +87,14 @@ const contactLinkStyle = css({
 });
 
 function RouteComponent() {
+  useSeo({
+    title: '연락처',
+    description:
+      'DevGon에게 연락하기. 이메일, GitHub 등 다양한 채널로 소통할 수 있습니다.',
+    path: '/contact',
+    noindex: true,
+  });
+
   return (
     <SsgoiTransition id="/contact">
       <Container>

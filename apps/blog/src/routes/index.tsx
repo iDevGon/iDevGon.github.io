@@ -4,6 +4,8 @@ import { createFileRoute } from '@tanstack/react-router';
 import dayjs from 'dayjs';
 import { css } from 'styled-system/css';
 import { Button } from '@/components/Button';
+import { useWebSiteJsonLd } from '@/hooks/useJsonLd';
+import { useSeo } from '@/hooks/useSeo';
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
@@ -108,6 +110,15 @@ const buttonGroupStyle = css({
 
 function RouteComponent() {
   const careerYear = dayjs().diff(dayjs(CAREER_START_DATE), 'year');
+
+  useSeo({
+    title: "DevGon's Log",
+    description:
+      '프론트엔드 개발자 DevGon의 기술 블로그. 사용자 경험을 고민하고, 깔끔한 코드를 추구합니다.',
+    path: '/',
+  });
+
+  useWebSiteJsonLd();
 
   return (
     <SsgoiTransition id="/" className={pageStyle}>
