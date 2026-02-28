@@ -1,6 +1,6 @@
 import { Container, Flex, Typo } from '@idevgon/design-system';
 import { SearchIcon } from '@idevgon/icons';
-import { createFileRoute } from '@tanstack/react-router';
+import { createFileRoute, useNavigate } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { css } from 'styled-system/css';
 import { getAllTags, getArticles } from '@/utils/articleLoader';
@@ -11,12 +11,14 @@ const ITEMS_PER_PAGE = 10;
 
 type ArticlesSearch = {
   page?: number;
+  tag?: string;
 };
 
 export const Route = createFileRoute('/articles/')({
   component: RouteComponent,
   validateSearch: (search: Record<string, unknown>): ArticlesSearch => ({
     page: Number(search.page) || 1,
+    tag: typeof search.tag === 'string' ? search.tag : undefined,
   }),
 });
 
@@ -80,8 +82,8 @@ const searchPanelInnerStyle = css({
 const searchInputStyle = css({
   width: '100%',
   padding: {
-    base: '1rem 1.2rem 1rem 3.6rem',
-    tablet: '1.2rem 1.6rem 1.2rem 4rem',
+    base: '1rem 4.8rem 1rem 3.6rem',
+    tablet: '1.2rem 5.2rem 1.2rem 4rem',
   },
   fontSize: { base: '1.4rem', tablet: '1.6rem' },
   border: '1px solid',
@@ -110,6 +112,27 @@ const searchIconStyle = css({
   pointerEvents: 'none',
 });
 
+const searchSubmitStyle = css({
+  position: 'absolute',
+  right: { base: '0.8rem', tablet: '1rem' },
+  top: '50%',
+  transform: 'translateY(-50%)',
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '3.2rem',
+  height: '3.2rem',
+  borderRadius: '0.6rem',
+  border: 'none',
+  background: 'primary',
+  color: 'white',
+  cursor: 'pointer',
+  transition: 'background 0.15s',
+  _hover: {
+    background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
+  },
+});
+
 const tagFilterStyle = css({
   marginTop: '1.2rem',
   gap: '0.6rem',
@@ -135,6 +158,10 @@ const tagButtonStyle = css({
     borderColor: 'primary',
     background: 'primary',
     color: 'white',
+    _hover: {
+      background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
+      color: 'white',
+    },
   },
 });
 
@@ -145,21 +172,45 @@ const noResultStyle = css({
 });
 
 function RouteComponent() {
-  const { page } = Route.useSearch();
+  const { page, tag } = Route.useSearch();
+  const navigate = useNavigate();
   const currentPage = page ?? 1;
   const inputRef = useRef<HTMLInputElement>(null);
-  const [searchOpen, setSearchOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(!!tag);
   const [searchQuery, setSearchQuery] = useState('');
-  const [selectedTag, setSelectedTag] = useState('');
+  const [selectedTags, setSelectedTags] = useState<Set<string>>(
+    () => new Set(tag ? [tag.toLowerCase()] : []),
+  );
+
+  useEffect(() => {
+    if (tag) {
+      setSelectedTags(new Set([tag.toLowerCase()]));
+      setSearchOpen(true);
+    }
+  }, [tag]);
+
+  const resetSearch = useCallback(() => {
+    setSearchQuery('');
+    setSelectedTags(new Set());
+    if (inputRef.current) inputRef.current.value = '';
+  }, []);
+
+  const submitSearch = useCallback(() => {
+    const value = inputRef.current?.value.trim() ?? '';
+    setSearchQuery(value);
+    navigate({ to: '/articles', search: { page: 1 } });
+  }, [navigate]);
 
   const toggleSearch = useCallback(() => {
     setSearchOpen((prev) => {
       if (!prev) {
         setTimeout(() => inputRef.current?.focus(), 100);
+      } else {
+        resetSearch();
       }
       return !prev;
     });
-  }, []);
+  }, [resetSearch]);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -177,11 +228,12 @@ function RouteComponent() {
       }
       if (e.key === 'Escape' && searchOpen) {
         setSearchOpen(false);
+        resetSearch();
       }
     };
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [searchOpen]);
+  }, [searchOpen, resetSearch]);
 
   const allArticles = getArticles();
   const allTags = getAllTags();
@@ -198,16 +250,18 @@ function RouteComponent() {
       );
     }
 
-    if (selectedTag) {
+    if (selectedTags.size > 0) {
       results = results.filter((a) =>
-        a.tags.some((t) => t.toLowerCase() === selectedTag.toLowerCase()),
+        a.tags.some((t) =>
+          selectedTags.has(t.toLowerCase()),
+        ),
       );
     }
 
     return results;
-  }, [allArticles, searchQuery, selectedTag]);
+  }, [allArticles, searchQuery, selectedTags]);
 
-  const isSearching = !!searchQuery || !!selectedTag;
+  const isSearching = !!searchQuery || selectedTags.size > 0;
   const totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
   const articles = filteredArticles.slice(
@@ -215,17 +269,24 @@ function RouteComponent() {
     startIndex + ITEMS_PER_PAGE,
   );
 
-  let debounceTimer: ReturnType<typeof setTimeout>;
-  const handleSearchInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(() => {
-      setSearchQuery(value);
-    }, 300);
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      submitSearch();
+    }
   };
 
   const handleTagClick = (tagName: string) => {
-    setSelectedTag((prev) => (prev === tagName ? '' : tagName));
+    setSelectedTags((prev) => {
+      const next = new Set(prev);
+      const key = tagName.toLowerCase();
+      if (next.has(key)) {
+        next.delete(key);
+      } else {
+        next.add(key);
+      }
+      return next;
+    });
+    navigate({ to: '/articles', search: { page: 1 } });
   };
 
   return (
@@ -264,9 +325,17 @@ function RouteComponent() {
                 type="search"
                 className={searchInputStyle}
                 placeholder="제목이나 내용으로 검색..."
-                onChange={handleSearchInput}
+                onKeyDown={handleSearchKeyDown}
                 aria-label="글 검색"
               />
+              <button
+                type="button"
+                className={searchSubmitStyle}
+                onClick={submitSearch}
+                aria-label="검색"
+              >
+                <SearchIcon width="16" height="16" aria-hidden="true" />
+              </button>
             </div>
 
             {allTags.length > 0 && (
@@ -276,9 +345,9 @@ function RouteComponent() {
                     type="button"
                     key={tagName}
                     className={tagButtonStyle}
-                    data-selected={selectedTag === tagName}
+                    data-selected={selectedTags.has(tagName.toLowerCase())}
                     onClick={() => handleTagClick(tagName)}
-                    aria-pressed={selectedTag === tagName}
+                    aria-pressed={selectedTags.has(tagName.toLowerCase())}
                   >
                     #{tagName}
                   </button>
@@ -329,7 +398,7 @@ function RouteComponent() {
         </div>
       ) : (
         <>
-          <Flex direction="column" className={css({ gap: '4' })}>
+          <Flex direction="column" className={css({ gap: '1.6rem' })}>
             {articles.map((article) => (
               <ArticleCard key={article.id} article={article} />
             ))}
