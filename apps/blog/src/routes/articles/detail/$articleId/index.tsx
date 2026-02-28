@@ -12,7 +12,9 @@ import { getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
 
 const Markdown = lazy(() => import('react-markdown'));
-const Giscus = lazy(() => import('@giscus/react').then((m) => ({ default: m.default })));
+const Giscus = lazy(() =>
+  import('@giscus/react').then((m) => ({ default: m.default })),
+);
 const REMARK_PLUGINS = [remarkGfm];
 
 export const Route = createFileRoute('/articles/detail/$articleId/')({
@@ -55,8 +57,8 @@ const giscusWrapperStyle = css({
 });
 
 const GISCUS_THEME_MAP = {
-  light: 'light',
-  dark: 'dark',
+  light: 'light_protanopia',
+  dark: 'dark_protanopia',
   system: 'preferred_color_scheme',
 } as const;
 
@@ -136,19 +138,14 @@ function RouteComponent() {
       <SsgoiTransition id={`/articles/detail/${articleId}`}>
         <Container className={containerPaddingStyle}>
           <Typo asChild variant="h1">
-            <h1 className={notFoundTitleStyle}>
-              Article Not Found
-            </h1>
+            <h1 className={notFoundTitleStyle}>Article Not Found</h1>
           </Typo>
           <Typo asChild variant="body1">
             <p className={notFoundBodyStyle}>
               요청하신 아티클을 찾을 수 없습니다.
             </p>
           </Typo>
-          <Link
-            to="/articles"
-            className={notFoundLinkStyle}
-          >
+          <Link to="/articles" className={notFoundLinkStyle}>
             &larr; 목록으로 돌아가기
           </Link>
         </Container>
