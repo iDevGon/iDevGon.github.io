@@ -8,12 +8,26 @@ export const headerStyle = css({
   alignItems: 'center',
   justifyContent: 'space-between',
   height: '6rem',
+  // paddingTop: 'env(safe-area-inset-top, 0px)',
   paddingInline: { base: '1.6rem', tablet: '2.4rem' },
-  background: 'color-mix(in srgb, var(--colors-surface) 35%, transparent)',
-  backdropFilter: 'blur(20px) saturate(1.8)',
-  borderBottom: '1px solid color-mix(in srgb, var(--colors-border) 70%, transparent)',
-  boxShadow: '0 4px 30px color-mix(in srgb, var(--colors-surface) 10%, transparent)',
-  transition: 'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
+  background: {
+    base: 'background',
+    tablet:
+      'color-mix(in srgb, var(--colors-background) 35%, transparent)',
+  },
+  backdropFilter: { base: 'none', tablet: 'blur(20px) saturate(1.8)' },
+  borderBottom: {
+    base: '1px solid var(--colors-border)',
+    tablet:
+      '1px solid color-mix(in srgb, var(--colors-border) 70%, transparent)',
+  },
+  boxShadow: {
+    base: 'none',
+    tablet:
+      '0 4px 30px color-mix(in srgb, var(--colors-surface) 10%, transparent)',
+  },
+  transition:
+    'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
   overflow: 'visible',
 });
 
@@ -70,6 +84,7 @@ export const hamburgerLineTopOpenStyle = css({
 
 export const hamburgerLineMiddleOpenStyle = css({
   opacity: 0,
+  transform: 'scaleX(0)',
 });
 
 export const hamburgerLineBottomOpenStyle = css({
@@ -84,10 +99,8 @@ export const mobileMenuStyle = css({
   left: 0,
   right: 0,
   zIndex: 99,
-  background: 'color-mix(in srgb, var(--colors-surface) 35%, transparent)',
-  backdropFilter: 'blur(20px) saturate(1.8)',
-  borderBottom: '1px solid color-mix(in srgb, var(--colors-border) 70%, transparent)',
-  boxShadow: '0 4px 30px color-mix(in srgb, var(--colors-surface) 10%, transparent)',
+  background: 'background',
+  borderBottom: '1px solid var(--colors-border)',
   padding: '0.8rem 1.6rem',
   animation: 'fadeInUp 0.2s ease-out',
 });
