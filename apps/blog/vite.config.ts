@@ -20,6 +20,12 @@ export default defineConfig({
     sitemapPlugin(),
     prerenderPlugin(),
   ],
+  server: {
+    host: true,
+  },
+  build: {
+    cssMinify: 'esbuild',
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
