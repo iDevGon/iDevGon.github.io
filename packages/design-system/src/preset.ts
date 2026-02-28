@@ -68,7 +68,6 @@ export const idevgonPreset = definePreset({
         colors: {
           background: {
             value: {
-              base: '{colors.brand.primary}',
               _light: '#F8F9FA',
               _dark: '#1A1D23',
             },
