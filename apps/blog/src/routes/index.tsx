@@ -117,6 +117,8 @@ function RouteComponent() {
             <img
               src="https://avatars.githubusercontent.com/u/106735547?v=4"
               alt="DevGon 프로필"
+              width={320}
+              height={320}
               className={avatarStyle}
             />
             <div className={heroTextStyle}>
