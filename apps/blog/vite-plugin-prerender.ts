@@ -9,6 +9,7 @@ interface Frontmatter {
   author?: string;
   date?: string;
   tags?: string[];
+  coverImage?: string;
   body: string;
 }
 

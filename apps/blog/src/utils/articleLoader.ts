@@ -62,6 +62,7 @@ export function getArticles(): ArticleMeta[] {
         date: data.date,
         tags: data.tags,
         description: data.description,
+        coverImage: data.coverImage,
         excerpt,
         plainText,
       };
@@ -105,6 +106,7 @@ export function getArticle(id: string): Article | null {
     date: data.date,
     tags: data.tags,
     description: data.description,
+    coverImage: data.coverImage,
     excerpt,
     plainText,
     content,

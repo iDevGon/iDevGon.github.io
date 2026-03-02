@@ -1,3 +1,4 @@
+import type React from 'react';
 import { Flex, Typo } from '@idevgon/design-system';
 import { Link } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
@@ -5,13 +6,17 @@ import { TagList } from '@/components/TagList';
 import type { ArticleMeta } from '@/interfaces/article';
 
 const cardStyle = css({
+  position: 'relative',
   display: 'block',
+  overflow: 'hidden',
   padding: { base: '1.6rem', tablet: '2rem 2.4rem' },
   borderRadius: '1rem',
   border: '1px solid',
   borderColor: 'border',
   borderLeft: '3px solid',
   borderLeftColor: 'secondary',
+  contentVisibility: 'auto',
+  containIntrinsicSize: '0 200px',
   transition:
     'border-color 0.2s, border-left-color 0.2s, transform 0.2s, box-shadow 0.2s',
   _hover: {
@@ -20,7 +25,25 @@ const cardStyle = css({
     transform: { base: 'none', tablet: 'translateY(-2px)' },
     boxShadow: { base: 'none', tablet: '0 4px 16px rgba(0,0,0,0.06)' },
     '& h2': { color: 'primary' },
+    '& > [data-cover-bg]': { opacity: 0.18 },
   },
+});
+
+const coverBgStyle = css({
+  position: 'absolute',
+  inset: 0,
+  backgroundImage: 'var(--cover-image)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  maskImage: 'linear-gradient(to right, transparent 20%, black 80%)',
+  WebkitMaskImage: 'linear-gradient(to right, transparent 20%, black 80%)',
+  opacity: 0.1,
+  transition: 'opacity 0.3s ease',
+  pointerEvents: 'none',
+});
+
+const cardContentStyle = css({
+  position: 'relative',
 });
 
 const titleStyle = css({
@@ -57,26 +80,36 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
       params={{ articleId: article.id }}
       className={cardStyle}
     >
-      <Typo asChild variant="h2">
-        <h2 className={titleStyle}>{article.title}</h2>
-      </Typo>
-
-      <Flex className={metaStyle}>
-        <Typo asChild variant="body2">
-          <span>{article.author}</span>
-        </Typo>
-        <Typo asChild variant="body2">
-          <span>{article.date}</span>
-        </Typo>
-      </Flex>
-
-      {article.excerpt && (
-        <Typo asChild variant="body2">
-          <p className={excerptStyle}>{article.excerpt}</p>
-        </Typo>
+      {article.coverImage && (
+        <div
+          data-cover-bg
+          className={coverBgStyle}
+          style={{ '--cover-image': `url(${article.coverImage})` } as React.CSSProperties}
+        />
       )}
 
-      <TagList tags={article.tags} />
+      <div className={cardContentStyle}>
+        <Typo asChild variant="h2">
+          <h2 className={titleStyle}>{article.title}</h2>
+        </Typo>
+
+        <Flex className={metaStyle}>
+          <Typo asChild variant="body2">
+            <span>{article.author}</span>
+          </Typo>
+          <Typo asChild variant="body2">
+            <span>{article.date}</span>
+          </Typo>
+        </Flex>
+
+        {article.excerpt && (
+          <Typo asChild variant="body2">
+            <p className={excerptStyle}>{article.excerpt}</p>
+          </Typo>
+        )}
+
+        <TagList tags={article.tags} />
+      </div>
     </Link>
   );
 }

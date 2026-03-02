@@ -37,6 +37,7 @@ export function parseFrontmatter(markdown: string): ParsedMarkdown {
       date: (data.date as string) ?? '',
       tags: (data.tags as string[]) ?? [],
       description: (data.description as string) ?? undefined,
+      coverImage: (data.coverImage as string) ?? undefined,
     },
     content,
   };

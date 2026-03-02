@@ -4,6 +4,7 @@ export interface ArticleFrontmatter {
   date: string;
   tags: string[];
   description?: string;
+  coverImage?: string;
 }
 
 export interface ArticleMeta extends ArticleFrontmatter {

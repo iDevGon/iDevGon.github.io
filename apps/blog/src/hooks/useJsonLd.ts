@@ -59,6 +59,7 @@ interface BlogPostingOptions {
   author: string;
   tags: string[];
   url: string;
+  image?: string;
 }
 
 export function useBlogPostingJsonLd({
@@ -68,8 +69,9 @@ export function useBlogPostingJsonLd({
   author,
   tags,
   url,
+  image,
 }: BlogPostingOptions) {
-  const data = {
+  const data: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: title,
@@ -93,6 +95,10 @@ export function useBlogPostingJsonLd({
       '@id': `${BASE_URL}${url}`,
     },
   };
+
+  if (image) {
+    data.image = image;
+  }
 
   useJsonLd(data);
 }

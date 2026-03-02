@@ -66,6 +66,23 @@ export const metaStyle = css({
   letterSpacing: '0.01em',
 });
 
+export const coverImageWrapperStyle = css({
+  marginBottom: '2.8rem',
+  borderRadius: '{radii.lg}',
+  overflow: 'hidden',
+  border: '1px solid',
+  borderColor: 'border',
+  aspectRatio: '2 / 1',
+  animation: 'fadeIn 0.8s ease-out',
+});
+
+export const coverImageStyle = css({
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  display: 'block',
+});
+
 export const articleHeaderStyle = css({
   marginBottom: { base: '3.2rem', tablet: '4.8rem' },
   paddingBottom: '2.4rem',

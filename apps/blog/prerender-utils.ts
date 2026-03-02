@@ -15,6 +15,7 @@ interface Frontmatter {
   author?: string;
   date?: string;
   tags?: string[];
+  coverImage?: string;
 }
 
 export function escapeHtml(str: string): string {
@@ -30,11 +31,16 @@ export function buildMetaTags(articleId: string, fm: Frontmatter): string {
   const title = `${fm.title} | ${SITE_NAME}`;
   const description = fm.description ?? '';
   const url = `${BASE_URL}/articles/detail/${articleId}`;
-  const image = DEFAULT_IMAGE;
+  const coverImage = fm.coverImage;
+  const image = coverImage
+    ? coverImage.startsWith('http://') || coverImage.startsWith('https://')
+      ? coverImage
+      : `${BASE_URL}${coverImage}`
+    : DEFAULT_IMAGE;
   const author = fm.author ?? 'DevGon';
   const tags = fm.tags ?? [];
 
-  const jsonLd = {
+  const jsonLd: Record<string, unknown> = {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: fm.title,
@@ -47,6 +53,10 @@ export function buildMetaTags(articleId: string, fm: Frontmatter): string {
     inLanguage: 'ko',
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
   };
+
+  if (coverImage) {
+    jsonLd.image = image;
+  }
 
   const escapedTitle = escapeHtml(title);
   const escapedDesc = escapeHtml(description);
@@ -64,7 +74,7 @@ export function buildMetaTags(articleId: string, fm: Frontmatter): string {
     `<meta property="og:image" content="${image}">`,
     `<meta property="og:locale" content="ko_KR">`,
     // Twitter Card
-    `<meta name="twitter:card" content="summary">`,
+    `<meta name="twitter:card" content="${coverImage ? 'summary_large_image' : 'summary'}">`,
     `<meta name="twitter:title" content="${escapedTitle}">`,
     `<meta name="twitter:description" content="${escapedDesc}">`,
     `<meta name="twitter:image" content="${image}">`,

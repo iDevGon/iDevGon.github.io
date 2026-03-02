@@ -15,12 +15,21 @@ import {
   articleTitleStyle,
   backLinkStyle,
   containerPaddingStyle,
+  coverImageStyle,
+  coverImageWrapperStyle,
   giscusWrapperStyle,
   metaStyle,
   notFoundBodyStyle,
   notFoundLinkStyle,
   notFoundTitleStyle,
 } from './-styles';
+
+const BASE_URL = 'https://idevgon.github.io';
+
+function resolveImageUrl(src: string): string {
+  if (src.startsWith('http://') || src.startsWith('https://')) return src;
+  return `${BASE_URL}${src}`;
+}
 
 const Markdown = lazy(() => import('react-markdown'));
 const Giscus = lazy(() =>
@@ -43,6 +52,10 @@ function RouteComponent() {
   const article = getArticle(articleId);
   const colorMode = useColorMode((s) => s.colorMode);
 
+  const coverImageUrl = article?.coverImage
+    ? resolveImageUrl(article.coverImage)
+    : undefined;
+
   const articleMeta = useMemo(
     () =>
       article
@@ -61,6 +74,7 @@ function RouteComponent() {
     path: `/articles/detail/${articleId}`,
     type: article ? 'article' : 'website',
     article: articleMeta,
+    ...(coverImageUrl && { image: coverImageUrl }),
   });
 
   useBlogPostingJsonLd({
@@ -70,6 +84,7 @@ function RouteComponent() {
     author: article?.author ?? 'DevGon',
     tags: article?.tags ?? [],
     url: `/articles/detail/${articleId}`,
+    ...(coverImageUrl && { image: coverImageUrl }),
   });
 
   useEffect(() => {
@@ -100,6 +115,16 @@ function RouteComponent() {
         <Link to="/articles" className={backLinkStyle}>
           &larr; cd ..
         </Link>
+
+        {coverImageUrl && (
+          <div className={coverImageWrapperStyle}>
+            <img
+              src={coverImageUrl}
+              alt={article.title}
+              className={coverImageStyle}
+            />
+          </div>
+        )}
 
         <header className={articleHeaderStyle}>
           <Typo asChild variant="h1">
