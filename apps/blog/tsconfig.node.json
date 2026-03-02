@@ -22,5 +22,5 @@
         "noFallthroughCasesInSwitch": true,
         "noUncheckedSideEffectImports": true
     },
-    "include": ["vite.config.ts", "panda.config.ts", "postcss.config.cjs"]
+    "include": ["vite.config.ts", "vitest.config.ts", "panda.config.ts", "postcss.config.cjs"]
 }

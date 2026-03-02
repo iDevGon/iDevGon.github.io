@@ -15,7 +15,8 @@
     "storybook": "pnpm --filter @idevgon/design-system storybook",
     "build-storybook": "pnpm --filter @idevgon/design-system build-storybook",
     "preview": "pnpm build && pnpm --filter @idevgon/blog preview",
-    "new-article": "bash apps/blog/new-article.sh"
+    "new-article": "bash apps/blog/new-article.sh",
+    "test": "pnpm --filter @idevgon/blog test"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.2.5"
