@@ -126,6 +126,7 @@ export const tagButtonStyle = css({
   color: 'textSecondary',
   fontSize: '1.3rem',
   cursor: 'pointer',
+  touchAction: 'manipulation',
   transition: 'border-color 0.2s, background 0.2s, color 0.2s',
   whiteSpace: 'nowrap',
   _hover: {

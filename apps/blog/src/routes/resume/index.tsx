@@ -1,5 +1,4 @@
 import { Container } from '@idevgon/design-system';
-import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
 import { useSeo } from '@/hooks/useSeo';
 import { TimelineChart } from '../../components/TimelineChart';
@@ -34,8 +33,7 @@ function RouteComponent() {
   });
 
   return (
-    <SsgoiTransition id="/resume">
-      <Container className={printPageStyle}>
+    <Container className={printPageStyle}>
         <ProfileSection profile={data.profile} />
         <hr className={dividerStyle} />
 
@@ -62,6 +60,5 @@ function RouteComponent() {
 
         <OthersSection others={data.others} />
       </Container>
-    </SsgoiTransition>
   );
 }

@@ -1,5 +1,4 @@
 import { Typo } from '@idevgon/design-system';
-import dayjs from 'dayjs';
 import { css } from 'styled-system/css';
 
 const footerStyle = css({
@@ -32,7 +31,7 @@ const footerMonoStyle = css({
 });
 
 export const Footer = () => {
-  const year = dayjs().year();
+  const year = new Date().getFullYear();
 
   return (
     <footer className={`${footerStyle} no-print`}>

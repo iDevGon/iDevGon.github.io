@@ -10,6 +10,9 @@ export const markdownStyles = css({
   color: 'textPrimary',
   letterSpacing: '-0.01em',
 
+  '& h1, & h2, & h3': {
+    scrollMarginTop: '7rem',
+  },
   '& h1': {
     fontSize: { base: '2.4rem', tablet: '2.8rem' },
     fontWeight: 'bold',

@@ -1,42 +1,9 @@
-import { Ssgoi, type SsgoiConfig } from '@ssgoi/react';
-import { drill, fade } from '@ssgoi/react/view-transitions';
 import { createRootRoute, Outlet } from '@tanstack/react-router';
 import { useEffect } from 'react';
 import { css } from 'styled-system/css';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { useColorMode } from '@/store';
-
-const ssgoiConfig: SsgoiConfig = {
-  transitions: [
-    {
-      from: '/articles/detail/*',
-      to: '/articles?page=*',
-      transition: drill({
-        direction: 'exit',
-      }),
-      symmetric: false,
-    },
-    {
-      from: '/articles?page=*',
-      to: '/articles/detail/*',
-      transition: drill({
-        direction: 'enter',
-      }),
-      symmetric: false,
-    },
-  ],
-  defaultTransition: fade({
-    inSpring: {
-      stiffness: 400,
-      damping: 35,
-    },
-    outSpring: {
-      stiffness: 400,
-      damping: 35,
-    },
-  }),
-};
 
 const rootLayoutStyle = css({
   position: 'relative',
@@ -92,18 +59,16 @@ const RootLayout = () => {
   }, [resolvedColorMode]);
 
   return (
-    <Ssgoi config={ssgoiConfig}>
-      <div data-color-mode={resolvedColorMode} className={rootLayoutStyle}>
-        <a href="#main-content" className="skip-link">
-          본문으로 건너뛰기
-        </a>
-        <Header />
-        <main id="main-content" className={mainContentStyle}>
-          <Outlet />
-        </main>
-        <Footer />
-      </div>
-    </Ssgoi>
+    <div data-color-mode={resolvedColorMode} className={rootLayoutStyle}>
+      <a href="#main-content" className="skip-link">
+        본문으로 건너뛰기
+      </a>
+      <Header />
+      <main id="main-content" className={mainContentStyle}>
+        <Outlet />
+      </main>
+      <Footer />
+    </div>
   );
 };
 

@@ -1,89 +1,21 @@
 import { Container, Typo } from '@idevgon/design-system';
 import { BlogIcon, EmailIcon, GithubIcon, PhoneIcon } from '@idevgon/icons';
-import { SsgoiTransition } from '@ssgoi/react';
 import { createFileRoute } from '@tanstack/react-router';
-import { css } from 'styled-system/css';
 import { useSeo } from '@/hooks/useSeo';
+import {
+  contactInfoStyle,
+  contactItemStyle,
+  contactLabelStyle,
+  contactLinkStyle,
+  contactListStyle,
+  iconStyle,
+  pageStyle,
+  subtitleStyle,
+  titleStyle,
+} from './-styles';
 
 export const Route = createFileRoute('/contact/')({
   component: RouteComponent,
-});
-
-const pageStyle = css({
-  animation: 'fadeInUp 0.6s ease-out',
-});
-
-const titleStyle = css({
-  fontSize: { base: '2.4rem', tablet: '2.8rem' },
-  fontWeight: 700,
-  color: 'textPrimary',
-  marginBottom: '1.2rem',
-  textWrap: 'balance',
-  letterSpacing: '-0.02em',
-});
-
-const subtitleStyle = css({
-  fontSize: '1.6rem',
-  color: 'textSecondary',
-  marginBottom: '4rem',
-  lineHeight: 1.6,
-});
-
-const contactListStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '2rem',
-});
-
-const contactItemStyle = css({
-  display: 'flex',
-  alignItems: 'center',
-  gap: { base: '1.2rem', tablet: '1.6rem' },
-  padding: { base: '1.6rem', tablet: '2rem' },
-  borderRadius: '1.2rem',
-  backgroundColor: 'cardBg',
-  border: '1px solid',
-  borderColor: 'border',
-  transition: 'border-color 0.2s ease, transform 0.2s ease',
-  '&:hover': {
-    borderColor: 'borderHover',
-    transform: { base: 'none', tablet: 'translateX(4px)' },
-  },
-});
-
-const iconStyle = css({
-  width: '4.4rem',
-  height: '4.4rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: '1rem',
-  backgroundColor: 'surfaceHover',
-  flexShrink: 0,
-});
-
-const contactInfoStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.2rem',
-});
-
-const contactLabelStyle = css({
-  fontSize: '1.2rem',
-  fontWeight: 600,
-  color: 'textMuted',
-  textTransform: 'uppercase',
-  letterSpacing: '0.05em',
-});
-
-const contactLinkStyle = css({
-  fontSize: '1.6rem',
-  color: 'primary',
-  fontWeight: 500,
-  textDecoration: 'none',
-  '&:hover': {
-    textDecoration: 'underline',
-  },
 });
 
 function RouteComponent() {
@@ -96,8 +28,7 @@ function RouteComponent() {
   });
 
   return (
-    <SsgoiTransition id="/contact">
-      <Container>
+    <Container>
         <div className={pageStyle}>
           <Typo asChild variant="h1">
             <h1 className={titleStyle}>연락처</h1>
@@ -177,6 +108,5 @@ function RouteComponent() {
           </div>
         </div>
       </Container>
-    </SsgoiTransition>
   );
 }

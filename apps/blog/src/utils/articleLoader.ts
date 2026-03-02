@@ -10,20 +10,31 @@ const articleFiles = import.meta.glob<string>('/src/articles/*.md', {
   eager: true,
 });
 
+const RE_HEADINGS = /^#{1,6}\s+/gm;
+const RE_LINKS = /\[([^\]]+)\]\([^)]+\)/g;
+const RE_IMAGES = /!\[([^\]]*)\]\([^)]+\)/g;
+const RE_BOLD = /(\*\*|__)(.*?)\1/g;
+const RE_ITALIC = /(\*|_)(.*?)\1/g;
+const RE_CODE_BLOCKS = /```[\s\S]*?```/g;
+const RE_INLINE_CODE = /`([^`]+)`/g;
+const RE_HR = /^-{3,}$/gm;
+const RE_NEWLINES = /\n+/g;
+const RE_WHITESPACE = /\s+/g;
+
 // 마크다운에서 순수 텍스트만 추출
-function extractPlainText(markdown: string): string {
+export function extractPlainText(markdown: string): string {
   return (
     markdown
-      .replace(/^#{1,6}\s+/gm, '')
-      .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-      .replace(/!\[([^\]]*)\]\([^)]+\)/g, '')
-      .replace(/(\*\*|__)(.*?)\1/g, '$2')
-      .replace(/(\*|_)(.*?)\1/g, '$2')
-      .replace(/```[\s\S]*?```/g, '')
-      .replace(/`([^`]+)`/g, '$1')
-      .replace(/^-{3,}$/gm, '')
-      .replace(/\n+/g, ' ')
-      .replace(/\s+/g, ' ')
+      .replace(RE_HEADINGS, '')
+      .replace(RE_LINKS, '$1')
+      .replace(RE_IMAGES, '')
+      .replace(RE_BOLD, '$2')
+      .replace(RE_ITALIC, '$2')
+      .replace(RE_CODE_BLOCKS, '')
+      .replace(RE_INLINE_CODE, '$1')
+      .replace(RE_HR, '')
+      .replace(RE_NEWLINES, ' ')
+      .replace(RE_WHITESPACE, ' ')
       .trim()
   );
 }

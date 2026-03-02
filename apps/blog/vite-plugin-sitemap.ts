@@ -54,7 +54,6 @@ ${urls.join('\n')}
         fs.mkdirSync(distDir, { recursive: true });
       }
       fs.writeFileSync(path.resolve(distDir, 'sitemap.xml'), sitemap);
-      console.log('✓ sitemap.xml generated');
     },
   };
 }

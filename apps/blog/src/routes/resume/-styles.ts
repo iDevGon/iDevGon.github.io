@@ -2,6 +2,7 @@ import { css } from 'styled-system/css';
 
 // 인쇄용 페이지 래퍼 스타일
 export const printPageStyle = css({
+  animation: 'fadeInUp 0.6s ease-out',
   _print: {
     width: '100%',
     maxWidth: 'none',
