@@ -19,6 +19,7 @@ pnpm install                      # 의존성 설치
 pnpm dev                          # 블로그 개발 서버
 pnpm build                        # 프로덕션 빌드
 pnpm storybook                    # Storybook 실행
+pnpm test                         # Vitest 테스트 실행
 pnpm check                        # Biome lint + format 검사
 pnpm fix                          # 자동 수정
 ```
@@ -58,6 +59,12 @@ pnpm fix                          # 자동 수정
 - 블로그 글은 `apps/blog/src/articles/` 디렉토리에 마크다운 파일로 관리
 - frontmatter 파싱: `apps/blog/src/utils/parseFrontmatter.ts`
 
+### 테스트
+
+- **Vitest** - 유닛 테스트
+- 테스트 파일은 `__tests__/` 디렉토리에 배치 (예: `utils/__tests__/parseFrontmatter.test.ts`)
+- `pnpm test`로 실행
+
 ### 린팅 & 포매팅
 
 - **Biome** 사용 (ESLint/Prettier 아님)
@@ -80,7 +87,7 @@ pnpm fix                          # 자동 수정
 ### 패키지 참조
 
 - 워크스페이스 패키지는 `workspace:*`로 참조
-- design-system 컴포넌트: `import { Button } from '@idevgon/design-system'`
+- design-system 컴포넌트: `import { ButtonBase, Card, Pagination, Skeleton } from '@idevgon/design-system'`
 - design-system 프리셋: `import { idevgonPreset } from '@idevgon/design-system/preset'`
 - 아이콘: `import { SunIcon } from '@idevgon/icons'`
 

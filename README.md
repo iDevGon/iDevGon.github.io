@@ -34,21 +34,20 @@ iDevGon.github.io/
 - **콘텐츠**: `src/articles/` 디렉토리에 마크다운 파일로 관리
 - **상태 관리**: Zustand (컬러 모드 등)
 - **댓글**: Giscus (GitHub Discussions 기반)
-- **트랜지션**: Ssgoi 뷰 전환 애니메이션
 
 ### packages/design-system
 
 Panda CSS 커스텀 프리셋과 공용 UI 컴포넌트를 제공합니다.
 
 - **프리셋**: 브랜드 컬러, 시맨틱 토큰(라이트/다크), 반응형 브레이크포인트, 글로벌 스타일
-- **컴포넌트**: Button, Card, Container, Flex, Tag, SectionTitle, Typo, Slot
+- **컴포넌트**: ButtonBase, StyledAnchor, Card, Container, Flex, Tag, SectionTitle, Typo, Slot, Pagination, ColorModeSwitch, Skeleton
 - **Storybook**: 컴포넌트 문서화 및 개발 환경 (`pnpm storybook`)
 
 ### packages/icons
 
 React 컴포넌트로 래핑된 SVG 아이콘 패키지입니다.
 
-- SunIcon, MoonIcon, EmailIcon, GithubIcon, BlogIcon
+- BlogIcon, EmailIcon, GithubIcon, LinkIcon, LogoIcon, MoonIcon, PhoneIcon, SearchIcon, SunIcon
 
 ## 기술 스택
 
@@ -60,6 +59,7 @@ React 컴포넌트로 래핑된 SVG 아이콘 패키지입니다.
 | 상태 관리 | Zustand |
 | 스타일링 | Panda CSS (zero-runtime) |
 | 최적화 | React Compiler |
+| 테스트 | Vitest |
 | 콘텐츠 | react-markdown, remark-gfm |
 | 댓글 | Giscus |
 | 린팅/포매팅 | Biome |
@@ -89,6 +89,9 @@ pnpm preview
 ### 주요 스크립트
 
 ```bash
+# 테스트
+pnpm test           # Vitest 테스트 실행
+
 # 코드 품질 검사
 pnpm check          # Biome lint + format 검사
 pnpm fix            # 자동 수정
