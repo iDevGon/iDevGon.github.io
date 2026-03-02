@@ -44,7 +44,7 @@ export const Header = () => {
         <MobileMenuButton
           open={mobileMenuOpen}
           onToggle={() => setMobileMenuOpen((prev) => !prev)}
-          buttonRef={hamburgerRef}
+          ref={hamburgerRef}
         />
       </div>
     </header>
@@ -52,7 +52,7 @@ export const Header = () => {
     {/* Mobile Menu - header 바깥에 위치해야 backdrop-filter 독립 적용 */}
     {mobileMenuOpen && (
       <MobileMenu
-        menuRef={menuRef}
+        ref={menuRef}
         onClose={() => setMobileMenuOpen(false)}
       />
     )}

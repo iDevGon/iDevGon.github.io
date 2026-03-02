@@ -1,14 +1,14 @@
 import { Link } from '@tanstack/react-router';
-import type { RefObject } from 'react';
+import type { Ref } from 'react';
 import { activeMobileNavStyle, mobileMenuStyle, mobileNavLinkStyle, NAV_LINKS } from './Header.styles';
 
 interface MobileMenuProps {
-  menuRef: RefObject<HTMLElement | null>;
+  ref?: Ref<HTMLElement>;
   onClose: () => void;
 }
 
-export const MobileMenu = ({ menuRef, onClose }: MobileMenuProps) => (
-  <nav ref={menuRef} className={mobileMenuStyle}>
+export const MobileMenu = ({ ref, onClose }: MobileMenuProps) => (
+  <nav ref={ref} className={mobileMenuStyle}>
     {NAV_LINKS.map((link) => (
       <Link
         key={link.to}

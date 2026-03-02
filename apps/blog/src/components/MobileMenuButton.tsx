@@ -1,4 +1,4 @@
-import type { RefObject } from 'react';
+import type { Ref } from 'react';
 import {
   hamburgerLineBottomOpenStyle,
   hamburgerLineMiddleOpenStyle,
@@ -10,12 +10,12 @@ import {
 interface MobileMenuButtonProps {
   open: boolean;
   onToggle: () => void;
-  buttonRef: RefObject<HTMLButtonElement | null>;
+  ref?: Ref<HTMLButtonElement>;
 }
 
-export const MobileMenuButton = ({ open, onToggle, buttonRef }: MobileMenuButtonProps) => (
+export const MobileMenuButton = ({ open, onToggle, ref }: MobileMenuButtonProps) => (
   <button
-    ref={buttonRef}
+    ref={ref}
     type="button"
     className={hamburgerStyle}
     onClick={onToggle}

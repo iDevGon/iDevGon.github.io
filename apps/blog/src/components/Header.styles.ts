@@ -9,7 +9,8 @@ export const headerStyle = css({
   justifyContent: 'space-between',
   height: '6rem',
   // paddingTop: 'env(safe-area-inset-top, 0px)',
-  paddingInline: { base: '1.6rem', tablet: '2.4rem' },
+  paddingLeft: { base: '1.6rem', tablet: '2.4rem' },
+  paddingRight: { base: '0.4rem', tablet: '2.4rem' },
   background: {
     base: 'background',
     tablet:
@@ -52,7 +53,7 @@ export const desktopNavStyle = css({
 export const mobileActionsStyle = css({
   display: { base: 'flex', tablet: 'none' },
   alignItems: 'center',
-  gap: '0.8rem',
+  gap: '0',
 });
 
 export const hamburgerStyle = css({
@@ -60,8 +61,8 @@ export const hamburgerStyle = css({
   flexDirection: 'column',
   justifyContent: 'center',
   alignItems: 'center',
-  width: '3.2rem',
-  height: '3.2rem',
+  width: '4.4rem',
+  height: '4.4rem',
   padding: 0,
   border: 'none',
   background: 'none',
