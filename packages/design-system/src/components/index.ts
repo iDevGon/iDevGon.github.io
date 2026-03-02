@@ -15,3 +15,4 @@ export {
   ColorModeSwitch,
   type ColorModeSwitchProps,
 } from './ColorModeSwitch';
+export { Skeleton, type SkeletonVariants } from './Skeleton';
