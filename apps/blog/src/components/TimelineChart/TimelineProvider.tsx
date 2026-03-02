@@ -24,6 +24,7 @@ export interface TimelineContextValue {
   chartHeight: number;
   paddingLeft: number;
   paddingRight: number;
+  onBarClick?: (item: TimelineItem) => void;
 }
 
 export { BAR_GAP, CHART_PADDING_TOP };
@@ -45,6 +46,7 @@ export function TimelineProvider({
   barHeight = DEFAULT_BAR_HEIGHT,
   className,
   children,
+  onBarClick,
 }: TimelineChartProps) {
   const now = useMemo(() => new Date(), []);
 
@@ -79,8 +81,9 @@ export function TimelineProvider({
       chartHeight,
       paddingLeft: CHART_PADDING_LEFT,
       paddingRight: CHART_PADDING_RIGHT,
+      onBarClick,
     };
-  }, [items, colors, barHeight, now]);
+  }, [items, colors, barHeight, now, onBarClick]);
 
   return (
     <TimelineContext value={ctx}>

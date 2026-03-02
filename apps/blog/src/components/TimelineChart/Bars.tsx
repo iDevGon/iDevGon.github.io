@@ -1,5 +1,5 @@
 import { Typo } from '@idevgon/design-system';
-import type { CSSProperties } from 'react';
+import type { CSSProperties, KeyboardEvent } from 'react';
 import { timelineBarStyle } from './styles';
 import { BAR_GAP, CHART_PADDING_TOP, useTimeline } from './TimelineProvider';
 import {
@@ -20,6 +20,7 @@ export function Bars() {
     totalMonths,
     paddingLeft,
     paddingRight,
+    onBarClick,
   } = useTimeline();
 
   return (
@@ -48,9 +49,23 @@ export function Bars() {
                 '--bar-text-color': getContrastTextColor(
                   colors[idx % colors.length],
                 ),
+                '--bar-cursor': onBarClick ? 'pointer' : 'default',
               } as CSSProperties
             }
             title={`${item.label}: ${formatPeriod(item.startDate, item.endDate)} (${formatDuration(duration)})`}
+            {...(onBarClick
+              ? {
+                  role: 'button',
+                  tabIndex: 0,
+                  onClick: () => onBarClick(item),
+                  onKeyDown: (e: KeyboardEvent<HTMLDivElement>) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      onBarClick(item);
+                    }
+                  },
+                }
+              : {})}
           >
             {widthPercent > 15 && (
               <Typo asChild variant="caption">

@@ -13,4 +13,5 @@ export interface TimelineChartProps {
   barHeight?: number;
   className?: string;
   children?: ReactNode;
+  onBarClick?: (item: TimelineItem) => void;
 }

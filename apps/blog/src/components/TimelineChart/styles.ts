@@ -30,7 +30,7 @@ export const timelineBarStyle = css({
   fontSize: '1.2rem',
   fontWeight: 'bold',
   transition: 'transform 0.2s, box-shadow 0.2s',
-  cursor: 'default',
+  cursor: 'var(--bar-cursor, default)',
   left: 'var(--bar-left)',
   width: 'var(--bar-width)',
   top: 'var(--bar-top)',
