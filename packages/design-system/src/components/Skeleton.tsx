@@ -26,7 +26,7 @@ const skeletonStyle = cva({
   },
   defaultVariants: {
     variant: 'text',
-    animation: 'dimming',
+    animation: 'shimmer',
   },
 });
 
