@@ -95,23 +95,6 @@ export const achievementListStyle = css({
   marginTop: '0.8rem',
 });
 
-export const skillTagStyle = css({
-  display: 'inline-block',
-  padding: { base: '0.3rem 0.8rem', tablet: '0.4rem 1.2rem' },
-  borderRadius: '2rem',
-  backgroundColor: 'tagBg',
-  color: 'tagText',
-  fontSize: { base: '1.2rem', tablet: '1.4rem' },
-  marginRight: '0.8rem',
-  marginBottom: '0.8rem',
-  _print: {
-    backgroundColor: '#dbeafe !important',
-    color: '#1e40af !important',
-    fontSize: '9pt',
-    padding: '0.2rem 0.8rem',
-  },
-});
-
 export const periodStyle = css({
   color: 'textSecondary',
   fontSize: '1.4rem',

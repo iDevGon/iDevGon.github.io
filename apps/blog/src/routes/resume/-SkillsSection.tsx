@@ -1,5 +1,5 @@
-import { Typo } from '@idevgon/design-system';
-import { sectionStyle, skillsWrapperStyle, skillTagStyle } from './-styles';
+import { Tag, Typo } from '@idevgon/design-system';
+import { sectionStyle, skillsWrapperStyle } from './-styles';
 
 export function SkillsSection({ skills }: { skills: string[] }) {
   return (
@@ -10,7 +10,7 @@ export function SkillsSection({ skills }: { skills: string[] }) {
       <div className={skillsWrapperStyle}>
         {skills.map((skill) => (
           <Typo asChild variant="body2" key={skill}>
-            <span className={skillTagStyle}>{skill}</span>
+            <Tag>{skill}</Tag>
           </Typo>
         ))}
       </div>
