@@ -116,68 +116,70 @@ function RouteComponent() {
   if (!article) return <ArticleNotFound />;
 
   return (
-    <Container className={containerPaddingStyle}>
-      <div className={articleLayoutStyle}>
-        <Link to="/articles" className={backLinkStyle}>
-          &larr; cd ..
-        </Link>
+    <>
+      <Container className={containerPaddingStyle}>
+        <div className={articleLayoutStyle}>
+          <Link to="/articles" className={backLinkStyle}>
+            &larr; cd ..
+          </Link>
 
-        {coverImageUrl && (
-          <div className={coverImageWrapperStyle}>
-            <img
-              src={coverImageUrl}
-              alt={article.title}
-              className={coverImageStyle}
+          {coverImageUrl && (
+            <div className={coverImageWrapperStyle}>
+              <img
+                src={coverImageUrl}
+                alt={article.title}
+                className={coverImageStyle}
+              />
+            </div>
+          )}
+
+          <header className={articleHeaderStyle}>
+            <Typo asChild variant="h1">
+              <h1 className={articleTitleStyle}>{article.title}</h1>
+            </Typo>
+
+            <Flex className={metaStyle}>
+              <Typo asChild variant="body2">
+                <span>{article.author}</span>
+              </Typo>
+              <Typo asChild variant="body2">
+                <span>{article.date}</span>
+              </Typo>
+            </Flex>
+
+            <TagList tags={article.tags} />
+          </header>
+        </div>
+
+        <article className={markdownStyles}>
+          <Suspense fallback={<ArticleSkeleton />}>
+            <Markdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
+              {article.content}
+            </Markdown>
+          </Suspense>
+        </article>
+
+        <div className={giscusWrapperStyle}>
+          <Suspense fallback={null}>
+            <Giscus
+              repo="iDevGon/iDevGon.github.io"
+              repoId="R_kgDOP8gvzw"
+              category="Comment"
+              categoryId="DIC_kwDOP8gvz84Cwh-G"
+              mapping="pathname"
+              strict="0"
+              reactionsEnabled="1"
+              emitMetadata="0"
+              inputPosition="top"
+              theme={GISCUS_THEME_MAP[colorMode]}
+              lang="ko"
+              loading="lazy"
             />
-          </div>
-        )}
-
-        <header className={articleHeaderStyle}>
-          <Typo asChild variant="h1">
-            <h1 className={articleTitleStyle}>{article.title}</h1>
-          </Typo>
-
-          <Flex className={metaStyle}>
-            <Typo asChild variant="body2">
-              <span>{article.author}</span>
-            </Typo>
-            <Typo asChild variant="body2">
-              <span>{article.date}</span>
-            </Typo>
-          </Flex>
-
-          <TagList tags={article.tags} />
-        </header>
-      </div>
-
-      <article className={markdownStyles}>
-        <Suspense fallback={<ArticleSkeleton />}>
-          <Markdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
-            {article.content}
-          </Markdown>
-        </Suspense>
-      </article>
+          </Suspense>
+        </div>
+      </Container>
 
       <TableOfContents content={article.content} />
-
-      <div className={giscusWrapperStyle}>
-        <Suspense fallback={null}>
-          <Giscus
-            repo="iDevGon/iDevGon.github.io"
-            repoId="R_kgDOP8gvzw"
-            category="Comment"
-            categoryId="DIC_kwDOP8gvz84Cwh-G"
-            mapping="pathname"
-            strict="0"
-            reactionsEnabled="1"
-            emitMetadata="0"
-            inputPosition="top"
-            theme={GISCUS_THEME_MAP[colorMode]}
-            lang="ko"
-            loading="lazy"
-          />
-        </Suspense>
-      </div>
-    </Container>
+    </>
   );
 }
