@@ -40,6 +40,7 @@ export function extractPlainText(markdown: string): string {
 }
 
 let cachedArticles: ArticleMeta[] | null = null;
+const articleCache = new Map<string, Article | null>();
 
 export function getArticles(): ArticleMeta[] {
   if (cachedArticles) return cachedArticles;
@@ -86,10 +87,15 @@ export function getAllTags(): string[] {
 }
 
 export function getArticle(id: string): Article | null {
+  if (articleCache.has(id)) return articleCache.get(id)!;
+
   const path = `/src/articles/${id}.md`;
   const rawContent = articleFiles[path];
 
-  if (!rawContent) return null;
+  if (!rawContent) {
+    articleCache.set(id, null);
+    return null;
+  }
 
   const { data, content } = parseFrontmatter(rawContent);
 
@@ -99,7 +105,7 @@ export function getArticle(id: string): Article | null {
       ? `${plainText.slice(0, EXCERPT_LENGTH)}...`
       : plainText;
 
-  return {
+  const article: Article = {
     id,
     title: data.title,
     author: data.author,
@@ -111,4 +117,7 @@ export function getArticle(id: string): Article | null {
     plainText,
     content,
   };
+
+  articleCache.set(id, article);
+  return article;
 }

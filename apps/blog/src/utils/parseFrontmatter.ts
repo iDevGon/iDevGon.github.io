@@ -5,14 +5,15 @@ interface ParsedMarkdown {
   content: string;
 }
 
+const FRONTMATTER_RE = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+
 /**
  * 마크다운 파일에서 frontmatter를 파싱합니다.
  * gray-matter는 Node.js Buffer를 사용해서 브라우저에서 동작하지 않으므로
  * 직접 파싱합니다.
  */
 export function parseFrontmatter(markdown: string): ParsedMarkdown {
-  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
-  const match = markdown.match(frontmatterRegex);
+  const match = markdown.match(FRONTMATTER_RE);
 
   if (!match) {
     return {
