@@ -26,9 +26,10 @@ import {
 
 const BASE_URL = 'https://idevgon.github.io';
 
-function resolveImageUrl(src: string): string {
+function resolveImageUrl(src: string, forMeta = false): string {
   if (src.startsWith('http://') || src.startsWith('https://')) return src;
-  return `${BASE_URL}${src}`;
+  if (forMeta) return `${BASE_URL}${src}`;
+  return src;
 }
 
 const Markdown = lazy(() => import('react-markdown'));
@@ -56,6 +57,10 @@ function RouteComponent() {
     ? resolveImageUrl(article.coverImage)
     : undefined;
 
+  const coverImageMetaUrl = article?.coverImage
+    ? resolveImageUrl(article.coverImage, true)
+    : undefined;
+
   const articleMeta = useMemo(
     () =>
       article
@@ -74,7 +79,7 @@ function RouteComponent() {
     path: `/articles/detail/${articleId}`,
     type: article ? 'article' : 'website',
     article: articleMeta,
-    ...(coverImageUrl && { image: coverImageUrl }),
+    ...(coverImageMetaUrl && { image: coverImageMetaUrl }),
   });
 
   useBlogPostingJsonLd({
@@ -84,7 +89,7 @@ function RouteComponent() {
     author: article?.author ?? 'DevGon',
     tags: article?.tags ?? [],
     url: `/articles/detail/${articleId}`,
-    ...(coverImageUrl && { image: coverImageUrl }),
+    ...(coverImageMetaUrl && { image: coverImageMetaUrl }),
   });
 
   useEffect(() => {
