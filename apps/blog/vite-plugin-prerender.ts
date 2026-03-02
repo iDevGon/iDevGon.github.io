@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import type { Plugin } from 'vite';
-import { buildMetaTags } from './prerender-utils';
+import { buildMetaTags, renderMarkdownToHtml } from './prerender-utils';
 
 interface Frontmatter {
   title: string;
@@ -9,6 +9,7 @@ interface Frontmatter {
   author?: string;
   date?: string;
   tags?: string[];
+  body: string;
 }
 
 function parseFrontmatter(content: string): Frontmatter | null {
@@ -16,6 +17,7 @@ function parseFrontmatter(content: string): Frontmatter | null {
   if (!match) return null;
 
   const raw = match[1];
+  const body = content.slice(match[0].length).trim();
   const fm: Record<string, unknown> = {};
 
   let currentKey = '';
@@ -51,12 +53,24 @@ function parseFrontmatter(content: string): Frontmatter | null {
     fm[currentKey] = [...arrayValues];
   }
 
-  return fm as unknown as Frontmatter;
+  return { ...fm, body } as unknown as Frontmatter;
 }
 
 export function prerenderPlugin(): Plugin {
   return {
     name: 'vite-plugin-prerender',
+    configurePreviewServer(server) {
+      const distDir = path.resolve(__dirname, 'dist');
+      server.middlewares.use((req, _res, next) => {
+        if (req.url && !req.url.endsWith('/') && !path.extname(req.url)) {
+          const htmlPath = path.join(distDir, req.url, 'index.html');
+          if (fs.existsSync(htmlPath)) {
+            req.url += '/';
+          }
+        }
+        next();
+      });
+    },
     closeBundle() {
       const articlesDir = path.resolve(__dirname, 'src/articles');
       const distDir = path.resolve(__dirname, 'dist');
@@ -121,6 +135,19 @@ export function prerenderPlugin(): Plugin {
         html = html.replace(
           /(<meta name="theme-color"[^>]*>)\n(\s*<link rel="preconnect")/,
           `$1\n    ${metaTags}\n$2`,
+        );
+
+        // Inject prerendered article body before <div id="root">
+        const articleHtml = renderMarkdownToHtml(fm.body);
+        const prerenderedBlock = [
+          '<article id="prerendered-article" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">',
+          articleHtml,
+          '</article>',
+        ].join('\n    ');
+
+        html = html.replace(
+          '<div id="root"></div>',
+          `${prerenderedBlock}\n    <div id="root"></div>`,
         );
 
         const outDir = path.resolve(

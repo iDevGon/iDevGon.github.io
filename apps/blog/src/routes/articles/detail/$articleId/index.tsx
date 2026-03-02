@@ -1,6 +1,6 @@
 import { Container, Flex, Typo } from '@idevgon/design-system';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { lazy, Suspense, useMemo } from 'react';
+import { lazy, Suspense, useEffect, useMemo } from 'react';
 import remarkGfm from 'remark-gfm';
 import { TagList } from '@/components/TagList';
 import { useBlogPostingJsonLd } from '@/hooks/useJsonLd';
@@ -71,6 +71,10 @@ function RouteComponent() {
     tags: article?.tags ?? [],
     url: `/articles/detail/${articleId}`,
   });
+
+  useEffect(() => {
+    document.getElementById('prerendered-article')?.remove();
+  }, []);
 
   if (!article) {
     return (

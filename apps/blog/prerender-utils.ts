@@ -1,3 +1,9 @@
+import rehypeStringify from 'rehype-stringify';
+import remarkGfm from 'remark-gfm';
+import remarkParse from 'remark-parse';
+import remarkRehype from 'remark-rehype';
+import { unified } from 'unified';
+
 const BASE_URL = 'https://idevgon.github.io';
 const SITE_NAME = "DevGon's Log";
 const DEFAULT_IMAGE =
@@ -75,4 +81,14 @@ export function buildMetaTags(articleId: string, fm: Frontmatter): string {
   ];
 
   return lines.join('\n    ');
+}
+
+const markdownProcessor = unified()
+  .use(remarkParse)
+  .use(remarkGfm)
+  .use(remarkRehype)
+  .use(rehypeStringify);
+
+export function renderMarkdownToHtml(markdown: string): string {
+  return String(markdownProcessor.processSync(markdown));
 }
