@@ -44,10 +44,13 @@ export const markdownStyles = css({
   },
   '& strong': {
     fontWeight: 'bold',
-    color: 'textPrimary',
+    color: 'primary',
   },
   '& em': {
     fontStyle: 'italic',
+  },
+  '& .em-dash-aside': {
+    color: 'textMuted',
   },
   '& a': {
     color: 'primary',

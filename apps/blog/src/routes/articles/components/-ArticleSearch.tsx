@@ -39,7 +39,7 @@ export function ArticleSearch({
               ref={inputRef}
               type="search"
               className={searchInputStyle}
-              placeholder="제목이나 내용으로 검색..."
+              placeholder="제목이나 내용으로 검색…"
               onKeyDown={onSearchKeyDown}
               aria-label="글 검색"
             />

@@ -89,3 +89,72 @@ export const articleHeaderStyle = css({
   borderBottom: '1px solid',
   borderColor: 'border',
 });
+
+/* ── Table of Contents (PC only, 1440px+) ── */
+
+export const tocAsideStyle = css({
+  display: 'none',
+  '@media (min-width: 1440px)': {
+    display: 'block',
+    position: 'fixed',
+    top: '10rem',
+    left: 'calc(50% + 39rem)',
+    width: 'min(14rem, calc(50vw - 39rem - 1rem))',
+    maxHeight: 'calc(100vh - 14rem)',
+    overflowY: 'auto',
+  },
+});
+
+export const tocTitleStyle = css({
+  fontSize: '1.3rem',
+  fontWeight: 'semibold',
+  color: 'textMuted',
+  marginBottom: '1rem',
+  fontFamily: '{fonts.mono}',
+  textTransform: 'uppercase',
+  letterSpacing: '0.05em',
+});
+
+export const tocListStyle = css({
+  listStyle: 'none',
+  padding: '0',
+  margin: '0',
+});
+
+export const tocItemStyle = css({
+  marginBottom: '0.2rem',
+});
+
+export const tocItemIndentedStyle = css({
+  marginBottom: '0.2rem',
+  paddingLeft: '1.2rem',
+});
+
+export const tocLinkStyle = css({
+  display: 'block',
+  fontSize: '1.4rem',
+  lineHeight: '1.5',
+  padding: '0.4rem 0',
+  paddingLeft: '0.8rem',
+  color: 'textMuted',
+  textDecoration: 'none',
+  borderLeft: '2px solid transparent',
+  transition: 'color 0.2s, border-color 0.2s',
+  _hover: {
+    color: 'textPrimary',
+  },
+});
+
+export const tocActiveLinkStyle = css({
+  display: 'block',
+  fontSize: '1.4rem',
+  lineHeight: '1.5',
+  padding: '0.4rem 0',
+  paddingLeft: '0.8rem',
+  color: 'primary',
+  textDecoration: 'none',
+  fontWeight: 'medium',
+  borderLeft: '2px solid',
+  borderColor: 'primary',
+  transition: 'color 0.2s, border-color 0.2s',
+});

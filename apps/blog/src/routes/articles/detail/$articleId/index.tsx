@@ -1,14 +1,16 @@
 import { Container, Flex, Typo } from '@idevgon/design-system';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { lazy, Suspense, useEffect, useMemo } from 'react';
+import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
-import { CodeBlock, Pre } from '@/components/CodeBlock';
 import { TagList } from '@/components/TagList';
 import { useBlogPostingJsonLd } from '@/hooks/useJsonLd';
 import { useSeo } from '@/hooks/useSeo';
 import { useColorMode } from '@/store';
 import { getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
+import { MARKDOWN_COMPONENTS } from './-markdown-components';
+import { ArticleNotFound } from './-not-found';
 import { ArticleSkeleton } from './-skeleton';
 import {
   articleHeaderStyle,
@@ -20,25 +22,15 @@ import {
   coverImageWrapperStyle,
   giscusWrapperStyle,
   metaStyle,
-  notFoundBodyStyle,
-  notFoundLinkStyle,
-  notFoundTitleStyle,
 } from './-styles';
-
-const BASE_URL = 'https://idevgon.github.io';
-
-function resolveImageUrl(src: string, forMeta = false): string {
-  if (src.startsWith('http://') || src.startsWith('https://')) return src;
-  if (forMeta) return `${BASE_URL}${src}`;
-  return src;
-}
+import { TableOfContents } from './-toc';
+import { resolveImageUrl } from './-utils';
 
 const Markdown = lazy(() => import('react-markdown'));
 const Giscus = lazy(() =>
   import('@giscus/react').then((m) => ({ default: m.default })),
 );
-const REMARK_PLUGINS = [remarkGfm];
-const MARKDOWN_COMPONENTS = { code: CodeBlock, pre: Pre };
+const REMARK_PLUGINS = [remarkGfm, remarkBreaks];
 
 export const Route = createFileRoute('/articles/detail/$articleId/')({
   component: RouteComponent,
@@ -98,23 +90,30 @@ function RouteComponent() {
     document.getElementById('prerendered-article')?.remove();
   }, []);
 
-  if (!article) {
-    return (
-      <Container className={containerPaddingStyle}>
-        <Typo asChild variant="h1">
-          <h1 className={notFoundTitleStyle}>Article Not Found</h1>
-        </Typo>
-        <Typo asChild variant="body1">
-          <p className={notFoundBodyStyle}>
-            요청하신 아티클을 찾을 수 없습니다.
-          </p>
-        </Typo>
-        <Link to="/articles" className={notFoundLinkStyle}>
-          &larr; 목록으로 돌아가기
-        </Link>
-      </Container>
-    );
-  }
+  useEffect(() => {
+    const hash = window.location.hash.slice(1);
+    if (!hash) return;
+
+    const target = decodeURIComponent(hash);
+    const el = document.getElementById(target);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      const found = document.getElementById(target);
+      if (found) {
+        found.scrollIntoView({ behavior: 'smooth' });
+        observer.disconnect();
+      }
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
+  }, [articleId]);
+
+  if (!article) return <ArticleNotFound />;
 
   return (
     <Container className={containerPaddingStyle}>
@@ -158,6 +157,8 @@ function RouteComponent() {
           </Markdown>
         </Suspense>
       </article>
+
+      <TableOfContents content={article.content} />
 
       <div className={giscusWrapperStyle}>
         <Suspense fallback={null}>
