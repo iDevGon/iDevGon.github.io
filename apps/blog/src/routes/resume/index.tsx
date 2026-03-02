@@ -1,7 +1,9 @@
 import { Container } from '@idevgon/design-system';
 import { createFileRoute } from '@tanstack/react-router';
+import { useCallback } from 'react';
 import { useSeo } from '@/hooks/useSeo';
 import { TimelineChart } from '../../components/TimelineChart';
+import type { TimelineItem } from '../../components/TimelineChart';
 import resumeData from '../../data/resume.json';
 import type { ResumeData } from '../../interfaces/resume';
 import {
@@ -32,6 +34,11 @@ function RouteComponent() {
     noindex: true,
   });
 
+  const handleBarClick = useCallback((item: TimelineItem) => {
+    const el = document.getElementById(`experience-${item.id}`);
+    el?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, []);
+
   return (
     <Container className={printPageStyle}>
         <ProfileSection profile={data.profile} />
@@ -41,7 +48,7 @@ function RouteComponent() {
         <hr className={dividerStyle} />
 
         <ExperienceSection experiences={data.experiences}>
-          <TimelineChart items={timelineItems}>
+          <TimelineChart items={timelineItems} onBarClick={handleBarClick}>
             <TimelineChart.Title>경력 타임라인</TimelineChart.Title>
             <TimelineChart.Chart />
             <TimelineChart.Legend />

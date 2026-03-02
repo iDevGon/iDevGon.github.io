@@ -42,7 +42,7 @@ function ProjectCard({ project }: { project: Experience['projects'][number] }) {
 
 function ExperienceCard({ experience }: { experience: Experience }) {
   return (
-    <div className={`${experienceCardStyle} ${experienceCardWrapperStyle}`}>
+    <div id={`experience-${experience.company}`} className={`${experienceCardStyle} ${experienceCardWrapperStyle}`}>
       <Typo variant="h3" asChild>
         <h3>
           {experience.companyUrl ? (

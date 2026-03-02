@@ -132,6 +132,7 @@ export const highlightDescriptionStyle = css({
 
 export const experienceCardWrapperStyle = css({
   marginTop: '2.4rem',
+  scrollMarginTop: '8rem',
 });
 
 export const descriptionStyle = css({
