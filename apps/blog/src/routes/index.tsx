@@ -1,6 +1,5 @@
 import { Container, Typo } from '@idevgon/design-system';
 import { createFileRoute } from '@tanstack/react-router';
-import dayjs from 'dayjs';
 import { Button } from '@/components/Button';
 import { useWebSiteJsonLd } from '@/hooks/useJsonLd';
 import { useSeo } from '@/hooks/useSeo';
@@ -23,10 +22,18 @@ export const Route = createFileRoute('/')({
   component: RouteComponent,
 });
 
-const CAREER_START_DATE = '2020-03-01';
+const CAREER_START = new Date('2020-03-01');
+
+function getCareerYears(): number {
+  const now = new Date();
+  const months =
+    (now.getFullYear() - CAREER_START.getFullYear()) * 12 +
+    (now.getMonth() - CAREER_START.getMonth());
+  return Math.floor(months / 12);
+}
 
 function RouteComponent() {
-  const careerYear = dayjs().diff(dayjs(CAREER_START_DATE), 'year');
+  const careerYear = getCareerYears();
 
   useSeo({
     title: "DevGon's Log",

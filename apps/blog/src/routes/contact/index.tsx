@@ -40,7 +40,7 @@ function RouteComponent() {
           </Typo>
 
           <div className={contactListStyle}>
-            <a href="mailto:rhcksrhd93@gmail.com" className={contactItemStyle}>
+            <a href="mailto:ghcheondev@gmail.com" className={contactItemStyle}>
               <div className={iconStyle}>
                 <EmailIcon width={20} height={20} aria-hidden="true" />
               </div>
