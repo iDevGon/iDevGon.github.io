@@ -106,8 +106,6 @@ export const markdownStyles = css({
     letterSpacing: '0',
   },
   '& pre': {
-    background: 'codeBlockBg',
-    color: 'white',
     padding: { base: '1.6rem', tablet: '2rem' },
     borderRadius: '0.8rem',
     overflow: 'auto',
@@ -123,6 +121,10 @@ export const markdownStyles = css({
       fontSize: 'inherit',
       wordBreak: 'normal',
     },
+  },
+  '& pre:not(.shiki)': {
+    background: 'codeBlockBg',
+    color: 'white',
   },
   '& hr': {
     border: 'none',

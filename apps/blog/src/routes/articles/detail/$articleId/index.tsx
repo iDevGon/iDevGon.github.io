@@ -2,6 +2,7 @@ import { Container, Flex, Typo } from '@idevgon/design-system';
 import { createFileRoute, Link } from '@tanstack/react-router';
 import { lazy, Suspense, useEffect, useMemo } from 'react';
 import remarkGfm from 'remark-gfm';
+import { CodeBlock, Pre } from '@/components/CodeBlock';
 import { TagList } from '@/components/TagList';
 import { useBlogPostingJsonLd } from '@/hooks/useJsonLd';
 import { useSeo } from '@/hooks/useSeo';
@@ -37,6 +38,7 @@ const Giscus = lazy(() =>
   import('@giscus/react').then((m) => ({ default: m.default })),
 );
 const REMARK_PLUGINS = [remarkGfm];
+const MARKDOWN_COMPONENTS = { code: CodeBlock, pre: Pre };
 
 export const Route = createFileRoute('/articles/detail/$articleId/')({
   component: RouteComponent,
@@ -151,7 +153,9 @@ function RouteComponent() {
 
       <article className={markdownStyles}>
         <Suspense fallback={<ArticleSkeleton />}>
-          <Markdown remarkPlugins={REMARK_PLUGINS}>{article.content}</Markdown>
+          <Markdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
+            {article.content}
+          </Markdown>
         </Suspense>
       </article>
 
