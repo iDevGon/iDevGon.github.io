@@ -87,7 +87,8 @@ export function getAllTags(): string[] {
 }
 
 export function getArticle(id: string): Article | null {
-  if (articleCache.has(id)) return articleCache.get(id)!;
+  const cached = articleCache.get(id);
+  if (cached) return cached;
 
   const path = `/src/articles/${id}.md`;
   const rawContent = articleFiles[path];

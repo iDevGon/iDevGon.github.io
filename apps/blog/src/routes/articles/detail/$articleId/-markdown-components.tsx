@@ -22,9 +22,9 @@ const P: Components['p'] = ({ children, node, ...props }) => (
       if (typeof child !== 'string') return child;
       const parts = child.split(EM_DASH_RE);
       if (parts.length === 1) return child;
-      return parts.map((part, i) =>
+      return parts.map((part) =>
         EM_DASH_RE.test(part) ? (
-          <span key={i} className="em-dash-aside">
+          <span key={part} className="em-dash-aside">
             {part}
           </span>
         ) : (

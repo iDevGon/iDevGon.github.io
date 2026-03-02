@@ -42,8 +42,8 @@ function getTextContent(node: ReactNode): string {
 function extractHeadings(content: string): Heading[] {
   const headings: Heading[] = [];
   const regex = /^(#{2,3})\s+(.+)$/gm;
-  let match;
-  while ((match = regex.exec(content)) !== null) {
+  let match: RegExpExecArray | null = regex.exec(content);
+  while (match !== null) {
     const text = match[2]
       .replace(/\*\*/g, '')
       .replace(/\*/g, '')
@@ -55,6 +55,7 @@ function extractHeadings(content: string): Heading[] {
       text,
       level: match[1].length as 2 | 3,
     });
+    match = regex.exec(content);
   }
   return headings;
 }

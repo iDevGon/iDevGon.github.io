@@ -111,7 +111,7 @@ function RouteComponent() {
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => observer.disconnect();
-  }, [articleId]);
+  }, []);
 
   if (!article) return <ArticleNotFound />;
 
