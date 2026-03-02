@@ -3,9 +3,16 @@ export { Typo, type TypoVariants } from './Typo';
 export { Card, type CardVariants } from './Card';
 export { Container } from './Container';
 export { Flex } from './Flex';
-export { Tag } from './Tag';
+export { Tag, type TagVariants } from './Tag';
 export { SectionTitle } from './SectionTitle';
-export { ButtonBase, StyledAnchor, buttonStyle, type ButtonVariants } from './Button';
+export {
+  Button,
+  ButtonBase,
+  StyledAnchor,
+  buttonStyle,
+  type ButtonVariants,
+  type PolymorphicButtonProps,
+} from './Button';
 export {
   Pagination,
   PaginationItem,
