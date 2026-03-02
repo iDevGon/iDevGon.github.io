@@ -3,7 +3,6 @@ import type { Education } from '../../interfaces/resume';
 import {
   educationCardStyle,
   educationInfoStyle,
-  periodStyle,
   sectionStyle,
 } from './-styles';
 
@@ -19,10 +18,7 @@ export function EducationSection({ education }: { education: Education[] }) {
             <h3>{edu.school}</h3>
           </Typo>
           <Typo variant="body2" className={educationInfoStyle}>
-            {edu.major}
-          </Typo>
-          <Typo variant="caption" className={periodStyle}>
-            {edu.period.start} ~ {edu.period.end ?? '현재'}
+            {edu.major} | {edu.period.start} ~ {edu.period.end ?? '현재'}
             {edu.graduated && ' (졸업)'}
           </Typo>
         </div>

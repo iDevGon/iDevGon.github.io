@@ -153,6 +153,9 @@ export const projectDescriptionStyle = css({
 
 export const skillsWrapperStyle = css({
   marginTop: '1.6rem',
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '0.8rem',
 });
 
 export const educationCardStyle = css({
