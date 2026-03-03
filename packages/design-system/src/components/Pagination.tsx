@@ -3,7 +3,7 @@ import { cva } from 'styled-system/css';
 import { styled } from 'styled-system/jsx';
 import { Flex } from './Flex';
 
-const paginationItemStyle = cva({
+export const paginationItemStyle = cva({
   base: {
     padding: '0.8rem 1.2rem',
     minWidth: '3.6rem',

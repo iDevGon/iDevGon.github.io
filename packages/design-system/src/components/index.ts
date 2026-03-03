@@ -16,6 +16,7 @@ export {
 export {
   Pagination,
   PaginationItem,
+  paginationItemStyle,
   type PaginationProps,
 } from './Pagination';
 export {
