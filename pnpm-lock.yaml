@@ -20,12 +20,18 @@ importers:
       '@giscus/react':
         specifier: ^3.1.0
         version: 3.1.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
+      '@idevgon/code-block':
+        specifier: workspace:*
+        version: link:../../packages/code-block
       '@idevgon/design-system':
         specifier: workspace:*
         version: link:../../packages/design-system
       '@idevgon/icons':
         specifier: workspace:*
         version: link:../../packages/icons
+      '@idevgon/timeline-chart':
+        specifier: workspace:*
+        version: link:../../packages/timeline-chart
       '@tanstack/react-router':
         specifier: ^1.132.47
         version: 1.163.2(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
@@ -45,9 +51,6 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0
       remark-gfm:
-        specifier: ^4.0.1
-        version: 4.0.1
-      shiki:
         specifier: ^4.0.1
         version: 4.0.1
       zustand:
@@ -100,6 +103,28 @@ importers:
         specifier: ^4.0.18
         version: 4.0.18(@types/node@24.10.14)(esbuild@0.25.12)(tsx@4.21.0)
 
+  packages/code-block:
+    dependencies:
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+      shiki:
+        specifier: ^4.0.1
+        version: 4.0.1
+    devDependencies:
+      '@types/react':
+        specifier: ^19.1.16
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.1.9
+        version: 19.2.3(@types/react@19.2.14)
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+
   packages/design-system:
     dependencies:
       '@idevgon/icons':
@@ -149,6 +174,31 @@ importers:
         specifier: ^19.0.0
         version: 19.2.4(react@19.2.4)
     devDependencies:
+      '@types/react':
+        specifier: ^19.1.16
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.1.9
+        version: 19.2.3(@types/react@19.2.14)
+      typescript:
+        specifier: ~5.9.3
+        version: 5.9.3
+
+  packages/timeline-chart:
+    dependencies:
+      '@idevgon/design-system':
+        specifier: workspace:*
+        version: link:../design-system
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      react-dom:
+        specifier: ^19.0.0
+        version: 19.2.4(react@19.2.4)
+    devDependencies:
+      '@pandacss/dev':
+        specifier: ^1.4.1
+        version: 1.8.2(typescript@5.9.3)
       '@types/react':
         specifier: ^19.1.16
         version: 19.2.14

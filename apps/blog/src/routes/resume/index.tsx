@@ -2,8 +2,7 @@ import { Container } from '@idevgon/design-system';
 import { createFileRoute } from '@tanstack/react-router';
 import { useCallback } from 'react';
 import { useSeo } from '@/hooks/useSeo';
-import { TimelineChart } from '../../components/TimelineChart';
-import type { TimelineItem } from '../../components/TimelineChart';
+import { TimelineChart, type TimelineItem } from '@idevgon/timeline-chart';
 import resumeData from '../../data/resume.json';
 import type { ResumeData } from '../../interfaces/resume';
 import {

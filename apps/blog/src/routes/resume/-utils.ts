@@ -1,4 +1,4 @@
-import type { TimelineItem } from '../../components/TimelineChart';
+import type { TimelineItem } from '@idevgon/timeline-chart';
 import type { ResumeData } from '../../interfaces/resume';
 
 export function formatPeriod(period: { start: string; end: string | null }) {

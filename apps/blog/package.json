@@ -16,8 +16,10 @@
   },
   "dependencies": {
     "@giscus/react": "^3.1.0",
+    "@idevgon/code-block": "workspace:*",
     "@idevgon/design-system": "workspace:*",
     "@idevgon/icons": "workspace:*",
+    "@idevgon/timeline-chart": "workspace:*",
     "@tanstack/react-router": "^1.132.47",
     "dayjs": "^1.11.18",
     "react": "^19.1.1",
@@ -25,7 +27,6 @@
     "react-markdown": "^10.1.0",
     "remark-breaks": "^4.0.0",
     "remark-gfm": "^4.0.1",
-    "shiki": "^4.0.1",
     "zustand": "^5.0.8"
   },
   "devDependencies": {
