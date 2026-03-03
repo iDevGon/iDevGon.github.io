@@ -90,16 +90,56 @@ export const articleHeaderStyle = css({
   borderColor: 'border',
 });
 
-/* ── Table of Contents (PC only, 1440px+) ── */
+/* ── Page layout ── */
+
+export const articlePageStyle = css({
+  tablet: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  desktop: {
+    flexDirection: 'row',
+    gap: '2rem',
+    maxWidth: '1440px',
+    marginInline: 'auto',
+  },
+});
+
+export const contentAreaStyle = css({
+  desktop: {
+    flex: 1,
+    minWidth: 0,
+  },
+});
+
+/* ── Table of Contents ── */
 
 export const tocAsideStyle = css({
   display: 'none',
-  '@media (min-width: 1440px)': {
+  tablet: {
     display: 'block',
-    position: 'fixed',
+    order: -1,
+    maxWidth: '768px',
+    width: '100%',
+    marginInline: 'auto',
+    paddingInline: '2.4rem',
+    paddingBlock: '2.4rem',
+    borderBottom: '1px solid',
+    borderColor: 'border',
+  },
+  desktop: {
+    order: 0,
+    maxWidth: 'unset',
+    marginInline: 0,
+    paddingInline: 0,
+    paddingBlock: 0,
+    paddingTop: '3.2rem',
+    borderBottom: 'none',
+    position: 'sticky',
     top: '10rem',
-    left: 'calc(50% + 39rem)',
-    width: 'min(14rem, calc(50vw - 39rem - 1rem))',
+    width: '16rem',
+    flexShrink: 0,
+    alignSelf: 'flex-start',
     maxHeight: 'calc(100vh - 14rem)',
     overflowY: 'auto',
   },

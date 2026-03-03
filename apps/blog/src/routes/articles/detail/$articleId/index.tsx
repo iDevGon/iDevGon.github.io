@@ -1,11 +1,11 @@
 import { Container, Flex, Typo } from '@idevgon/design-system';
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { lazy, Suspense, useEffect, useMemo } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import remarkBreaks from 'remark-breaks';
 import remarkGfm from 'remark-gfm';
 import { TagList } from '@/components/TagList';
-import { useBlogPostingJsonLd } from '@/hooks/useJsonLd';
-import { useSeo } from '@/hooks/useSeo';
+import { useArticleSeo } from '@/hooks/useArticleSeo';
+import { useHashScroll } from '@/hooks/useHashScroll';
 import { useColorMode } from '@/store';
 import { getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
@@ -15,9 +15,11 @@ import { ArticleSkeleton } from './-skeleton';
 import {
   articleHeaderStyle,
   articleLayoutStyle,
+  articlePageStyle,
   articleTitleStyle,
   backLinkStyle,
   containerPaddingStyle,
+  contentAreaStyle,
   coverImageStyle,
   coverImageWrapperStyle,
   giscusWrapperStyle,
@@ -26,7 +28,8 @@ import {
 import { TableOfContents } from './-toc';
 import { resolveImageUrl } from './-utils';
 
-const Markdown = lazy(() => import('react-markdown'));
+const markdownImport = import('react-markdown');
+const Markdown = lazy(() => markdownImport);
 const Giscus = lazy(() =>
   import('@giscus/react').then((m) => ({ default: m.default })),
 );
@@ -55,131 +58,84 @@ function RouteComponent() {
     ? resolveImageUrl(article.coverImage, true)
     : undefined;
 
-  const articleMeta = useMemo(
-    () =>
-      article
-        ? {
-            publishedTime: article.date,
-            author: article.author,
-            tags: article.tags,
-          }
-        : undefined,
-    [article],
-  );
-
-  useSeo({
-    title: article?.title ?? 'Article Not Found',
-    description: article?.description ?? article?.excerpt ?? '',
-    path: `/articles/detail/${articleId}`,
-    type: article ? 'article' : 'website',
-    article: articleMeta,
-    ...(coverImageMetaUrl && { image: coverImageMetaUrl }),
-  });
-
-  useBlogPostingJsonLd({
-    title: article?.title ?? '',
-    description: article?.description ?? article?.excerpt ?? '',
-    datePublished: article?.date ?? '',
-    author: article?.author ?? 'DevGon',
-    tags: article?.tags ?? [],
-    url: `/articles/detail/${articleId}`,
-    ...(coverImageMetaUrl && { image: coverImageMetaUrl }),
-  });
+  useArticleSeo(article, articleId, coverImageMetaUrl);
 
   useEffect(() => {
     document.getElementById('prerendered-article')?.remove();
   }, []);
 
-  useEffect(() => {
-    const hash = window.location.hash.slice(1);
-    if (!hash) return;
-
-    const target = decodeURIComponent(hash);
-    const el = document.getElementById(target);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-      return;
-    }
-
-    const observer = new MutationObserver(() => {
-      const found = document.getElementById(target);
-      if (found) {
-        found.scrollIntoView({ behavior: 'smooth' });
-        observer.disconnect();
-      }
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => observer.disconnect();
-  }, []);
+  useHashScroll();
 
   if (!article) return <ArticleNotFound />;
 
   return (
-    <>
-      <Container className={containerPaddingStyle}>
-        <div className={articleLayoutStyle}>
-          <Link to="/articles" className={backLinkStyle}>
-            &larr; cd ..
-          </Link>
+    <div className={articlePageStyle}>
+      <div className={contentAreaStyle}>
+        <Container className={containerPaddingStyle}>
+          <div className={articleLayoutStyle}>
+            <Link to="/articles" className={backLinkStyle}>
+              &larr; cd ..
+            </Link>
 
-          {coverImageUrl && (
-            <div className={coverImageWrapperStyle}>
-              <img
-                src={coverImageUrl}
-                alt={article.title}
-                className={coverImageStyle}
+            {coverImageUrl && (
+              <div className={coverImageWrapperStyle}>
+                <img
+                  src={coverImageUrl}
+                  alt={article.title}
+                  className={coverImageStyle}
+                  fetchPriority="high"
+                />
+              </div>
+            )}
+
+            <header className={articleHeaderStyle}>
+              <Typo asChild variant="h1">
+                <h1 className={articleTitleStyle}>{article.title}</h1>
+              </Typo>
+
+              <Flex className={metaStyle}>
+                <Typo asChild variant="body2">
+                  <span>{article.author}</span>
+                </Typo>
+                <Typo asChild variant="body2">
+                  <span>{article.date}</span>
+                </Typo>
+              </Flex>
+
+              <TagList tags={article.tags} />
+            </header>
+          </div>
+
+          <article className={markdownStyles}>
+            <Suspense fallback={<ArticleSkeleton />}>
+              <Markdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
+                {article.content}
+              </Markdown>
+            </Suspense>
+          </article>
+
+          <div className={giscusWrapperStyle}>
+            <Suspense fallback={null}>
+              <Giscus
+                repo="iDevGon/iDevGon.github.io"
+                repoId="R_kgDOP8gvzw"
+                category="Comment"
+                categoryId="DIC_kwDOP8gvz84Cwh-G"
+                mapping="pathname"
+                strict="0"
+                reactionsEnabled="1"
+                emitMetadata="0"
+                inputPosition="top"
+                theme={GISCUS_THEME_MAP[colorMode]}
+                lang="ko"
+                loading="lazy"
               />
-            </div>
-          )}
-
-          <header className={articleHeaderStyle}>
-            <Typo asChild variant="h1">
-              <h1 className={articleTitleStyle}>{article.title}</h1>
-            </Typo>
-
-            <Flex className={metaStyle}>
-              <Typo asChild variant="body2">
-                <span>{article.author}</span>
-              </Typo>
-              <Typo asChild variant="body2">
-                <span>{article.date}</span>
-              </Typo>
-            </Flex>
-
-            <TagList tags={article.tags} />
-          </header>
-        </div>
-
-        <article className={markdownStyles}>
-          <Suspense fallback={<ArticleSkeleton />}>
-            <Markdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
-              {article.content}
-            </Markdown>
-          </Suspense>
-        </article>
-
-        <div className={giscusWrapperStyle}>
-          <Suspense fallback={null}>
-            <Giscus
-              repo="iDevGon/iDevGon.github.io"
-              repoId="R_kgDOP8gvzw"
-              category="Comment"
-              categoryId="DIC_kwDOP8gvz84Cwh-G"
-              mapping="pathname"
-              strict="0"
-              reactionsEnabled="1"
-              emitMetadata="0"
-              inputPosition="top"
-              theme={GISCUS_THEME_MAP[colorMode]}
-              lang="ko"
-              loading="lazy"
-            />
-          </Suspense>
-        </div>
-      </Container>
+            </Suspense>
+          </div>
+        </Container>
+      </div>
 
       <TableOfContents content={article.content} />
-    </>
+    </div>
   );
 }
