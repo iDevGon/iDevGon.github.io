@@ -1,6 +1,6 @@
 import { Children } from 'react';
 import type { Components } from 'react-markdown';
-import { CodeBlock, Pre } from '@/components/CodeBlock';
+import { CodeBlock, Pre } from '@idevgon/code-block';
 import { getHeadingId } from './-toc';
 
 const H2: Components['h2'] = ({ children, node, ...props }) => (
