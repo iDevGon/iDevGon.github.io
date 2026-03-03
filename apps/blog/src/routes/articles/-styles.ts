@@ -30,6 +30,7 @@ export const searchToggleStyle = css({
   background: 'transparent',
   color: 'textMuted',
   cursor: 'pointer',
+  touchAction: 'manipulation',
   transition: 'color 0.15s, background 0.15s',
   _hover: {
     color: 'textPrimary',
@@ -105,6 +106,7 @@ export const searchSubmitStyle = css({
   background: 'primary',
   color: 'white',
   cursor: 'pointer',
+  touchAction: 'manipulation',
   transition: 'background 0.15s',
   _hover: {
     background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
