@@ -112,6 +112,80 @@ export const contentAreaStyle = css({
   },
 });
 
+/* ── Article Navigation ── */
+
+export const articleNavStyle = css({
+  display: 'flex',
+  flexDirection: { base: 'column', tablet: 'row' },
+  gap: '1.6rem',
+  maxWidth: '72rem',
+  marginInline: 'auto',
+  marginTop: '4.8rem',
+});
+
+export const articleNavLinkStyle = css({
+  position: 'relative',
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.6rem',
+  padding: '2rem',
+  borderRadius: '{radii.lg}',
+  border: '1px solid',
+  borderColor: 'border',
+  overflow: 'hidden',
+  textDecoration: 'none',
+  transition: 'border-color 0.2s, background-color 0.2s',
+  _hover: {
+    borderColor: 'primary',
+    backgroundColor: 'surfaceHover',
+    '& > [data-cover-bg]': { opacity: 0.18 },
+  },
+});
+
+export const articleNavCoverBgStyle = css({
+  position: 'absolute',
+  inset: 0,
+  backgroundImage: 'var(--cover-image)',
+  backgroundSize: 'cover',
+  backgroundPosition: 'center',
+  maskImage: 'linear-gradient(to right, transparent 20%, black 80%)',
+  WebkitMaskImage: 'linear-gradient(to right, transparent 20%, black 80%)',
+  opacity: 0.1,
+  transition: 'opacity 0.3s ease',
+  pointerEvents: 'none',
+});
+
+export const articleNavContentStyle = css({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.6rem',
+});
+
+export const articleNavLabelStyle = css({
+  fontSize: '1.2rem',
+  fontFamily: '{fonts.mono}',
+  color: 'textMuted',
+  textTransform: 'uppercase',
+  letterSpacing: '0.05em',
+});
+
+export const articleNavTitleStyle = css({
+  fontSize: '1.5rem',
+  fontWeight: 'semibold',
+  color: 'textPrimary',
+  lineHeight: '1.4',
+  wordBreak: 'keep-all',
+});
+
+export const articleNavExcerptStyle = css({
+  fontSize: '1.3rem',
+  color: 'textMuted',
+  lineHeight: '1.5',
+  lineClamp: 2,
+});
+
 /* ── Table of Contents ── */
 
 export const tocAsideStyle = css({

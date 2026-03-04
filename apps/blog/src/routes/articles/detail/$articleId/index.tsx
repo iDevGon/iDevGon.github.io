@@ -7,7 +7,7 @@ import { TagList } from '@/components/TagList';
 import { useArticleSeo } from '@/hooks/useArticleSeo';
 import { useHashScroll } from '@/hooks/useHashScroll';
 import { useColorMode } from '@/store';
-import { getArticle } from '@/utils/articleLoader';
+import { getAdjacentArticles, getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
 import { MARKDOWN_COMPONENTS } from './-markdown-components';
 import { ArticleNotFound } from './-not-found';
@@ -26,6 +26,7 @@ import {
   metaStyle,
 } from './-styles';
 import { TableOfContents } from './-toc';
+import { ArticleNav } from './-article-nav';
 import { resolveImageUrl } from './-utils';
 
 const markdownImport = import('react-markdown');
@@ -48,6 +49,7 @@ const GISCUS_THEME_MAP = {
 function RouteComponent() {
   const { articleId } = Route.useParams();
   const article = getArticle(articleId);
+  const { prev, next } = getAdjacentArticles(articleId);
   const colorMode = useColorMode((s) => s.colorMode);
 
   const coverImageUrl = article?.coverImage
@@ -113,6 +115,8 @@ function RouteComponent() {
               </Markdown>
             </Suspense>
           </article>
+
+          <ArticleNav prev={prev} next={next} />
 
           <div className={giscusWrapperStyle}>
             <Suspense fallback={null}>

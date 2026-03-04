@@ -97,6 +97,18 @@ export function getTagCounts(): Map<string, number> {
   return buildTagCounts();
 }
 
+export function getAdjacentArticles(id: string) {
+  const articles = getArticles();
+  const index = articles.findIndex((a) => a.id === id);
+  if (index === -1) return { prev: null, next: null };
+
+  // articles는 최신순 정렬 → 다음글(newer)은 index-1, 이전글(older)은 index+1
+  return {
+    prev: index < articles.length - 1 ? articles[index + 1] : null,
+    next: index > 0 ? articles[index - 1] : null,
+  };
+}
+
 export function getArticle(id: string): Article | null {
   const cached = articleCache.get(id);
   if (cached) return cached;
