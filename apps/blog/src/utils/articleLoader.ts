@@ -73,17 +73,28 @@ export function getArticles(): ArticleMeta[] {
   return cachedArticles;
 }
 
-export function getAllTags(): string[] {
+let cachedTagCounts: Map<string, number> | null = null;
+
+function buildTagCounts(): Map<string, number> {
+  if (cachedTagCounts) return cachedTagCounts;
   const articles = getArticles();
-  const tagCount = new Map<string, number>();
+  cachedTagCounts = new Map<string, number>();
   for (const article of articles) {
     for (const tag of article.tags) {
-      tagCount.set(tag, (tagCount.get(tag) || 0) + 1);
+      cachedTagCounts.set(tag, (cachedTagCounts.get(tag) || 0) + 1);
     }
   }
-  return [...tagCount.entries()]
+  return cachedTagCounts;
+}
+
+export function getAllTags(): string[] {
+  return [...buildTagCounts().entries()]
     .sort((a, b) => b[1] - a[1])
     .map(([tag]) => tag);
+}
+
+export function getTagCounts(): Map<string, number> {
+  return buildTagCounts();
 }
 
 export function getArticle(id: string): Article | null {

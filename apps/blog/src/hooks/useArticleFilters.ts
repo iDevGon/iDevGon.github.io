@@ -1,6 +1,6 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { getAllTags, getArticles } from '@/utils/articleLoader';
+import { getAllTags, getArticles, getTagCounts } from '@/utils/articleLoader';
 
 const ITEMS_PER_PAGE = 10;
 
@@ -74,6 +74,7 @@ export function useArticleFilters({ page, tag }: UseArticleFiltersOptions) {
 
   const allArticles = getArticles();
   const allTags = getAllTags();
+  const tagCounts = getTagCounts();
 
   const filteredArticles = useMemo(() => {
     let results = allArticles;
@@ -131,6 +132,7 @@ export function useArticleFilters({ page, tag }: UseArticleFiltersOptions) {
     searchOpen,
     allArticles,
     allTags,
+    tagCounts,
     filteredArticles,
     articles,
     isSearching,

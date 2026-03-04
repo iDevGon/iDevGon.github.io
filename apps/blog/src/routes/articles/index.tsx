@@ -47,6 +47,7 @@ function RouteComponent() {
     searchOpen,
     allArticles,
     allTags,
+    tagCounts,
     filteredArticles,
     articles,
     isSearching,
@@ -88,6 +89,7 @@ function RouteComponent() {
       >
         <ArticleFilters
           allTags={allTags}
+          tagCounts={tagCounts}
           selectedTags={selectedTags}
           onTagClick={handleTagClick}
         />
