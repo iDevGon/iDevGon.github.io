@@ -6,7 +6,8 @@
     "github": [
       { "name": "Blog", "url": "https://idevgon.github.io" },
       { "name": "GitHub (Personal)", "url": "https://github.com/iDevGon" },
-      { "name": "GitHub (Work)", "url": "https://github.com/howard-cheon" }
+      { "name": "GitHub (Work)", "url": "https://github.com/howard-cheon" },
+      { "name": "LinkedIn", "url": "https://www.linkedin.com/in/idevgon/" }
     ]
   },
   "introduction": {

@@ -2,6 +2,7 @@ export { BlogIcon } from './BlogIcon';
 export { EmailIcon } from './EmailIcon';
 export { GithubIcon } from './GithubIcon';
 export { LinkIcon } from './LinkIcon';
+export { LinkedinIcon } from './LinkedinIcon';
 export { LogoIcon } from './LogoIcon';
 export { MoonIcon } from './MoonIcon';
 export { PhoneIcon } from './PhoneIcon';

@@ -1,5 +1,5 @@
 import { Container, Typo } from '@idevgon/design-system';
-import { BlogIcon, EmailIcon, GithubIcon, PhoneIcon } from '@idevgon/icons';
+import { BlogIcon, EmailIcon, GithubIcon, LinkedinIcon, PhoneIcon } from '@idevgon/icons';
 import { createFileRoute } from '@tanstack/react-router';
 import { useSeo } from '@/hooks/useSeo';
 import {
@@ -83,6 +83,25 @@ function RouteComponent() {
                 </Typo>
                 <Typo asChild variant="body1">
                   <span className={contactLinkStyle}>github.com/iDevGon</span>
+                </Typo>
+              </div>
+            </a>
+
+            <a
+              href="https://www.linkedin.com/in/idevgon/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={contactItemStyle}
+            >
+              <div className={iconStyle}>
+                <LinkedinIcon width={20} height={20} aria-hidden="true" />
+              </div>
+              <div className={contactInfoStyle}>
+                <Typo asChild variant="caption">
+                  <span className={contactLabelStyle}>LinkedIn</span>
+                </Typo>
+                <Typo asChild variant="body1">
+                  <span className={contactLinkStyle}>linkedin.com/in/idevgon</span>
                 </Typo>
               </div>
             </a>
