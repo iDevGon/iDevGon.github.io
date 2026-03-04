@@ -15,6 +15,20 @@ import {
 } from './-styles';
 import { formatPeriod } from './-utils';
 
+function renderTextWithLinks(text: string) {
+  const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
+  return parts.map((part, i) => {
+    const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
+    if (match)
+      return (
+        <a key={i} href={match[2]} target="_blank" rel="noopener noreferrer" className={linkStyle}>
+          {match[1]}
+        </a>
+      );
+    return part;
+  });
+}
+
 function ProjectCard({ project }: { project: Experience['projects'][number] }) {
   return (
     <div className={projectCardStyle}>
@@ -31,7 +45,7 @@ function ProjectCard({ project }: { project: Experience['projects'][number] }) {
         <ul className={achievementListStyle}>
           {project.achievements.map((achievement) => (
             <li key={achievement}>
-              <Typo variant="body2">{achievement}</Typo>
+              <Typo variant="body2">{renderTextWithLinks(achievement)}</Typo>
             </li>
           ))}
         </ul>
