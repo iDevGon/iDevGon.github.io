@@ -16,6 +16,10 @@ interface ArticleNavProps {
   next: ArticleMeta | null;
 }
 
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'instant' });
+}
+
 export function ArticleNav({ prev, next }: ArticleNavProps) {
   if (!prev && !next) return null;
 
@@ -26,6 +30,7 @@ export function ArticleNav({ prev, next }: ArticleNavProps) {
           to="/articles/detail/$articleId"
           params={{ articleId: prev.id }}
           className={articleNavLinkStyle}
+          onClick={scrollToTop}
         >
           {prev.coverImage && (
             <div
@@ -51,6 +56,7 @@ export function ArticleNav({ prev, next }: ArticleNavProps) {
           params={{ articleId: next.id }}
           className={articleNavLinkStyle}
           style={{ textAlign: 'right' }}
+          onClick={scrollToTop}
         >
           {next.coverImage && (
             <div
