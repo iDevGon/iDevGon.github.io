@@ -1,7 +1,7 @@
 ---
 title: AI 시대와 개발자
 author: DevGon
-coverImage: /images/developers-in-the-ai-era.webp
+coverImage: https://res.cloudinary.com/dze1yubhk/image/upload/v1772627044/developers-in-the-ai-era.webp
 date: 2026-02-28
 description: AI가 코딩을 대신하는 시대, 개발자의 역할은 어떻게 변해야 할까
 tags:

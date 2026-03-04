@@ -1,7 +1,7 @@
 ---
 title: 블로그 다듬기
 author: DevGon
-coverImage: /images/refining-my-blog.webp
+coverImage: https://res.cloudinary.com/dze1yubhk/image/upload/v1772627043/refining-my-blog.webp
 date: 2026-03-02
 description: Nuxt에서 Vite + React로, 블로그를 다시 만든 이유와 그 과정에서 느낀 것들
 tags:
