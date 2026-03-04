@@ -17,11 +17,11 @@ import { formatPeriod } from './-utils';
 
 function renderTextWithLinks(text: string) {
   const parts = text.split(/(\[[^\]]+\]\([^)]+\))/g);
-  return parts.map((part, i) => {
+  return parts.map((part) => {
     const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (match)
       return (
-        <a key={i} href={match[2]} target="_blank" rel="noopener noreferrer" className={linkStyle}>
+        <a key={part} href={match[2]} target="_blank" rel="noopener noreferrer" className={linkStyle}>
           {match[1]}
         </a>
       );
