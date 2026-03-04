@@ -24,6 +24,12 @@ export const buttonStyle = cva({
     '&:hover': {
       backgroundColor: 'primary.light',
     },
+    _dark: {
+      backgroundColor: 'primary.dark',
+      '&:hover': {
+        backgroundColor: 'primary',
+      },
+    },
   },
   variants: {
     outline: {
@@ -35,6 +41,12 @@ export const buttonStyle = cva({
         '&:hover': {
           backgroundColor: 'primary',
           color: 'white',
+        },
+        _dark: {
+          backgroundColor: 'transparent',
+          '&:hover': {
+            backgroundColor: 'primary.dark',
+          },
         },
       },
     },

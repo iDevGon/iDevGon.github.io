@@ -49,7 +49,7 @@ export const idevgonPreset = definePreset({
         },
         colors: {
           brand: {
-            primary: { value: '#4F7CAC' },
+            primary: { value: '#3D6B99' },
             primaryLight: { value: '#6B9AC4' },
             primaryDark: { value: '#3A5F8A' },
             secondary: { value: '#C0E0DE' },
@@ -86,7 +86,7 @@ export const idevgonPreset = definePreset({
             value: { base: '#636E72', _light: '#636E72', _dark: '#A0A4AB' },
           },
           textMuted: {
-            value: { base: '#9CA3AF', _light: '#9CA3AF', _dark: '#6B7280' },
+            value: { base: '#6B7280', _light: '#6B7280', _dark: '#9CA3AF' },
           },
           border: {
             value: { base: '#E1E8ED', _light: '#E1E8ED', _dark: '#363A42' },
