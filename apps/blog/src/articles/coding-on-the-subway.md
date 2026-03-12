@@ -2,6 +2,7 @@
 title: 지하철 위에서 코딩
 author: DevGon
 date: 2026-03-12
+coverImage: https://res.cloudinary.com/dze1yubhk/image/upload/v1773321673/coding-on-the-subway.webp
 description: 대중교통 위에서 자연어로 개발하는 시대, 공간의 제약이 사라지고 있다
 tags:
   - AI
