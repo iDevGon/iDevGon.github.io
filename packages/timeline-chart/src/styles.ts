@@ -6,6 +6,8 @@ export const timelineContainerStyle = css({
   _print: {
     marginTop: '0.5rem',
     marginBottom: '0.5rem',
+    pageBreakInside: 'avoid',
+    breakInside: 'avoid',
   },
 });
 
