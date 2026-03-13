@@ -59,7 +59,7 @@ AI가 실행을 대신해주는 만큼,
 ## DRI라는 패러다임
 
 1인 개발자 시대가 열린다면, 이미 그렇게 일해온 조직이 롤모델이 될 것이다.
-여기서 **DRI(Directly Responsible Individual)**라는 개념이 떠오른다.
+여기서 **DRI(Directly Responsible Individual)** 라는 개념이 떠오른다.
 하나의 문제에 대해 처음부터 끝까지 책임지는 개인.
 
 토스는 이 DRI 문화를 오래전부터 실천해온 기업이다.
