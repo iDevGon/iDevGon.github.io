@@ -1,5 +1,5 @@
 ---
-title: 블로그 다듬기
+title: 블로그를 다시 만든 이유
 author: DevGon
 coverImage: https://res.cloudinary.com/dze1yubhk/image/upload/v1772627043/refining-my-blog.webp
 date: 2026-03-02
@@ -42,7 +42,7 @@ AI는 학습 데이터가 많을수록 생성하는 코드의 품질이 높아�
 
 ## 의사결정자로서의 개발자
 
-이전에 [AI 시대와 개발자](/articles/detail/developers-in-the-ai-era#how에서-why로)에서
+이전에 [HOW에서 WHY로](/articles/detail/from-how-to-why#how에서-why로)에서
 개발자의 역할이 HOW에서 WHY로 이동하고 있다고 썼는데,
 이번 블로그 개편 작업을 하면서 그것을 절실하게 느꼈다.
 

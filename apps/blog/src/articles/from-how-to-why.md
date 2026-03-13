@@ -1,5 +1,5 @@
 ---
-title: AI 시대와 개발자
+title: HOW에서 WHY로
 author: DevGon
 coverImage: https://res.cloudinary.com/dze1yubhk/image/upload/v1772627044/developers-in-the-ai-era.webp
 date: 2026-02-28

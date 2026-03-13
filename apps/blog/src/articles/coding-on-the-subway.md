@@ -63,7 +63,7 @@ tags:
 
 이것이 가능한 건 결국 **자연어로 개발하기 때문이다.**
 
-이전에 [AI 시대와 개발자](/articles/detail/developers-in-the-ai-era)에서
+이전에 [HOW에서 WHY로](/articles/detail/from-how-to-why)에서
 개발자의 역할이 HOW에서 WHY로 이동하고 있다고 썼다.
 지하철 위에서의 코딩은 이 변화의 연장선에 있다.
 
