@@ -41,6 +41,16 @@
       "description": "반려동물 쇼핑몰 1위 기업으로, IMM인베스트먼트, GS리테일 등으로부터 투자 유치",
       "projects": [
         {
+          "title": "RAG 기반 AI 챗봇 '프렌디(Frendy)' 구축",
+          "period": { "start": "2026.02", "end": null },
+          "description": "유관부서 간 커뮤니케이션, 신규 개발자 온보딩, 히스토리 관리, 장애 초기대응 등을 AI로 지원하기 위해 ChromaDB + n8n + Claude API 기반 RAG 챗봇 '프렌디'의 핵심 학습 파이프라인을 구축하고 봇 응답 품질을 고도화하고 있습니다.",
+          "achievements": [
+            "Claude Code 세션 로그 자동 학습 파이프라인 구축 (32MB → 140KB, 99.6% 압축)",
+            "노션·슬랙·GitHub PR·Sentry 등 멀티소스 RAG 학습 및 질의 파이프라인 개발",
+            "RAG vs MCP 자동 라우팅, 불필요 호출 방지 등 봇 응답 품질 고도화"
+          ]
+        },
+        {
           "title": "메인 페이지 레거시 마이그레이션 (Vue2 → Next.js)",
           "period": { "start": "2022.11", "end": "2023.06" },
           "description": "Vue2 기반 레거시 코드로 인해 페이지 로딩이 느리고 SEO가 취약한 문제를 해결하기 위해, Next.js 기반으로 전면 재구축하여 성능과 검색엔진 노출을 대폭 개선했습니다.",
