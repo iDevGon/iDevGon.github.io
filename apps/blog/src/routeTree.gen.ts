@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ResumeIndexRouteImport } from './routes/resume/index'
+import { Route as PortfolioIndexRouteImport } from './routes/portfolio/index'
 import { Route as ContactIndexRouteImport } from './routes/contact/index'
 import { Route as ArticlesIndexRouteImport } from './routes/articles/index'
 import { Route as ArticlesDetailArticleIdIndexRouteImport } from './routes/articles/detail/$articleId/index'
@@ -23,6 +24,11 @@ const IndexRoute = IndexRouteImport.update({
 const ResumeIndexRoute = ResumeIndexRouteImport.update({
   id: '/resume/',
   path: '/resume/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
+  id: '/portfolio/',
+  path: '/portfolio/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactIndexRoute = ContactIndexRouteImport.update({
@@ -46,6 +52,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/articles/': typeof ArticlesIndexRoute
   '/contact/': typeof ContactIndexRoute
+  '/portfolio/': typeof PortfolioIndexRoute
   '/resume/': typeof ResumeIndexRoute
   '/articles/detail/$articleId/': typeof ArticlesDetailArticleIdIndexRoute
 }
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/articles': typeof ArticlesIndexRoute
   '/contact': typeof ContactIndexRoute
+  '/portfolio': typeof PortfolioIndexRoute
   '/resume': typeof ResumeIndexRoute
   '/articles/detail/$articleId': typeof ArticlesDetailArticleIdIndexRoute
 }
@@ -61,6 +69,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/articles/': typeof ArticlesIndexRoute
   '/contact/': typeof ContactIndexRoute
+  '/portfolio/': typeof PortfolioIndexRoute
   '/resume/': typeof ResumeIndexRoute
   '/articles/detail/$articleId/': typeof ArticlesDetailArticleIdIndexRoute
 }
@@ -70,15 +79,23 @@ export interface FileRouteTypes {
     | '/'
     | '/articles/'
     | '/contact/'
+    | '/portfolio/'
     | '/resume/'
     | '/articles/detail/$articleId/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/articles' | '/contact' | '/resume' | '/articles/detail/$articleId'
+  to:
+    | '/'
+    | '/articles'
+    | '/contact'
+    | '/portfolio'
+    | '/resume'
+    | '/articles/detail/$articleId'
   id:
     | '__root__'
     | '/'
     | '/articles/'
     | '/contact/'
+    | '/portfolio/'
     | '/resume/'
     | '/articles/detail/$articleId/'
   fileRoutesById: FileRoutesById
@@ -87,6 +104,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ArticlesIndexRoute: typeof ArticlesIndexRoute
   ContactIndexRoute: typeof ContactIndexRoute
+  PortfolioIndexRoute: typeof PortfolioIndexRoute
   ResumeIndexRoute: typeof ResumeIndexRoute
   ArticlesDetailArticleIdIndexRoute: typeof ArticlesDetailArticleIdIndexRoute
 }
@@ -105,6 +123,13 @@ declare module '@tanstack/react-router' {
       path: '/resume'
       fullPath: '/resume/'
       preLoaderRoute: typeof ResumeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/portfolio/': {
+      id: '/portfolio/'
+      path: '/portfolio'
+      fullPath: '/portfolio/'
+      preLoaderRoute: typeof PortfolioIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact/': {
@@ -135,6 +160,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ArticlesIndexRoute: ArticlesIndexRoute,
   ContactIndexRoute: ContactIndexRoute,
+  PortfolioIndexRoute: PortfolioIndexRoute,
   ResumeIndexRoute: ResumeIndexRoute,
   ArticlesDetailArticleIdIndexRoute: ArticlesDetailArticleIdIndexRoute,
 }

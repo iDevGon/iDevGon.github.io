@@ -150,6 +150,7 @@ export const activeMobileNavStyle = css({
 
 export const NAV_LINKS = [
   { to: '/articles' as const, label: '생각들' },
+  { to: '/portfolio' as const, label: '포트폴리오' },
   { to: '/resume' as const, label: '이력서' },
   { to: '/contact' as const, label: '연락처' },
 ];
