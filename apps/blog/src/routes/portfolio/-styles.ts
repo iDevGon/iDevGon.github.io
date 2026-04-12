@@ -243,3 +243,79 @@ export const dividerStyle = css({
   borderColor: 'border',
   margin: 0,
 });
+
+export const lightboxOverlayStyle = css({
+  position: 'fixed',
+  inset: 0,
+  zIndex: 1000,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'rgba(0, 0, 0, 0.85)',
+  backdropFilter: 'blur(8px)',
+  cursor: 'zoom-out',
+  animation: 'fadeIn 0.2s ease-out',
+});
+
+export const lightboxImageStyle = css({
+  maxWidth: '90vw',
+  maxHeight: '90vh',
+  objectFit: 'contain',
+  borderRadius: '0.8rem',
+  boxShadow: '0 8px 40px rgba(0, 0, 0, 0.4)',
+});
+
+export const lightboxCloseStyle = css({
+  position: 'fixed',
+  top: '2rem',
+  right: '2rem',
+  zIndex: 1001,
+  width: '4rem',
+  height: '4rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 'none',
+  background: 'rgba(255, 255, 255, 0.15)',
+  borderRadius: '50%',
+  color: 'white',
+  fontSize: '2rem',
+  cursor: 'pointer',
+  transition: 'background 0.2s ease',
+  _hover: {
+    background: 'rgba(255, 255, 255, 0.3)',
+  },
+});
+
+export const lightboxNavStyle = css({
+  position: 'fixed',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  zIndex: 1001,
+  width: '4.4rem',
+  height: '4.4rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  border: 'none',
+  background: 'rgba(255, 255, 255, 0.15)',
+  borderRadius: '50%',
+  color: 'white',
+  fontSize: '2rem',
+  cursor: 'pointer',
+  transition: 'background 0.2s ease',
+  _hover: {
+    background: 'rgba(255, 255, 255, 0.3)',
+  },
+});
+
+export const lightboxCounterStyle = css({
+  position: 'fixed',
+  bottom: '2rem',
+  left: '50%',
+  transform: 'translateX(-50%)',
+  zIndex: 1001,
+  color: 'rgba(255, 255, 255, 0.7)',
+  fontSize: '1.3rem',
+  fontWeight: 500,
+});

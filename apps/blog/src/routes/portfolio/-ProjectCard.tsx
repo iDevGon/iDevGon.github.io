@@ -1,5 +1,5 @@
 import { Typo } from '@idevgon/design-system';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { PortfolioProject } from '../../interfaces/portfolio';
 import {
   dividerStyle,
@@ -9,6 +9,11 @@ import {
   highlightItemStyle,
   highlightListStyle,
   imageGalleryStyle,
+  lightboxCloseStyle,
+  lightboxCounterStyle,
+  lightboxImageStyle,
+  lightboxNavStyle,
+  lightboxOverlayStyle,
   linkButtonStyle,
   linksRowStyle,
   metaGridStyle,
@@ -58,8 +63,82 @@ function ProjectThumbnail({ project }: { project: PortfolioProject }) {
   );
 }
 
+function Lightbox({
+  images,
+  index,
+  alt,
+  onClose,
+  onNavigate,
+}: {
+  images: string[];
+  index: number;
+  alt: string;
+  onClose: () => void;
+  onNavigate: (index: number) => void;
+}) {
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight' && index < images.length - 1) onNavigate(index + 1);
+      if (e.key === 'ArrowLeft' && index > 0) onNavigate(index - 1);
+    },
+    [onClose, onNavigate, index, images.length],
+  );
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflow = '';
+    };
+  }, [handleKeyDown]);
+
+  return (
+    <div className={lightboxOverlayStyle} onClick={onClose}>
+      <button type="button" className={lightboxCloseStyle} onClick={onClose}>
+        ×
+      </button>
+
+      {index > 0 && (
+        <button
+          type="button"
+          className={lightboxNavStyle}
+          style={{ left: '1.6rem' }}
+          onClick={(e) => { e.stopPropagation(); onNavigate(index - 1); }}
+        >
+          ‹
+        </button>
+      )}
+
+      <img
+        src={images[index]}
+        alt={`${alt} ${index + 1}`}
+        className={lightboxImageStyle}
+        onClick={(e) => e.stopPropagation()}
+      />
+
+      {index < images.length - 1 && (
+        <button
+          type="button"
+          className={lightboxNavStyle}
+          style={{ right: '1.6rem' }}
+          onClick={(e) => { e.stopPropagation(); onNavigate(index + 1); }}
+        >
+          ›
+        </button>
+      )}
+
+      <span className={lightboxCounterStyle}>
+        {index + 1} / {images.length}
+      </span>
+    </div>
+  );
+}
+
 function ImageGallery({ project }: { project: PortfolioProject }) {
   const [errorSet, setErrorSet] = useState<Set<number>>(new Set());
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   if (project.images.length === 0) return null;
 
@@ -67,24 +146,42 @@ function ImageGallery({ project }: { project: PortfolioProject }) {
     setErrorSet((prev) => new Set(prev).add(index));
   };
 
+  const validImages = project.images.filter((_, i) => !errorSet.has(i));
+
   return (
-    <div className={imageGalleryStyle}>
-      {project.images.map((src, i) => (
-        <div key={src} className={galleryImageWrapperStyle}>
-          {errorSet.has(i) ? (
-            <div className={galleryPlaceholderStyle}>Image {i + 1}</div>
-          ) : (
-            <img
-              src={src}
-              alt={`${project.title} 스크린샷 ${i + 1}`}
-              className={galleryImageStyle}
-              loading="lazy"
-              onError={() => handleError(i)}
-            />
-          )}
-        </div>
-      ))}
-    </div>
+    <>
+      <div className={imageGalleryStyle}>
+        {project.images.map((src, i) => (
+          <div
+            key={src}
+            className={galleryImageWrapperStyle}
+            onClick={() => !errorSet.has(i) && setLightboxIndex(i)}
+          >
+            {errorSet.has(i) ? (
+              <div className={galleryPlaceholderStyle}>Image {i + 1}</div>
+            ) : (
+              <img
+                src={src}
+                alt={`${project.title} 스크린샷 ${i + 1}`}
+                className={galleryImageStyle}
+                loading="lazy"
+                onError={() => handleError(i)}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+
+      {lightboxIndex !== null && validImages.length > 0 && (
+        <Lightbox
+          images={project.images}
+          index={lightboxIndex}
+          alt={`${project.title} 스크린샷`}
+          onClose={() => setLightboxIndex(null)}
+          onNavigate={setLightboxIndex}
+        />
+      )}
+    </>
   );
 }
 
