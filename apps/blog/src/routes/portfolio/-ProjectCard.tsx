@@ -36,7 +36,8 @@ import {
   thumbnailWrapperStyle,
 } from './-styles';
 
-function formatPeriod(period: PortfolioProject['period']) {
+function formatPeriod(period: PortfolioProject['period'], hasStatus: boolean) {
+  if (!period.end && hasStatus) return period.start;
   const end = period.end ?? '진행 중';
   return `${period.start} — ${end}`;
 }
@@ -227,7 +228,7 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
           </Typo>
           <span className={projectSubtitleStyle}>{project.subtitle}</span>
           <span className={projectPeriodStyle}>
-            {formatPeriod(project.period)} ·{' '}
+            {formatPeriod(project.period, !!project.status)} ·{' '}
             <span className={roleStyle}>{project.role}</span>
             {project.status && (
               <>
