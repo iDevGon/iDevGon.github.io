@@ -209,6 +209,44 @@ export const linkButtonStyle = css({
   },
 });
 
+export const statusBadgeStyle = css({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  fontSize: '1.2rem',
+  fontWeight: 600,
+  padding: '0.3rem 0.8rem',
+  borderRadius: '0.4rem',
+  lineHeight: 1.4,
+  '&[data-status="서비스중"]': {
+    backgroundColor: 'rgba(34, 197, 94, 0.12)',
+    color: 'rgb(22, 163, 74)',
+  },
+  '&[data-status="개발중"]': {
+    backgroundColor: 'rgba(234, 179, 8, 0.12)',
+    color: 'rgb(202, 138, 4)',
+  },
+  '&[data-status="중단"]': {
+    backgroundColor: 'rgba(239, 68, 68, 0.12)',
+    color: 'rgb(220, 38, 38)',
+  },
+});
+
+export const statusDotStyle = css({
+  width: '0.6rem',
+  height: '0.6rem',
+  borderRadius: '50%',
+  '[data-status="서비스중"] &': {
+    backgroundColor: 'rgb(22, 163, 74)',
+  },
+  '[data-status="개발중"] &': {
+    backgroundColor: 'rgb(202, 138, 4)',
+  },
+  '[data-status="중단"] &': {
+    backgroundColor: 'rgb(220, 38, 38)',
+  },
+});
+
 export const roleStyle = css({
   fontSize: '1.3rem',
   fontWeight: 500,

@@ -27,6 +27,8 @@ import {
   projectSubtitleStyle,
   projectTitleStyle,
   roleStyle,
+  statusBadgeStyle,
+  statusDotStyle,
   techStackListStyle,
   techTagStyle,
   thumbnailPlaceholderStyle,
@@ -227,6 +229,18 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
           <span className={projectPeriodStyle}>
             {formatPeriod(project.period)} ·{' '}
             <span className={roleStyle}>{project.role}</span>
+            {project.status && (
+              <>
+                {' · '}
+                <span
+                  className={statusBadgeStyle}
+                  data-status={project.status}
+                >
+                  <span className={statusDotStyle} />
+                  {project.status}
+                </span>
+              </>
+            )}
           </span>
         </div>
 

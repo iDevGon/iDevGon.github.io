@@ -1,3 +1,5 @@
+export type ProjectStatus = '서비스중' | '개발중' | '중단';
+
 export interface PortfolioProject {
   id: string;
   title: string;
@@ -7,6 +9,7 @@ export interface PortfolioProject {
     start: string;
     end: string | null;
   };
+  status?: ProjectStatus;
   thumbnail: string;
   images: string[];
   links: {
