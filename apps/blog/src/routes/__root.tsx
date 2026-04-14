@@ -49,7 +49,9 @@ const RootLayout = () => {
     document.documentElement.setAttribute('data-color-mode', resolvedColorMode);
     document.documentElement.style.colorScheme = resolvedColorMode;
     const themeColor = resolvedColorMode === 'dark' ? '#1A1D23' : '#F8F9FA';
-    let meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+    let meta = document.querySelector<HTMLMetaElement>(
+      'meta[name="theme-color"]',
+    );
     if (!meta) {
       meta = document.createElement('meta');
       meta.name = 'theme-color';

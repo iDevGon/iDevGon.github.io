@@ -1,6 +1,10 @@
 import { Typo } from '@idevgon/design-system';
 import type { CSSProperties } from 'react';
-import { legendColorStyle, legendItemStyle, timelineLegendStyle } from './styles';
+import {
+  legendColorStyle,
+  legendItemStyle,
+  timelineLegendStyle,
+} from './styles';
 import { useTimeline } from './TimelineProvider';
 import { formatDuration, getMonthsDiff, parseDate } from './utils';
 

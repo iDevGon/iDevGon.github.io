@@ -90,9 +90,7 @@ export function useArticleFilters({ page, tag }: UseArticleFiltersOptions) {
 
     if (selectedTags.size > 0) {
       results = results.filter((a) =>
-        a.tags.some((t) =>
-          selectedTags.has(t.toLowerCase()),
-        ),
+        a.tags.some((t) => selectedTags.has(t.toLowerCase())),
       );
     }
 

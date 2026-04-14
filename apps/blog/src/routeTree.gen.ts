@@ -8,88 +8,88 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { Route as rootRouteImport } from './routes/__root'
-import { Route as IndexRouteImport } from './routes/index'
-import { Route as ResumeIndexRouteImport } from './routes/resume/index'
-import { Route as PortfolioIndexRouteImport } from './routes/portfolio/index'
-import { Route as ContactIndexRouteImport } from './routes/contact/index'
-import { Route as ArticlesIndexRouteImport } from './routes/articles/index'
-import { Route as ArticlesDetailArticleIdIndexRouteImport } from './routes/articles/detail/$articleId/index'
+import { Route as rootRouteImport } from './routes/__root';
+import { Route as IndexRouteImport } from './routes/index';
+import { Route as ResumeIndexRouteImport } from './routes/resume/index';
+import { Route as PortfolioIndexRouteImport } from './routes/portfolio/index';
+import { Route as ContactIndexRouteImport } from './routes/contact/index';
+import { Route as ArticlesIndexRouteImport } from './routes/articles/index';
+import { Route as ArticlesDetailArticleIdIndexRouteImport } from './routes/articles/detail/$articleId/index';
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const ResumeIndexRoute = ResumeIndexRouteImport.update({
   id: '/resume/',
   path: '/resume/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const PortfolioIndexRoute = PortfolioIndexRouteImport.update({
   id: '/portfolio/',
   path: '/portfolio/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const ContactIndexRoute = ContactIndexRouteImport.update({
   id: '/contact/',
   path: '/contact/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const ArticlesIndexRoute = ArticlesIndexRouteImport.update({
   id: '/articles/',
   path: '/articles/',
   getParentRoute: () => rootRouteImport,
-} as any)
+} as any);
 const ArticlesDetailArticleIdIndexRoute =
   ArticlesDetailArticleIdIndexRouteImport.update({
     id: '/articles/detail/$articleId/',
     path: '/articles/detail/$articleId/',
     getParentRoute: () => rootRouteImport,
-  } as any)
+  } as any);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexRoute
-  '/articles/': typeof ArticlesIndexRoute
-  '/contact/': typeof ContactIndexRoute
-  '/portfolio/': typeof PortfolioIndexRoute
-  '/resume/': typeof ResumeIndexRoute
-  '/articles/detail/$articleId/': typeof ArticlesDetailArticleIdIndexRoute
+  '/': typeof IndexRoute;
+  '/articles/': typeof ArticlesIndexRoute;
+  '/contact/': typeof ContactIndexRoute;
+  '/portfolio/': typeof PortfolioIndexRoute;
+  '/resume/': typeof ResumeIndexRoute;
+  '/articles/detail/$articleId/': typeof ArticlesDetailArticleIdIndexRoute;
 }
 export interface FileRoutesByTo {
-  '/': typeof IndexRoute
-  '/articles': typeof ArticlesIndexRoute
-  '/contact': typeof ContactIndexRoute
-  '/portfolio': typeof PortfolioIndexRoute
-  '/resume': typeof ResumeIndexRoute
-  '/articles/detail/$articleId': typeof ArticlesDetailArticleIdIndexRoute
+  '/': typeof IndexRoute;
+  '/articles': typeof ArticlesIndexRoute;
+  '/contact': typeof ContactIndexRoute;
+  '/portfolio': typeof PortfolioIndexRoute;
+  '/resume': typeof ResumeIndexRoute;
+  '/articles/detail/$articleId': typeof ArticlesDetailArticleIdIndexRoute;
 }
 export interface FileRoutesById {
-  __root__: typeof rootRouteImport
-  '/': typeof IndexRoute
-  '/articles/': typeof ArticlesIndexRoute
-  '/contact/': typeof ContactIndexRoute
-  '/portfolio/': typeof PortfolioIndexRoute
-  '/resume/': typeof ResumeIndexRoute
-  '/articles/detail/$articleId/': typeof ArticlesDetailArticleIdIndexRoute
+  __root__: typeof rootRouteImport;
+  '/': typeof IndexRoute;
+  '/articles/': typeof ArticlesIndexRoute;
+  '/contact/': typeof ContactIndexRoute;
+  '/portfolio/': typeof PortfolioIndexRoute;
+  '/resume/': typeof ResumeIndexRoute;
+  '/articles/detail/$articleId/': typeof ArticlesDetailArticleIdIndexRoute;
 }
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
     | '/'
     | '/articles/'
     | '/contact/'
     | '/portfolio/'
     | '/resume/'
-    | '/articles/detail/$articleId/'
-  fileRoutesByTo: FileRoutesByTo
+    | '/articles/detail/$articleId/';
+  fileRoutesByTo: FileRoutesByTo;
   to:
     | '/'
     | '/articles'
     | '/contact'
     | '/portfolio'
     | '/resume'
-    | '/articles/detail/$articleId'
+    | '/articles/detail/$articleId';
   id:
     | '__root__'
     | '/'
@@ -97,62 +97,62 @@ export interface FileRouteTypes {
     | '/contact/'
     | '/portfolio/'
     | '/resume/'
-    | '/articles/detail/$articleId/'
-  fileRoutesById: FileRoutesById
+    | '/articles/detail/$articleId/';
+  fileRoutesById: FileRoutesById;
 }
 export interface RootRouteChildren {
-  IndexRoute: typeof IndexRoute
-  ArticlesIndexRoute: typeof ArticlesIndexRoute
-  ContactIndexRoute: typeof ContactIndexRoute
-  PortfolioIndexRoute: typeof PortfolioIndexRoute
-  ResumeIndexRoute: typeof ResumeIndexRoute
-  ArticlesDetailArticleIdIndexRoute: typeof ArticlesDetailArticleIdIndexRoute
+  IndexRoute: typeof IndexRoute;
+  ArticlesIndexRoute: typeof ArticlesIndexRoute;
+  ContactIndexRoute: typeof ContactIndexRoute;
+  PortfolioIndexRoute: typeof PortfolioIndexRoute;
+  ResumeIndexRoute: typeof ResumeIndexRoute;
+  ArticlesDetailArticleIdIndexRoute: typeof ArticlesDetailArticleIdIndexRoute;
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/resume/': {
-      id: '/resume/'
-      path: '/resume'
-      fullPath: '/resume/'
-      preLoaderRoute: typeof ResumeIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/resume/';
+      path: '/resume';
+      fullPath: '/resume/';
+      preLoaderRoute: typeof ResumeIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/portfolio/': {
-      id: '/portfolio/'
-      path: '/portfolio'
-      fullPath: '/portfolio/'
-      preLoaderRoute: typeof PortfolioIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/portfolio/';
+      path: '/portfolio';
+      fullPath: '/portfolio/';
+      preLoaderRoute: typeof PortfolioIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/contact/': {
-      id: '/contact/'
-      path: '/contact'
-      fullPath: '/contact/'
-      preLoaderRoute: typeof ContactIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/contact/';
+      path: '/contact';
+      fullPath: '/contact/';
+      preLoaderRoute: typeof ContactIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/articles/': {
-      id: '/articles/'
-      path: '/articles'
-      fullPath: '/articles/'
-      preLoaderRoute: typeof ArticlesIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/articles/';
+      path: '/articles';
+      fullPath: '/articles/';
+      preLoaderRoute: typeof ArticlesIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
     '/articles/detail/$articleId/': {
-      id: '/articles/detail/$articleId/'
-      path: '/articles/detail/$articleId'
-      fullPath: '/articles/detail/$articleId/'
-      preLoaderRoute: typeof ArticlesDetailArticleIdIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
+      id: '/articles/detail/$articleId/';
+      path: '/articles/detail/$articleId';
+      fullPath: '/articles/detail/$articleId/';
+      preLoaderRoute: typeof ArticlesDetailArticleIdIndexRouteImport;
+      parentRoute: typeof rootRouteImport;
+    };
   }
 }
 
@@ -163,7 +163,7 @@ const rootRouteChildren: RootRouteChildren = {
   PortfolioIndexRoute: PortfolioIndexRoute,
   ResumeIndexRoute: ResumeIndexRoute,
   ArticlesDetailArticleIdIndexRoute: ArticlesDetailArticleIdIndexRoute,
-}
+};
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();

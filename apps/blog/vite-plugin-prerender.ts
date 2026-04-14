@@ -89,7 +89,9 @@ export function prerenderPlugin(): Plugin {
         return;
       }
 
-      const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith('.md'));
+      const files = fs
+        .readdirSync(articlesDir)
+        .filter((f) => f.endsWith('.md'));
       for (const file of files) {
         const articleId = file.replace('.md', '');
         const content = fs.readFileSync(
@@ -99,7 +101,9 @@ export function prerenderPlugin(): Plugin {
         const fm = parseFrontmatter(content);
 
         if (!fm?.title) {
-          console.warn(`⚠ prerender: skipping ${file} (no title in frontmatter)`);
+          console.warn(
+            `⚠ prerender: skipping ${file} (no title in frontmatter)`,
+          );
           continue;
         }
 
@@ -110,27 +114,12 @@ export function prerenderPlugin(): Plugin {
 
         // Remove existing title, description, canonical, OG, Twitter tags
         html = html.replace(/\s*<title>[^<]*<\/title>/, '');
-        html = html.replace(
-          /\s*<meta name="description"[^>]*>/g,
-          '',
-        );
+        html = html.replace(/\s*<meta name="description"[^>]*>/g, '');
         html = html.replace(/\s*<link rel="canonical"[^>]*>/g, '');
-        html = html.replace(
-          /\s*<!-- Open Graph -->\n?/g,
-          '',
-        );
-        html = html.replace(
-          /\s*<meta property="og:[^"]*"[^>]*>/g,
-          '',
-        );
-        html = html.replace(
-          /\s*<!-- Twitter Card -->\n?/g,
-          '',
-        );
-        html = html.replace(
-          /\s*<meta name="twitter:[^"]*"[^>]*>/g,
-          '',
-        );
+        html = html.replace(/\s*<!-- Open Graph -->\n?/g, '');
+        html = html.replace(/\s*<meta property="og:[^"]*"[^>]*>/g, '');
+        html = html.replace(/\s*<!-- Twitter Card -->\n?/g, '');
+        html = html.replace(/\s*<meta name="twitter:[^"]*"[^>]*>/g, '');
 
         // Insert new meta tags after the last <meta name="theme-color"> tag
         html = html.replace(
@@ -151,12 +140,7 @@ export function prerenderPlugin(): Plugin {
           `${prerenderedBlock}\n    <div id="root"></div>`,
         );
 
-        const outDir = path.resolve(
-          distDir,
-          'articles',
-          'detail',
-          articleId,
-        );
+        const outDir = path.resolve(distDir, 'articles', 'detail', articleId);
         fs.mkdirSync(outDir, { recursive: true });
         fs.writeFileSync(path.resolve(outDir, 'index.html'), html);
       }

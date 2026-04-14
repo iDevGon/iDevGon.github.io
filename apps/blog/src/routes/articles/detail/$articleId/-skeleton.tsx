@@ -5,7 +5,11 @@ const wrapperStyle = css({ maxWidth: '72rem', marginInline: 'auto' });
 
 export function ArticleSkeleton() {
   return (
-    <output className={wrapperStyle} aria-busy="true" aria-label="글 불러오는 중">
+    <output
+      className={wrapperStyle}
+      aria-busy="true"
+      aria-label="글 불러오는 중"
+    >
       {/* h2 heading */}
       <Skeleton variant="heading" w="40%" mb="1.2rem" />
 

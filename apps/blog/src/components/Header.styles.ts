@@ -13,8 +13,7 @@ export const headerStyle = css({
   paddingRight: { base: '0.4rem', tablet: '2.4rem' },
   background: {
     base: 'background',
-    tablet:
-      'color-mix(in srgb, var(--colors-background) 35%, transparent)',
+    tablet: 'color-mix(in srgb, var(--colors-background) 35%, transparent)',
   },
   backdropFilter: { base: 'none', tablet: 'blur(20px) saturate(1.8)' },
   borderBottom: {

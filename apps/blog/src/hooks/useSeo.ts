@@ -2,8 +2,7 @@ import { useEffect } from 'react';
 
 const SITE_NAME = "DevGon's Log";
 const BASE_URL = 'https://idevgon.github.io';
-const DEFAULT_IMAGE =
-  'https://avatars.githubusercontent.com/u/106735547?v=4';
+const DEFAULT_IMAGE = 'https://avatars.githubusercontent.com/u/106735547?v=4';
 
 interface SeoOptions {
   title: string;
@@ -19,14 +18,8 @@ interface SeoOptions {
   };
 }
 
-function setMetaTag(
-  attr: 'name' | 'property',
-  key: string,
-  content: string,
-) {
-  let el = document.querySelector<HTMLMetaElement>(
-    `meta[${attr}="${key}"]`,
-  );
+function setMetaTag(attr: 'name' | 'property', key: string, content: string) {
+  let el = document.querySelector<HTMLMetaElement>(`meta[${attr}="${key}"]`);
   if (el) {
     el.setAttribute('content', content);
   } else {
@@ -38,9 +31,7 @@ function setMetaTag(
 }
 
 function setCanonical(url: string) {
-  let el = document.querySelector<HTMLLinkElement>(
-    'link[rel="canonical"]',
-  );
+  let el = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
   if (el) {
     el.href = url;
   } else {
@@ -52,9 +43,7 @@ function setCanonical(url: string) {
 }
 
 function removeMetaTag(attr: 'name' | 'property', key: string) {
-  document
-    .querySelector(`meta[${attr}="${key}"]`)
-    ?.remove();
+  document.querySelector(`meta[${attr}="${key}"]`)?.remove();
 }
 
 export function useSeo({
@@ -67,8 +56,7 @@ export function useSeo({
   article,
 }: SeoOptions) {
   useEffect(() => {
-    const fullTitle =
-      title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
+    const fullTitle = title === SITE_NAME ? title : `${title} | ${SITE_NAME}`;
     const url = `${BASE_URL}${path}`;
 
     document.title = fullTitle;
@@ -97,11 +85,7 @@ export function useSeo({
     // Article-specific
     if (type === 'article' && article) {
       if (article.publishedTime) {
-        setMetaTag(
-          'property',
-          'article:published_time',
-          article.publishedTime,
-        );
+        setMetaTag('property', 'article:published_time', article.publishedTime);
       }
       if (article.author) {
         setMetaTag('property', 'article:author', article.author);

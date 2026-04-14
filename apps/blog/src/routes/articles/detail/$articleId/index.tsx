@@ -110,7 +110,10 @@ function RouteComponent() {
 
           <article className={markdownStyles}>
             <Suspense fallback={<ArticleSkeleton />}>
-              <Markdown remarkPlugins={REMARK_PLUGINS} components={MARKDOWN_COMPONENTS}>
+              <Markdown
+                remarkPlugins={REMARK_PLUGINS}
+                components={MARKDOWN_COMPONENTS}
+              >
                 {article.content}
               </Markdown>
             </Suspense>

@@ -40,7 +40,7 @@ describe('buildMetaTags', () => {
 
   it('title을 올바른 형식으로 포맷한다', () => {
     const result = buildMetaTags('test-article', baseFm);
-    expect(result).toContain("<title>테스트 글 | DevGon&#39;s Log</title>");
+    expect(result).toContain('<title>테스트 글 | DevGon&#39;s Log</title>');
   });
 
   it('OG 태그를 포함한다', () => {

@@ -15,7 +15,8 @@ export const paginationItemStyle = cva({
     fontFamily: '{fonts.mono}',
     fontVariantNumeric: 'tabular-nums',
     touchAction: 'manipulation',
-    transition: 'background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease',
+    transition:
+      'background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease',
     textDecoration: 'none',
     color: 'inherit',
     cursor: 'pointer',

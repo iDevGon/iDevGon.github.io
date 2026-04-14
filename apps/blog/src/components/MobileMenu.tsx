@@ -1,6 +1,11 @@
 import { Link } from '@tanstack/react-router';
 import type { Ref } from 'react';
-import { activeMobileNavStyle, mobileMenuStyle, mobileNavLinkStyle, NAV_LINKS } from './Header.styles';
+import {
+  activeMobileNavStyle,
+  mobileMenuStyle,
+  mobileNavLinkStyle,
+  NAV_LINKS,
+} from './Header.styles';
 
 interface MobileMenuProps {
   ref?: Ref<HTMLElement>;

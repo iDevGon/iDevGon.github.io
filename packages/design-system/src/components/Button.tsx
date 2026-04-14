@@ -16,7 +16,8 @@ export const buttonStyle = cva({
     alignItems: 'center',
     justifyContent: 'center',
     gap: '0.6rem',
-    transition: 'background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease',
+    transition:
+      'background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease',
     '&:active': {
       backgroundColor: 'primary.dark',
       transform: 'scale(0.98)',
@@ -86,9 +87,9 @@ type LinkProps<L extends ElementType = typeof StyledAnchor> = Omit<
     linkComponent?: L;
   };
 
-export type PolymorphicButtonProps<L extends ElementType = typeof StyledAnchor> =
-  | ButtonBaseProps
-  | LinkProps<L>;
+export type PolymorphicButtonProps<
+  L extends ElementType = typeof StyledAnchor,
+> = ButtonBaseProps | LinkProps<L>;
 
 export function Button({
   ref,
@@ -99,5 +100,10 @@ export function Button({
     const LinkComp = linkComponent ?? StyledAnchor;
     return <LinkComp ref={ref as Ref<HTMLAnchorElement>} {...rest} />;
   }
-  return <ButtonBase ref={ref as Ref<HTMLButtonElement>} {...(props as ButtonBaseProps)} />;
+  return (
+    <ButtonBase
+      ref={ref as Ref<HTMLButtonElement>}
+      {...(props as ButtonBaseProps)}
+    />
+  );
 }

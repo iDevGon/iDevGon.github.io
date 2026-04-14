@@ -120,7 +120,9 @@ export function TableOfContents({ content }: { content: string }) {
           {headings.map((heading) => (
             <li
               key={heading.id}
-              className={heading.level === 3 ? tocItemIndentedStyle : tocItemStyle}
+              className={
+                heading.level === 3 ? tocItemIndentedStyle : tocItemStyle
+              }
             >
               <a
                 href={`#${heading.id}`}

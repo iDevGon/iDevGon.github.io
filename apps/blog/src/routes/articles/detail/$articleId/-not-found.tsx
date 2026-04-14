@@ -14,9 +14,7 @@ export function ArticleNotFound() {
         <h1 className={notFoundTitleStyle}>Article Not Found</h1>
       </Typo>
       <Typo asChild variant="body1">
-        <p className={notFoundBodyStyle}>
-          요청하신 아티클을 찾을 수 없습니다.
-        </p>
+        <p className={notFoundBodyStyle}>요청하신 아티클을 찾을 수 없습니다.</p>
       </Typo>
       <Link to="/articles" className={notFoundLinkStyle}>
         &larr; 목록으로 돌아가기

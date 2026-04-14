@@ -28,8 +28,6 @@ interface SectionTitleProps {
 
 export function SectionTitle({ children, className }: SectionTitleProps) {
   return (
-    <h2 className={`${sectionTitleStyle} ${className ?? ''}`}>
-      {children}
-    </h2>
+    <h2 className={`${sectionTitleStyle} ${className ?? ''}`}>{children}</h2>
   );
 }

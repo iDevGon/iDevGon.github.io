@@ -23,20 +23,18 @@ const RE_WHITESPACE = /\s+/g;
 
 // 마크다운에서 순수 텍스트만 추출
 export function extractPlainText(markdown: string): string {
-  return (
-    markdown
-      .replace(RE_HEADINGS, '')
-      .replace(RE_LINKS, '$1')
-      .replace(RE_IMAGES, '')
-      .replace(RE_BOLD, '$2')
-      .replace(RE_ITALIC, '$2')
-      .replace(RE_CODE_BLOCKS, '')
-      .replace(RE_INLINE_CODE, '$1')
-      .replace(RE_HR, '')
-      .replace(RE_NEWLINES, ' ')
-      .replace(RE_WHITESPACE, ' ')
-      .trim()
-  );
+  return markdown
+    .replace(RE_HEADINGS, '')
+    .replace(RE_LINKS, '$1')
+    .replace(RE_IMAGES, '')
+    .replace(RE_BOLD, '$2')
+    .replace(RE_ITALIC, '$2')
+    .replace(RE_CODE_BLOCKS, '')
+    .replace(RE_INLINE_CODE, '$1')
+    .replace(RE_HR, '')
+    .replace(RE_NEWLINES, ' ')
+    .replace(RE_WHITESPACE, ' ')
+    .trim();
 }
 
 let cachedArticles: ArticleMeta[] | null = null;

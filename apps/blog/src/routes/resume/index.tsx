@@ -40,31 +40,31 @@ function RouteComponent() {
 
   return (
     <Container className={printPageStyle}>
-        <ProfileSection profile={data.profile} />
-        <hr className={dividerStyle} />
+      <ProfileSection profile={data.profile} />
+      <hr className={dividerStyle} />
 
-        <IntroductionSection introduction={data.introduction} />
-        <hr className={dividerStyle} />
+      <IntroductionSection introduction={data.introduction} />
+      <hr className={dividerStyle} />
 
-        <ExperienceSection experiences={data.experiences}>
-          <TimelineChart items={timelineItems} onBarClick={handleBarClick}>
-            <TimelineChart.Title>경력 타임라인</TimelineChart.Title>
-            <TimelineChart.Chart />
-            <TimelineChart.Legend />
-          </TimelineChart>
-        </ExperienceSection>
-        <hr className={dividerStyle} />
+      <ExperienceSection experiences={data.experiences}>
+        <TimelineChart items={timelineItems} onBarClick={handleBarClick}>
+          <TimelineChart.Title>경력 타임라인</TimelineChart.Title>
+          <TimelineChart.Chart />
+          <TimelineChart.Legend />
+        </TimelineChart>
+      </ExperienceSection>
+      <hr className={dividerStyle} />
 
-        <SkillsSection skills={data.skills} />
-        <hr className={dividerStyle} />
+      <SkillsSection skills={data.skills} />
+      <hr className={dividerStyle} />
 
-        <EducationSection education={data.education} />
-        <hr className={dividerStyle} />
+      <EducationSection education={data.education} />
+      <hr className={dividerStyle} />
 
-        <CertificationsSection certifications={data.certifications} />
-        <hr className={dividerStyle} />
+      <CertificationsSection certifications={data.certifications} />
+      <hr className={dividerStyle} />
 
-        <OthersSection others={data.others} />
-      </Container>
+      <OthersSection others={data.others} />
+    </Container>
   );
 }

@@ -1,6 +1,11 @@
 import { Typo } from '@idevgon/design-system';
 import type { Other } from '../../interfaces/resume';
-import { linkStyle, othersItemStyle, othersListStyle, sectionStyle } from './-styles';
+import {
+  linkStyle,
+  othersItemStyle,
+  othersListStyle,
+  sectionStyle,
+} from './-styles';
 
 export function OthersSection({ others }: { others: Other[] }) {
   return (

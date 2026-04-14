@@ -29,16 +29,17 @@ export interface ColorModeSwitchProps {
   onToggle: () => void;
 }
 
-export const ColorModeSwitch = ({ colorMode, onToggle }: ColorModeSwitchProps) => {
+export const ColorModeSwitch = ({
+  colorMode,
+  onToggle,
+}: ColorModeSwitchProps) => {
   return (
     <button
       type="button"
       onClick={onToggle}
       className={switchStyle}
       aria-label={
-        colorMode === 'dark'
-          ? 'Switch to light mode'
-          : 'Switch to dark mode'
+        colorMode === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'
       }
     >
       {colorMode === 'dark' ? (

@@ -32,8 +32,7 @@ const WEB_SITE_JSON_LD = {
       '@type': 'WebSite',
       name: "DevGon's Log",
       url: BASE_URL,
-      description:
-        '프론트엔드 개발자 DevGon의 기술 블로그',
+      description: '프론트엔드 개발자 DevGon의 기술 블로그',
       inLanguage: 'ko',
     },
     {
@@ -42,8 +41,7 @@ const WEB_SITE_JSON_LD = {
       url: BASE_URL,
       sameAs: ['https://github.com/iDevGon'],
       jobTitle: '프론트엔드 개발자',
-      image:
-        'https://avatars.githubusercontent.com/u/106735547?v=4',
+      image: 'https://avatars.githubusercontent.com/u/106735547?v=4',
     },
   ],
 };

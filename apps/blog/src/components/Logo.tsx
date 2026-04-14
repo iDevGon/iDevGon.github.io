@@ -10,7 +10,5 @@ const ASPECT_RATIO = 725 / 166;
 export const Logo = ({ height = 24, className }: LogoProps) => {
   const width = Math.round(height * ASPECT_RATIO);
 
-  return (
-    <LogoIcon width={width} height={height} className={className} />
-  );
+  return <LogoIcon width={width} height={height} className={className} />;
 };

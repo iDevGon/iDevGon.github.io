@@ -35,4 +35,10 @@ const P: Components['p'] = ({ children, node, ...props }) => (
   </p>
 );
 
-export const MARKDOWN_COMPONENTS = { code: CodeBlock, pre: Pre, h2: H2, h3: H3, p: P };
+export const MARKDOWN_COMPONENTS = {
+  code: CodeBlock,
+  pre: Pre,
+  h2: H2,
+  h3: H3,
+  p: P,
+};

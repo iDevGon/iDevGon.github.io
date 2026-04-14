@@ -36,7 +36,11 @@ export function ArticleNav({ prev, next }: ArticleNavProps) {
             <div
               data-cover-bg
               className={articleNavCoverBgStyle}
-              style={{ '--cover-image': `url(${prev.coverImage})` } as React.CSSProperties}
+              style={
+                {
+                  '--cover-image': `url(${prev.coverImage})`,
+                } as React.CSSProperties
+              }
             />
           )}
           <div className={articleNavContentStyle}>
@@ -62,7 +66,11 @@ export function ArticleNav({ prev, next }: ArticleNavProps) {
             <div
               data-cover-bg
               className={articleNavCoverBgStyle}
-              style={{ '--cover-image': `url(${next.coverImage})` } as React.CSSProperties}
+              style={
+                {
+                  '--cover-image': `url(${next.coverImage})`,
+                } as React.CSSProperties
+              }
             />
           )}
           <div className={articleNavContentStyle}>

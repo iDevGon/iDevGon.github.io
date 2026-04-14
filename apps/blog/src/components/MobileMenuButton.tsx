@@ -13,7 +13,11 @@ interface MobileMenuButtonProps {
   ref?: Ref<HTMLButtonElement>;
 }
 
-export const MobileMenuButton = ({ open, onToggle, ref }: MobileMenuButtonProps) => (
+export const MobileMenuButton = ({
+  open,
+  onToggle,
+  ref,
+}: MobileMenuButtonProps) => (
   <button
     ref={ref}
     type="button"
@@ -22,8 +26,14 @@ export const MobileMenuButton = ({ open, onToggle, ref }: MobileMenuButtonProps)
     aria-label={open ? '메뉴 닫기' : '메뉴 열기'}
     aria-expanded={open}
   >
-    <span className={`${hamburgerLineStyle} ${open ? hamburgerLineTopOpenStyle : ''}`} />
-    <span className={`${hamburgerLineStyle} ${open ? hamburgerLineMiddleOpenStyle : ''}`} />
-    <span className={`${hamburgerLineStyle} ${open ? hamburgerLineBottomOpenStyle : ''}`} />
+    <span
+      className={`${hamburgerLineStyle} ${open ? hamburgerLineTopOpenStyle : ''}`}
+    />
+    <span
+      className={`${hamburgerLineStyle} ${open ? hamburgerLineMiddleOpenStyle : ''}`}
+    />
+    <span
+      className={`${hamburgerLineStyle} ${open ? hamburgerLineBottomOpenStyle : ''}`}
+    />
   </button>
 );

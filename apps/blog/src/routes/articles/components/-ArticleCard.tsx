@@ -84,7 +84,11 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
         <div
           data-cover-bg
           className={coverBgStyle}
-          style={{ '--cover-image': `url(${article.coverImage})` } as React.CSSProperties}
+          style={
+            {
+              '--cover-image': `url(${article.coverImage})`,
+            } as React.CSSProperties
+          }
         />
       )}
 

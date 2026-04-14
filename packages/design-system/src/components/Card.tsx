@@ -8,7 +8,8 @@ const cardStyle = cva({
     border: '1px solid',
     borderColor: 'border',
     padding: { base: '1.6rem', tablet: '2.4rem' },
-    transition: 'border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
+    transition:
+      'border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease',
   },
   variants: {
     interactive: {

@@ -8,7 +8,12 @@ interface ArticleFiltersProps {
   onTagClick: (tagName: string) => void;
 }
 
-export function ArticleFilters({ allTags, tagCounts, selectedTags, onTagClick }: ArticleFiltersProps) {
+export function ArticleFilters({
+  allTags,
+  tagCounts,
+  selectedTags,
+  onTagClick,
+}: ArticleFiltersProps) {
   if (allTags.length === 0) return null;
 
   return (
@@ -24,7 +29,8 @@ export function ArticleFilters({ allTags, tagCounts, selectedTags, onTagClick }:
             onClick={() => onTagClick(tagName)}
             aria-pressed={selectedTags.has(tagName.toLowerCase())}
           >
-            #{tagName}{count >= 2 && ` (${count})`}
+            #{tagName}
+            {count >= 2 && ` (${count})`}
           </button>
         );
       })}

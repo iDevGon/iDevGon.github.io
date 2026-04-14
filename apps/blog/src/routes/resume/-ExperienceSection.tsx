@@ -21,7 +21,13 @@ function renderTextWithLinks(text: string) {
     const match = part.match(/^\[([^\]]+)\]\(([^)]+)\)$/);
     if (match)
       return (
-        <a key={part} href={match[2]} target="_blank" rel="noopener noreferrer" className={linkStyle}>
+        <a
+          key={part}
+          href={match[2]}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={linkStyle}
+        >
           {match[1]}
         </a>
       );
@@ -56,7 +62,10 @@ function ProjectCard({ project }: { project: Experience['projects'][number] }) {
 
 function ExperienceCard({ experience }: { experience: Experience }) {
   return (
-    <div id={`experience-${experience.company}`} className={`${experienceCardStyle} ${experienceCardWrapperStyle}`}>
+    <div
+      id={`experience-${experience.company}`}
+      className={`${experienceCardStyle} ${experienceCardWrapperStyle}`}
+    >
       <Typo variant="h3" asChild>
         <h3>
           {experience.companyUrl ? (
