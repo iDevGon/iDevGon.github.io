@@ -96,7 +96,14 @@ function Lightbox({
   }, [handleKeyDown]);
 
   return (
-    <div className={lightboxOverlayStyle} onClick={onClose}>
+    <div
+      role="dialog"
+      className={lightboxOverlayStyle}
+      onClick={onClose}
+      onKeyDown={(e) => {
+        if (e.key === 'Escape') onClose();
+      }}
+    >
       <button type="button" className={lightboxCloseStyle} onClick={onClose}>
         ×
       </button>
@@ -120,6 +127,7 @@ function Lightbox({
         alt={`${alt} ${index + 1}`}
         className={lightboxImageStyle}
         onClick={(e) => e.stopPropagation()}
+        onKeyDown={(e) => e.stopPropagation()}
       />
 
       {index < images.length - 1 && (
@@ -159,7 +167,8 @@ function ImageGallery({ project }: { project: PortfolioProject }) {
     <>
       <div className={imageGalleryStyle}>
         {project.images.map((src, i) => (
-          <div
+          <button
+            type="button"
             key={src}
             className={galleryImageWrapperStyle}
             onClick={() => !errorSet.has(i) && setLightboxIndex(i)}
@@ -175,7 +184,7 @@ function ImageGallery({ project }: { project: PortfolioProject }) {
                 onError={() => handleError(i)}
               />
             )}
-          </div>
+          </button>
         ))}
       </div>
 
