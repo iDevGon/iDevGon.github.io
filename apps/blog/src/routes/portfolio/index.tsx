@@ -1,4 +1,4 @@
-import { Container } from '@idevgon/design-system';
+import { Container, Typo } from '@idevgon/design-system';
 import { createFileRoute } from '@tanstack/react-router';
 import { useSeo } from '@/hooks/useSeo';
 import portfolioData from '../../data/portfolio.json';
@@ -7,9 +7,9 @@ import { ProjectCard } from './-components';
 import {
   heroDescStyle,
   heroStyle,
-  heroTitleStyle,
   pageStyle,
   projectListStyle,
+  titleStyle,
 } from './-styles';
 
 export const Route = createFileRoute('/portfolio/')({
@@ -29,9 +29,12 @@ function RouteComponent() {
   return (
     <Container className={pageStyle}>
       <header className={heroStyle}>
-        <h1 className={heroTitleStyle}>Projects</h1>
+        <Typo asChild variant="h1">
+          <h1 className={titleStyle}>포트폴리오</h1>
+        </Typo>
         <p className={heroDescStyle}>
-          업무 외 시간에 직접 기획하고, 디자인하고, 개발한 사이드 프로젝트들입니다.
+          업무 외 시간에 직접 기획하고, 디자인하고, 개발한 사이드
+          프로젝트들입니다.
         </p>
       </header>
 

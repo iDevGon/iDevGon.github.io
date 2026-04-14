@@ -1,5 +1,13 @@
 import { css } from 'styled-system/css';
 
+export const titleStyle = css({
+  fontSize: { base: '2.4rem', tablet: '2.8rem' },
+  fontWeight: 700,
+  color: 'textPrimary',
+  letterSpacing: '-0.02em',
+  textWrap: 'balance',
+});
+
 export const pageStyle = css({
   animation: 'fadeInUp 0.6s ease-out',
 });
@@ -85,6 +93,14 @@ export const projectTitleStyle = css({
   letterSpacing: '-0.02em',
   lineHeight: 1.2,
   color: 'textPrimary',
+  '& a': {
+    color: 'inherit',
+    textDecoration: 'none',
+    transition: 'color 0.2s ease',
+    _hover: {
+      color: 'primary',
+    },
+  },
 });
 
 export const projectSubtitleStyle = css({
@@ -103,6 +119,7 @@ export const projectDescStyle = css({
   fontSize: { base: '1.5rem', tablet: '1.6rem' },
   lineHeight: 1.8,
   color: 'textSecondary',
+  whiteSpace: 'pre-line',
 });
 
 export const metaGridStyle = css({

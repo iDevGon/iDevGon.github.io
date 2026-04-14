@@ -79,7 +79,8 @@ function Lightbox({
   const handleKeyDown = useCallback(
     (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
-      if (e.key === 'ArrowRight' && index < images.length - 1) onNavigate(index + 1);
+      if (e.key === 'ArrowRight' && index < images.length - 1)
+        onNavigate(index + 1);
       if (e.key === 'ArrowLeft' && index > 0) onNavigate(index - 1);
     },
     [onClose, onNavigate, index, images.length],
@@ -105,7 +106,10 @@ function Lightbox({
           type="button"
           className={lightboxNavStyle}
           style={{ left: '1.6rem' }}
-          onClick={(e) => { e.stopPropagation(); onNavigate(index - 1); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onNavigate(index - 1);
+          }}
         >
           ‹
         </button>
@@ -123,7 +127,10 @@ function Lightbox({
           type="button"
           className={lightboxNavStyle}
           style={{ right: '1.6rem' }}
-          onClick={(e) => { e.stopPropagation(); onNavigate(index + 1); }}
+          onClick={(e) => {
+            e.stopPropagation();
+            onNavigate(index + 1);
+          }}
         >
           ›
         </button>
@@ -193,11 +200,24 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
       <div className={projectContentStyle}>
         <div className={projectHeaderStyle}>
           <Typo variant="h2" asChild>
-            <h2 className={projectTitleStyle}>{project.title}</h2>
+            <h2 className={projectTitleStyle}>
+              {project.links.length > 0 ? (
+                <a
+                  href={project.links[0].url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {project.title}
+                </a>
+              ) : (
+                project.title
+              )}
+            </h2>
           </Typo>
           <span className={projectSubtitleStyle}>{project.subtitle}</span>
           <span className={projectPeriodStyle}>
-            {formatPeriod(project.period)} · <span className={roleStyle}>{project.role}</span>
+            {formatPeriod(project.period)} ·{' '}
+            <span className={roleStyle}>{project.role}</span>
           </span>
         </div>
 
@@ -210,7 +230,9 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
             <span className={metaLabelStyle}>Tech Stack</span>
             <div className={techStackListStyle}>
               {project.techStack.map((tech) => (
-                <span key={tech} className={techTagStyle}>{tech}</span>
+                <span key={tech} className={techTagStyle}>
+                  {tech}
+                </span>
               ))}
             </div>
           </div>
@@ -219,7 +241,9 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
             <span className={metaLabelStyle}>Highlights</span>
             <ul className={highlightListStyle}>
               {project.highlights.map((item) => (
-                <li key={item} className={highlightItemStyle}>{item}</li>
+                <li key={item} className={highlightItemStyle}>
+                  {item}
+                </li>
               ))}
             </ul>
           </div>
