@@ -233,10 +233,7 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
             {project.status && (
               <>
                 {' · '}
-                <span
-                  className={statusBadgeStyle}
-                  data-status={project.status}
-                >
+                <span className={statusBadgeStyle} data-status={project.status}>
                   <span className={statusDotStyle} />
                   {project.status}
                 </span>
