@@ -1,376 +1,370 @@
 import { css } from 'styled-system/css';
 
-export const titleStyle = css({
-  fontSize: { base: '2.4rem', tablet: '2.8rem' },
-  fontWeight: 700,
-  color: 'textPrimary',
-  letterSpacing: '-0.02em',
-  textWrap: 'balance',
-});
-
 export const pageStyle = css({
-  animation: 'fadeInUp 0.6s ease-out',
+  paddingTop: { base: '4.8rem', tablet: '6.4rem' },
+  paddingBottom: { base: '6.4rem', tablet: '9.6rem' },
 });
 
 export const heroStyle = css({
-  marginBottom: { base: '4rem', tablet: '6rem' },
+  display: 'flex',
+  flexWrap: 'wrap',
+  justifyContent: 'space-between',
+  alignItems: 'end',
+  columnGap: '3.2rem',
+  rowGap: '2.4rem',
+  marginBottom: { base: '4.8rem', tablet: '6.4rem' },
 });
 
-export const heroTitleStyle = css({
-  fontSize: { base: '3.2rem', tablet: '4.8rem' },
+export const heroHeading = css({
+  fontSize: 'clamp(4.2rem, 8vw, 9rem)',
   fontWeight: 800,
-  letterSpacing: '-0.03em',
-  lineHeight: 1.1,
+  letterSpacing: '-0.055em',
+  lineHeight: 1,
   color: 'textPrimary',
+  '& span': { color: 'primary', marginInlineStart: '0.03em' },
 });
 
-export const heroDescStyle = css({
-  marginTop: '1.2rem',
+export const heroDescription = css({
+  marginTop: '1.6rem',
   color: 'textSecondary',
   fontSize: { base: '1.5rem', tablet: '1.7rem' },
-  lineHeight: 1.6,
-  maxWidth: '56rem',
+  lineHeight: 1.65,
+  wordBreak: 'keep-all',
 });
 
-export const projectListStyle = css({
+export const heroNavigation = css({
   display: 'flex',
-  flexDirection: 'column',
-  gap: { base: '6rem', tablet: '8rem' },
-});
-
-export const projectItemStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: { base: '2.4rem', tablet: '3.2rem' },
-});
-
-export const thumbnailWrapperStyle = css({
-  position: 'relative',
-  width: '100%',
-  aspectRatio: '16 / 9',
-  borderRadius: '1.2rem',
-  overflow: 'hidden',
-  backgroundColor: 'surface',
-  border: '1px solid',
-  borderColor: 'border',
-});
-
-export const thumbnailStyle = css({
-  width: '100%',
-  height: '100%',
-  objectFit: 'cover',
-  transition: 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-  _hover: {
-    transform: 'scale(1.03)',
-  },
-});
-
-export const thumbnailPlaceholderStyle = css({
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: 'textMuted',
-  fontSize: '1.4rem',
-});
-
-export const projectContentStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '2rem',
-});
-
-export const projectHeaderStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.6rem',
-});
-
-export const projectTitleStyle = css({
-  fontSize: { base: '2.4rem', tablet: '3.2rem' },
-  fontWeight: 700,
-  letterSpacing: '-0.02em',
-  lineHeight: 1.2,
-  color: 'textPrimary',
+  flexWrap: 'wrap',
+  gap: '0.8rem 2.4rem',
   '& a': {
-    color: 'inherit',
-    textDecoration: 'none',
-    transition: 'color 0.2s ease',
-    _hover: {
-      color: 'primary',
+    display: 'inline-flex',
+    gap: '0.8rem',
+    alignItems: 'center',
+    minHeight: '4.4rem',
+    color: 'textPrimary',
+    fontSize: '1.4rem',
+    fontWeight: 600,
+    _hover: { textDecoration: 'underline' },
+  },
+  '& span': { color: 'primary' },
+});
+
+export const sectionStyle = css({
+  scrollMarginTop: 'calc(7.2rem + env(safe-area-inset-top, 0px))',
+  '& + &': { marginTop: { base: '5.6rem', tablet: '8.8rem' } },
+});
+
+export const sectionHeading = css({
+  paddingTop: '1.6rem',
+  borderTopWidth: '1px',
+  borderTopStyle: 'solid',
+  borderTopColor: 'border',
+  marginBottom: '2.4rem',
+  fontSize: { base: '2rem', tablet: '2.4rem' },
+  fontWeight: 750,
+  letterSpacing: '-0.045em',
+});
+
+export const projectGrid = css({
+  display: 'grid',
+  gridTemplateColumns: {
+    base: 'minmax(0, 1fr)',
+    tablet: 'repeat(2, minmax(0, 1fr))',
+  },
+  columnGap: { tablet: '2.4rem', desktop: '3.2rem' },
+  rowGap: { base: '4rem', tablet: '6.4rem' },
+  '&[data-featured]': {
+    gridTemplateColumns: {
+      base: 'minmax(0, 1fr)',
+      tablet: 'repeat(2, minmax(0, 1fr))',
+      desktop: 'minmax(0, 1.16fr) minmax(0, 1fr)',
     },
   },
 });
 
-export const projectSubtitleStyle = css({
-  fontSize: { base: '1.5rem', tablet: '1.7rem' },
-  color: 'primary',
-  fontWeight: 600,
-});
-
-export const projectPeriodStyle = css({
-  fontSize: '1.3rem',
-  color: 'textMuted',
-  fontWeight: 500,
-});
-
-export const projectDescStyle = css({
-  fontSize: { base: '1.5rem', tablet: '1.6rem' },
-  lineHeight: 1.8,
-  color: 'textSecondary',
-  whiteSpace: 'pre-line',
-});
-
-export const metaGridStyle = css({
-  display: 'grid',
-  gridTemplateColumns: { base: '1fr', tablet: '1fr 1fr' },
-  gap: { base: '2.4rem', tablet: '3.2rem' },
-});
-
-export const metaSectionStyle = css({
+export const cardStyle = css({
   display: 'flex',
   flexDirection: 'column',
+  alignItems: 'start',
   gap: '1.2rem',
+  minWidth: 0,
+  '--project-mat': 'var(--colors-surface)',
+  '&[data-project="chessi"]': { '--project-mat': '#2d3c34' },
+  '&[data-project="forest-restaurant"]': { '--project-mat': '#e8d6b5' },
+  '&[data-project="wagle"]': { '--project-mat': '#e2d5ef' },
+  '&[data-project="pixelroom"]': { '--project-mat': '#3a3b4a' },
+  '&[data-project="last-access"]': { '--project-mat': '#34344b' },
+  '&[data-project="clocktower"]': { '--project-mat': '#423449' },
+  '--project-frame':
+    'color-mix(in srgb, var(--project-mat) 54%, var(--colors-surface))',
 });
 
-export const metaLabelStyle = css({
+export const previewButton = css({
+  display: 'block',
+  position: 'relative',
+  width: '100%',
+  aspectRatio: '8 / 5',
+  cursor: 'zoom-in',
+  isolation: 'isolate',
+  background: 'var(--project-frame)',
+  borderRadius: '0.8rem',
+  padding: { base: '1.2rem', tablet: '1.6rem', desktop: '2rem' },
+  marginBottom: '0.8rem',
+  overflow: 'hidden',
+  '& img': {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+    borderRadius: '0.4rem',
+    transition: 'transform 240ms ease-out',
+    _motionReduce: { transition: 'none' },
+  },
+  '@media (hover: hover) and (prefers-reduced-motion: no-preference)': {
+    '&:hover img': { transform: 'scale(1.025)' },
+  },
+});
+
+export const previewHint = css({
+  position: 'absolute',
+  right: '0.8rem',
+  bottom: '0.8rem',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.6rem',
+  padding: '0.5rem 0.9rem',
+  background: '#1b1c23',
+  color: '#faf9fc',
+  border: '1px solid #50505b',
+  borderRadius: '0.4rem',
+  fontSize: '1.2rem',
+  fontWeight: 650,
+});
+
+export const pairedPreviews = css({
+  display: 'grid',
+  gridTemplateColumns: 'minmax(0, 1fr) minmax(0, 28%)',
+  aspectRatio: '8 / 5',
+  width: '100%',
+  gap: { base: '0.8rem', desktop: '1.2rem' },
+  padding: { base: '0.8rem', desktop: '1.2rem' },
+  marginBottom: '0.8rem',
+  background: 'var(--project-frame)',
+  borderRadius: '0.8rem',
+});
+
+export const pairedPreview = css({
+  display: 'grid',
+  gridTemplateRows: 'minmax(0, 1fr) auto',
+  minHeight: 0,
+  minWidth: 0,
+  gap: '0.4rem',
+  padding: '0.4rem',
+  border: '1px solid',
+  borderColor: 'border',
+  borderRadius: '0.4rem',
+  background: 'surface',
+  color: 'textPrimary',
+  cursor: 'zoom-in',
+  _hover: { borderColor: 'textMuted' },
+  '& img': {
+    display: 'block',
+    width: '100%',
+    height: '100%',
+    minHeight: 0,
+    objectFit: 'contain',
+    background: '#1b1c23',
+  },
+  '& > span': {
+    fontSize: '1.2rem',
+    lineHeight: 1.4,
+    fontWeight: 650,
+    paddingBlock: '0.3rem',
+    overflowWrap: 'anywhere',
+    '& > span': { display: { base: 'none', desktop: 'inline' } },
+  },
+});
+
+export const statusStyle = css({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.6rem',
   fontSize: '1.2rem',
   fontWeight: 700,
-  textTransform: 'uppercase',
-  letterSpacing: '0.08em',
-  color: 'textMuted',
-});
-
-export const techStackListStyle = css({
-  display: 'flex',
-  flexWrap: 'wrap',
-  gap: '0.6rem',
-});
-
-export const techTagStyle = css({
-  fontSize: '1.3rem',
-  fontWeight: 500,
-  padding: '0.4rem 1rem',
-  borderRadius: '0.5rem',
-  backgroundColor: 'tagBg',
-  color: 'tagText',
-  lineHeight: 1.4,
-});
-
-export const highlightListStyle = css({
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '0.8rem',
-  listStyleType: 'none',
-  padding: 0,
-});
-
-export const highlightItemStyle = css({
-  fontSize: { base: '1.4rem', tablet: '1.5rem' },
-  lineHeight: 1.7,
   color: 'textSecondary',
-  paddingLeft: '1.6rem',
-  position: 'relative',
-  _before: {
-    content: '""',
-    position: 'absolute',
-    left: 0,
-    top: '0.7em',
-    width: '0.6rem',
-    height: '0.6rem',
-    borderRadius: '50%',
-    backgroundColor: 'primary',
+  '&[data-live]': {
+    color: 'primary',
+    _before: {
+      content: '""',
+      width: '0.6rem',
+      height: '0.6rem',
+      borderRadius: '50%',
+      background: 'currentColor',
+    },
   },
 });
 
-export const linksRowStyle = css({
+export const projectHeading = css({
+  fontSize: { base: '2.7rem', tablet: '3.3rem', desktop: '3.8rem' },
+  lineHeight: 1.15,
+  fontWeight: 800,
+  letterSpacing: '-0.055em',
+  marginBlock: '0.4rem 0.8rem',
+});
+
+export const projectSubtitle = css({
+  fontSize: '1.6rem',
+  fontWeight: 680,
+  wordBreak: 'keep-all',
+});
+
+export const descriptionStyle = css({
+  color: 'textSecondary',
+  fontSize: '1.5rem',
+  lineHeight: 1.65,
+  maxWidth: '52rem',
+  marginTop: '0.6rem',
+  wordBreak: 'keep-all',
+});
+
+export const tagList = css({
   display: 'flex',
-  gap: '1.2rem',
   flexWrap: 'wrap',
-});
-
-export const linkButtonStyle = css({
-  display: 'inline-flex',
-  alignItems: 'center',
   gap: '0.6rem',
-  fontSize: '1.4rem',
-  fontWeight: 600,
-  padding: '0.8rem 1.8rem',
-  borderRadius: '0.8rem',
-  border: '1px solid',
-  borderColor: 'primary',
-  color: 'primary',
-  textDecoration: 'none',
-  transition: 'all 0.2s ease',
-  _hover: {
-    backgroundColor: 'primary',
-    color: 'white',
+  listStyle: 'none',
+  '& li': {
+    padding: '0.3rem 0.8rem',
+    backgroundColor: 'tagBg',
+    color: 'tagText',
+    borderRadius: '0.4rem',
+    fontSize: '1.2rem',
+    fontWeight: 600,
   },
 });
 
-export const statusBadgeStyle = css({
+export const linkStyle = css({
   display: 'inline-flex',
   alignItems: 'center',
-  gap: '0.4rem',
-  fontSize: '1.2rem',
-  fontWeight: 600,
-  padding: '0.3rem 0.8rem',
-  borderRadius: '0.4rem',
-  lineHeight: 1.4,
-  '&[data-status="서비스중"]': {
-    backgroundColor: 'rgba(34, 197, 94, 0.12)',
-    color: 'rgb(22, 163, 74)',
-  },
-  '&[data-status="개발중"]': {
-    backgroundColor: 'rgba(234, 179, 8, 0.12)',
-    color: 'rgb(202, 138, 4)',
-  },
-  '&[data-status="중단"]': {
-    backgroundColor: 'rgba(239, 68, 68, 0.12)',
-    color: 'rgb(220, 38, 38)',
-  },
-});
-
-export const statusDotStyle = css({
-  width: '0.6rem',
-  height: '0.6rem',
-  borderRadius: '50%',
-  '[data-status="서비스중"] &': {
-    backgroundColor: 'rgb(22, 163, 74)',
-  },
-  '[data-status="개발중"] &': {
-    backgroundColor: 'rgb(202, 138, 4)',
-  },
-  '[data-status="중단"] &': {
-    backgroundColor: 'rgb(220, 38, 38)',
-  },
-});
-
-export const roleStyle = css({
-  fontSize: '1.3rem',
-  fontWeight: 500,
-  color: 'textMuted',
-  fontStyle: 'italic',
-});
-
-export const imageGalleryStyle = css({
-  display: 'grid',
-  gridTemplateColumns: { base: '1fr', tablet: 'repeat(3, 1fr)' },
   gap: '1.2rem',
-  marginTop: '0.8rem',
-});
-
-export const galleryImageWrapperStyle = css({
-  position: 'relative',
-  aspectRatio: '16 / 9',
-  borderRadius: '0.8rem',
-  overflow: 'hidden',
-  backgroundColor: 'surface',
+  minHeight: '4.4rem',
+  paddingInline: '1.2rem',
   border: '1px solid',
   borderColor: 'border',
-  cursor: 'pointer',
-  transition: 'border-color 0.2s ease',
-  _hover: {
-    borderColor: 'primary',
+  borderRadius: '0.5rem',
+  color: 'textPrimary',
+  textDecoration: 'none',
+  fontSize: '1.4rem',
+  fontWeight: 700,
+  _hover: { textDecoration: 'underline' },
+  '&[data-primary]': {
+    backgroundColor: 'textPrimary',
+    color: 'background',
+    borderColor: 'textPrimary',
   },
 });
 
-export const galleryImageStyle = css({
+export const detailsStyle = css({
   width: '100%',
-  height: '100%',
-  objectFit: 'cover',
+  borderTopWidth: '1px',
+  borderTopStyle: 'solid',
+  borderTopColor: 'border',
+  color: 'textSecondary',
+  fontSize: '1.4rem',
+  lineHeight: 1.65,
+  '& summary': {
+    cursor: 'pointer',
+    color: 'textPrimary',
+    fontWeight: 600,
+    paddingBlock: '1.05rem',
+    width: 'fit-content',
+    minHeight: '4.4rem',
+    _hover: { textDecoration: 'underline' },
+  },
+  '& ul': {
+    listStyle: 'disc',
+    paddingInlineStart: '2rem',
+    marginTop: '0.6rem',
+  },
 });
 
-export const galleryPlaceholderStyle = css({
-  width: '100%',
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  color: 'textMuted',
-  fontSize: '1.2rem',
-});
-
-export const dividerStyle = css({
-  border: 'none',
-  borderTop: '1px solid',
-  borderColor: 'border',
-  margin: 0,
-});
-
-export const lightboxOverlayStyle = css({
+export const dialogStyle = css({
   position: 'fixed',
   inset: 0,
-  zIndex: 1000,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: 'rgba(0, 0, 0, 0.85)',
-  backdropFilter: 'blur(8px)',
-  cursor: 'zoom-out',
-  animation: 'fadeIn 0.2s ease-out',
-});
-
-export const lightboxImageStyle = css({
-  maxWidth: '90vw',
-  maxHeight: '90vh',
-  objectFit: 'contain',
+  margin: 'auto',
+  width: 'min(110rem, calc(100% - 2.4rem))',
+  maxHeight: 'calc(100dvh - 2.4rem)',
+  overflow: 'auto',
+  overscrollBehavior: 'contain',
+  border: '1px solid',
+  borderColor: 'border',
   borderRadius: '0.8rem',
-  boxShadow: '0 8px 40px rgba(0, 0, 0, 0.4)',
-});
-
-export const lightboxCloseStyle = css({
-  position: 'fixed',
-  top: '2rem',
-  right: '2rem',
-  zIndex: 1001,
-  width: '4rem',
-  height: '4rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  border: 'none',
-  background: 'rgba(255, 255, 255, 0.15)',
-  borderRadius: '50%',
-  color: 'white',
-  fontSize: '2rem',
-  cursor: 'pointer',
-  transition: 'background 0.2s ease',
-  _hover: {
-    background: 'rgba(255, 255, 255, 0.3)',
+  color: 'textPrimary',
+  background: 'background',
+  '&[data-portrait]': {
+    width: 'min(48rem, calc(100% - 2.4rem))',
   },
+  '&::backdrop': { background: 'rgba(13, 14, 19, 0.86)' },
 });
 
-export const lightboxNavStyle = css({
-  position: 'fixed',
-  top: '50%',
-  transform: 'translateY(-50%)',
-  zIndex: 1001,
+export const galleryFrame = css({
+  position: 'relative',
+  display: 'grid',
+  justifyItems: 'center',
+  background: '#1b1c23',
+});
+
+export const galleryImage = css({
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+  maxHeight: 'calc(100dvh - 12rem)',
+  objectFit: 'contain',
+});
+
+export const closeButton = css({
+  position: 'absolute',
+  top: '0.8rem',
+  right: '0.8rem',
   width: '4.4rem',
   height: '4.4rem',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  border: 'none',
-  background: 'rgba(255, 255, 255, 0.15)',
-  borderRadius: '50%',
-  color: 'white',
-  fontSize: '2rem',
+  borderRadius: '0.5rem',
+  background: '#1b1c23',
+  color: '#faf9fc',
+  border: '1px solid #777784',
   cursor: 'pointer',
-  transition: 'background 0.2s ease',
-  _hover: {
-    background: 'rgba(255, 255, 255, 0.3)',
+  fontSize: '2.4rem',
+});
+
+export const galleryCaption = css({
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  gap: '0.8rem',
+  width: '100%',
+  background: 'background',
+  padding: '0.8rem 1.6rem',
+  color: 'textPrimary',
+  fontSize: '1.4rem',
+  '& span': {
+    color: 'textSecondary',
+    fontSize: '1.2rem',
+    marginInlineStart: '0.6rem',
+    whiteSpace: 'nowrap',
   },
 });
 
-export const lightboxCounterStyle = css({
-  position: 'fixed',
-  bottom: '2rem',
-  left: '50%',
-  transform: 'translateX(-50%)',
-  zIndex: 1001,
-  color: 'rgba(255, 255, 255, 0.7)',
-  fontSize: '1.3rem',
-  fontWeight: 500,
+export const galleryActions = css({
+  display: 'flex',
+  gap: '0.4rem',
+  '& button': {
+    width: '4.4rem',
+    height: '4.4rem',
+    border: '1px solid',
+    borderColor: 'border',
+    borderRadius: '0.5rem',
+    cursor: 'pointer',
+    fontSize: '1.8rem',
+    _hover: { backgroundColor: 'tagBg' },
+    _disabled: { opacity: 0.45, cursor: 'default' },
+  },
 });

@@ -1,4 +1,15 @@
-export type ProjectStatus = '서비스중' | '개발중' | '중단';
+export type ProjectStatus =
+  | '운영 중'
+  | '공개 데모'
+  | '개발 프로젝트'
+  | '현장용';
+
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  previewLabel?: string;
+  dimensions?: [width: number, height: number];
+}
 
 export interface PortfolioProject {
   id: string;
@@ -9,9 +20,8 @@ export interface PortfolioProject {
     start: string;
     end: string | null;
   };
-  status?: ProjectStatus;
-  thumbnail: string;
-  images: string[];
+  status: ProjectStatus;
+  images: [ProjectImage, ...ProjectImage[]];
   links: {
     label: string;
     url: string;
