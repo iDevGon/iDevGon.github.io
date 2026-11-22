@@ -1,18 +1,26 @@
 import { css } from 'styled-system/css';
 
 const logoStyle = css({
-  display: 'inline-flex',
-  alignItems: 'center',
-  gap: '1rem',
-  fontSize: '2.1rem',
-  fontWeight: 780,
-  letterSpacing: '-0.05em',
-  lineHeight: 1,
+  display: 'block',
+  width: '11.1rem',
+  height: '2.8rem',
+  flexShrink: 0,
+  fill: 'currentColor',
+});
+
+const accentStyle = css({
+  fill: 'primary',
 });
 
 export const Logo = () => (
-  <span className={logoStyle}>
-    <img src="/favicon.svg" alt="" width={28} height={28} />
-    DevGon
-  </span>
+  <svg
+    className={logoStyle}
+    viewBox="0 0 127 32"
+    role="img"
+    aria-label="DevGon"
+  >
+    <use href="/logo.svg#cat-laptop" className={accentStyle} />
+    <use href="/logo.svg#dev" />
+    <use href="/logo.svg#gon" className={accentStyle} />
+  </svg>
 );
