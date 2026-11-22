@@ -6,7 +6,7 @@ import { unified } from 'unified';
 
 const BASE_URL = 'https://idevgon.github.io';
 const SITE_NAME = "DevGon's Log";
-const DEFAULT_IMAGE = 'https://avatars.githubusercontent.com/u/106735547?v=4';
+const DEFAULT_IMAGE = 'https://idevgon.github.io/images/devgon-avatar.webp';
 
 interface Frontmatter {
   title: string;

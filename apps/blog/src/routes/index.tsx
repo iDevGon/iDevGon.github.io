@@ -60,10 +60,10 @@ function RouteComponent() {
           </nav>
         </div>
         <img
-          src="https://avatars.githubusercontent.com/u/106735547?v=4"
-          alt="DevGon 프로필"
-          width={320}
-          height={320}
+          src="/images/devgon-avatar.webp"
+          alt="노트북 앞에 앉은 DevGon 고양이 캐릭터"
+          width={640}
+          height={640}
           className={avatarStyle}
           fetchPriority="high"
         />

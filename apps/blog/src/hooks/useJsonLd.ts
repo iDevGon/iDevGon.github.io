@@ -41,7 +41,7 @@ const WEB_SITE_JSON_LD = {
       url: BASE_URL,
       sameAs: ['https://github.com/iDevGon'],
       jobTitle: '프론트엔드 개발자',
-      image: 'https://avatars.githubusercontent.com/u/106735547?v=4',
+      image: 'https://idevgon.github.io/images/devgon-avatar.webp',
     },
   ],
 };
