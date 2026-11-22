@@ -11,6 +11,7 @@ export default defineConfig({
     tanstackRouter({
       target: 'react',
       autoCodeSplitting: true,
+      semicolons: true,
     }),
     react({
       babel: {
