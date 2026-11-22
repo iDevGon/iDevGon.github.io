@@ -17,6 +17,8 @@ const rootLayoutStyle = css({
     background: '#ffffff !important',
     color: '#1a1a1a !important',
     minHeight: 'auto',
+    display: 'block',
+    transition: 'none',
   },
 });
 
@@ -24,9 +26,8 @@ const mainContentStyle = css({
   flex: 1,
   display: 'flex',
   flexDirection: 'column',
-  paddingTop: 'calc(6rem + env(safe-area-inset-top, 0px))',
   _print: {
-    paddingTop: 0,
+    display: 'block',
   },
 });
 
@@ -48,7 +49,7 @@ const RootLayout = () => {
   useEffect(() => {
     document.documentElement.setAttribute('data-color-mode', resolvedColorMode);
     document.documentElement.style.colorScheme = resolvedColorMode;
-    const themeColor = resolvedColorMode === 'dark' ? '#1A1D23' : '#F8F9FA';
+    const themeColor = resolvedColorMode === 'dark' ? '#201d1a' : '#faf8f4';
     let meta = document.querySelector<HTMLMetaElement>(
       'meta[name="theme-color"]',
     );

@@ -36,9 +36,7 @@ function RouteComponent() {
   return (
     <Container>
       <div className={pageStyle}>
-        <Typo asChild variant="h1">
-          <h1 className={titleStyle}>연락처</h1>
-        </Typo>
+        <h1 className={titleStyle}>연락처</h1>
         <Typo asChild variant="body1">
           <p className={subtitleStyle}>
             궁금한 점이 있으시면 언제든 연락해 주세요.
@@ -55,7 +53,9 @@ function RouteComponent() {
                 <span className={contactLabelStyle}>Email</span>
               </Typo>
               <Typo asChild variant="body1">
-                <span className={contactLinkStyle}>ghcheondev@gmail.com</span>
+                <span className={contactLinkStyle} data-contact-address>
+                  ghcheondev@gmail.com
+                </span>
               </Typo>
             </div>
           </a>
@@ -69,7 +69,9 @@ function RouteComponent() {
                 <span className={contactLabelStyle}>Phone</span>
               </Typo>
               <Typo asChild variant="body1">
-                <span className={contactLinkStyle}>010-2675-0229</span>
+                <span className={contactLinkStyle} data-contact-address>
+                  010-2675-0229
+                </span>
               </Typo>
             </div>
           </a>
@@ -88,7 +90,9 @@ function RouteComponent() {
                 <span className={contactLabelStyle}>GitHub</span>
               </Typo>
               <Typo asChild variant="body1">
-                <span className={contactLinkStyle}>github.com/iDevGon</span>
+                <span className={contactLinkStyle} data-contact-address>
+                  github.com/iDevGon
+                </span>
               </Typo>
             </div>
           </a>
@@ -107,7 +111,7 @@ function RouteComponent() {
                 <span className={contactLabelStyle}>LinkedIn</span>
               </Typo>
               <Typo asChild variant="body1">
-                <span className={contactLinkStyle}>
+                <span className={contactLinkStyle} data-contact-address>
                   linkedin.com/in/idevgon
                 </span>
               </Typo>
@@ -128,7 +132,9 @@ function RouteComponent() {
                 <span className={contactLabelStyle}>Blog</span>
               </Typo>
               <Typo asChild variant="body1">
-                <span className={contactLinkStyle}>iDevGon.github.io</span>
+                <span className={contactLinkStyle} data-contact-address>
+                  iDevGon.github.io
+                </span>
               </Typo>
             </div>
           </a>

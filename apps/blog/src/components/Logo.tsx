@@ -1,14 +1,18 @@
-import { LogoIcon } from '@idevgon/icons';
+import { css } from 'styled-system/css';
 
-interface LogoProps {
-  height?: number;
-  className?: string;
-}
+const logoStyle = css({
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '1rem',
+  fontSize: '2.1rem',
+  fontWeight: 780,
+  letterSpacing: '-0.05em',
+  lineHeight: 1,
+});
 
-const ASPECT_RATIO = 725 / 166;
-
-export const Logo = ({ height = 24, className }: LogoProps) => {
-  const width = Math.round(height * ASPECT_RATIO);
-
-  return <LogoIcon width={width} height={height} className={className} />;
-};
+export const Logo = () => (
+  <span className={logoStyle}>
+    <img src="/favicon.svg" alt="" width={28} height={28} />
+    DevGon
+  </span>
+);

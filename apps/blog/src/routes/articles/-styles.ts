@@ -1,14 +1,19 @@
 import { css } from 'styled-system/css';
 
 export const pageStyle = css({
-  animation: 'fadeIn 0.8s ease',
+  width: '100%',
+  maxWidth: '90rem',
+  marginInline: 'auto',
+  paddingInline: { base: '1.6rem', tablet: '2.4rem' },
+  paddingBlock: { base: '4.8rem 6.4rem', tablet: '6.4rem 8rem' },
 });
 
 export const titleStyle = css({
-  fontSize: { base: '2.4rem', tablet: '2.8rem' },
-  fontWeight: 700,
+  fontSize: 'clamp(3.6rem, 6vw, 6rem)',
+  fontWeight: 750,
+  lineHeight: 1.15,
   color: 'textPrimary',
-  letterSpacing: '-0.02em',
+  letterSpacing: '-0.055em',
   textWrap: 'balance',
 });
 
@@ -16,17 +21,18 @@ export const headerStyle = css({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginBottom: '3.2rem',
+  marginBottom: '2.4rem',
 });
 
 export const searchToggleStyle = css({
   display: 'inline-flex',
   alignItems: 'center',
   justifyContent: 'center',
-  width: '3.2rem',
-  height: '3.2rem',
-  borderRadius: '50%',
-  border: 'none',
+  width: '4.4rem',
+  height: '4.4rem',
+  borderRadius: '0.6rem',
+  border: '1px solid',
+  borderColor: 'border',
   background: 'transparent',
   color: 'textMuted',
   cursor: 'pointer',
@@ -34,10 +40,10 @@ export const searchToggleStyle = css({
   transition: 'color 0.15s, background 0.15s',
   _hover: {
     color: 'textPrimary',
-    background: 'backgroundAlt',
+    background: 'surfaceHover',
   },
   '&[data-active="true"]': {
-    background: 'backgroundAlt',
+    background: 'surfaceHover',
     color: 'primary',
   },
 });
@@ -104,12 +110,12 @@ export const searchSubmitStyle = css({
   borderRadius: '0.6rem',
   border: 'none',
   background: 'primary',
-  color: 'white',
+  color: 'background',
   cursor: 'pointer',
   touchAction: 'manipulation',
   transition: 'background 0.15s',
   _hover: {
-    background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
+    background: 'primary.dark',
   },
 });
 
@@ -138,10 +144,10 @@ export const tagButtonStyle = css({
   '&[data-selected="true"]': {
     borderColor: 'primary',
     background: 'primary',
-    color: 'white',
+    color: 'background',
     _hover: {
-      background: 'color-mix(in srgb, token(colors.primary) 85%, black)',
-      color: 'white',
+      background: 'primary.dark',
+      color: 'background',
     },
   },
 });
@@ -150,10 +156,6 @@ export const noResultStyle = css({
   padding: { base: '4rem 0', tablet: '6rem 0' },
   textAlign: 'center',
   color: 'textMuted',
-});
-
-export const containerPaddingStyle = css({
-  padding: '4',
 });
 
 export const searchResultCountStyle = css({
@@ -175,7 +177,7 @@ export const emptySubtextStyle = css({
 });
 
 export const articleListStyle = css({
-  gap: '1.6rem',
+  borderTop: '1px solid var(--colors-border)',
 });
 
 export const searchInputWrapperStyle = css({

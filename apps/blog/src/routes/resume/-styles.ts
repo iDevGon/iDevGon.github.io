@@ -1,16 +1,23 @@
 import { css } from 'styled-system/css';
 
-// 인쇄용 페이지 래퍼 스타일
 export const printPageStyle = css({
-  animation: 'fadeInUp 0.6s ease-out',
+  maxWidth: { tablet: '76.8rem', desktop: '96rem' },
+  paddingBlock: { base: '4.8rem 6.4rem', tablet: '6.4rem 8rem' },
+  '& h1': {
+    fontSize: 'clamp(3.6rem, 6vw, 6rem)',
+    letterSpacing: '-0.055em',
+  },
   _print: {
-    width: '100%',
+    width: 'auto',
     maxWidth: 'none',
-    paddingInline: '10mm',
-    paddingBlock: '8mm',
-    margin: '0 auto',
+    padding: 0,
     fontSize: '10pt',
-    lineHeight: 1.5,
+    lineHeight: 1.45,
+    '& h1': { fontSize: '21pt', marginBottom: '2mm' },
+    '& h2': { fontSize: '15pt', marginBottom: '2mm' },
+    '& h3': { fontSize: '11.5pt' },
+    '& h4': { fontSize: '10.5pt' },
+    '& p, & li span': { fontSize: '10pt', lineHeight: 1.45 },
   },
 });
 
@@ -18,10 +25,8 @@ export const sectionStyle = css({
   display: 'flex',
   flexDirection: 'column',
   gap: '1.2rem',
-  marginBottom: { base: '3rem', tablet: '4rem' },
   _print: {
-    marginBottom: '0.8rem',
-    gap: '0.6rem',
+    display: 'block',
   },
 });
 
@@ -29,7 +34,11 @@ export const profileSectionStyle = css({
   display: 'flex',
   flexDirection: 'column',
   gap: '0.8rem',
-  marginBottom: '2rem',
+  _print: {
+    marginBottom: '2mm',
+    gap: '1mm',
+    breakInside: 'avoid',
+  },
 });
 
 export const profileItemStyle = css({
@@ -41,6 +50,7 @@ export const profileItemStyle = css({
 export const linkStyle = css({
   color: 'primary',
   textDecoration: 'underline',
+  textUnderlineOffset: '0.2em',
   _hover: { color: 'primary.dark' },
 });
 
@@ -56,35 +66,26 @@ export const highlightCardStyle = css({
   backgroundColor: 'surfaceHover',
   marginBottom: '1.2rem',
   _print: {
-    backgroundColor: '#f3f4f6 !important',
-    pageBreakInside: 'avoid',
+    padding: '2.5mm 3mm',
+    marginBottom: '2mm',
+    backgroundColor: 'surfaceHover',
     breakInside: 'avoid',
   },
 });
 
 export const experienceCardStyle = css({
-  borderLeft: '3px solid',
-  borderColor: 'primary',
-  paddingLeft: { base: '1.2rem', tablet: '2rem' },
   marginBottom: { base: '2rem', tablet: '3rem' },
   _print: {
-    borderColor: '#3182ce !important',
-    marginBottom: '1rem',
-    pageBreakBefore: 'auto',
-    pageBreakAfter: 'auto',
+    marginBottom: '4mm',
   },
 });
 
 export const projectCardStyle = css({
-  padding: { base: '1.2rem', tablet: '1.6rem' },
-  borderRadius: '0.8rem',
-  backgroundColor: 'surface',
-  marginBottom: '1.6rem',
+  paddingBlock: { base: '1.2rem', tablet: '1.6rem' },
+  borderTop: '1px solid var(--colors-border)',
+  overflowWrap: 'anywhere',
   _print: {
-    backgroundColor: '#fafafa !important',
-    marginBottom: '1rem',
-    padding: '1rem',
-    pageBreakInside: 'avoid',
+    paddingBlock: '2.5mm',
     breakInside: 'avoid',
   },
 });
@@ -98,17 +99,14 @@ export const achievementListStyle = css({
 export const periodStyle = css({
   color: 'textSecondary',
   fontSize: '1.4rem',
+  _print: { fontSize: '9pt' },
 });
 
 export const dividerStyle = css({
   border: 'none',
-  borderTop: '1px solid',
-  borderColor: 'border',
-  margin: { base: '2rem 0', tablet: '3rem 0' },
-  _print: {
-    margin: '0.6rem 0',
-    borderColor: '#e5e7eb !important',
-  },
+  borderTop: '1px solid var(--colors-border)',
+  marginBlock: { base: '3.2rem', tablet: '4.8rem' },
+  _print: { marginBlock: '4mm' },
 });
 
 export const introSummaryWrapperStyle = css({
@@ -116,6 +114,7 @@ export const introSummaryWrapperStyle = css({
   flexDirection: 'column',
   gap: '1.2rem',
   marginTop: '1.6rem',
+  _print: { marginTop: 0, gap: '2mm' },
 });
 
 export const introSummaryStyle = css({
@@ -123,7 +122,8 @@ export const introSummaryStyle = css({
 });
 
 export const highlightsWrapperStyle = css({
-  marginTop: '2.4rem',
+  marginTop: '1.2rem',
+  _print: { marginTop: '3mm' },
 });
 
 export const highlightDescriptionStyle = css({
@@ -133,6 +133,7 @@ export const highlightDescriptionStyle = css({
 export const experienceCardWrapperStyle = css({
   marginTop: '2.4rem',
   scrollMarginTop: '8rem',
+  _print: { marginTop: '4mm' },
 });
 
 export const descriptionStyle = css({
@@ -142,6 +143,7 @@ export const descriptionStyle = css({
 
 export const projectsWrapperStyle = css({
   marginTop: '2rem',
+  _print: { marginTop: '3mm' },
 });
 
 export const projectTitleStyle = css({
@@ -157,6 +159,7 @@ export const skillsWrapperStyle = css({
   display: 'flex',
   flexWrap: 'wrap',
   gap: '0.8rem',
+  _print: { breakInside: 'avoid', marginTop: 0 },
 });
 
 export const educationCardStyle = css({
@@ -165,8 +168,9 @@ export const educationCardStyle = css({
   backgroundColor: 'surfaceHover',
   marginBottom: '1.2rem',
   _print: {
-    backgroundColor: '#f3f4f6 !important',
-    pageBreakInside: 'avoid',
+    padding: '2.5mm 3mm',
+    marginBottom: '2mm',
+    backgroundColor: 'surfaceHover',
     breakInside: 'avoid',
   },
 });
@@ -182,8 +186,9 @@ export const certificationCardStyle = css({
   backgroundColor: 'surfaceHover',
   marginBottom: '1.2rem',
   _print: {
-    backgroundColor: '#f3f4f6 !important',
-    pageBreakInside: 'avoid',
+    padding: '2.5mm 3mm',
+    marginBottom: '2mm',
+    backgroundColor: 'surfaceHover',
     breakInside: 'avoid',
   },
 });

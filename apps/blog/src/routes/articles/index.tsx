@@ -1,11 +1,10 @@
-import { Container, Flex, Typo } from '@idevgon/design-system';
+import { Flex, Typo } from '@idevgon/design-system';
 import { SearchIcon } from '@idevgon/icons';
 import { createFileRoute } from '@tanstack/react-router';
 import { useArticleFilters } from '@/hooks/useArticleFilters';
 import { useSeo } from '@/hooks/useSeo';
 import {
   articleListStyle,
-  containerPaddingStyle,
   emptyStateStyle,
   emptySubtextStyle,
   headerStyle,
@@ -61,11 +60,9 @@ function RouteComponent() {
   } = useArticleFilters({ page, tag });
 
   return (
-    <Container className={`${pageStyle} ${containerPaddingStyle}`}>
+    <div className={pageStyle}>
       <div className={headerStyle}>
-        <Typo asChild variant="h1">
-          <h1 className={titleStyle}>생각들</h1>
-        </Typo>
+        <h1 className={titleStyle}>생각들</h1>
         {allArticles.length > 0 && (
           <button
             type="button"
@@ -125,6 +122,6 @@ function RouteComponent() {
           )}
         </>
       )}
-    </Container>
+    </div>
   );
 }

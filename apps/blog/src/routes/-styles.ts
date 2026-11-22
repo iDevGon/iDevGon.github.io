@@ -1,96 +1,77 @@
 import { css } from 'styled-system/css';
 
-export const pageStyle = css({
-  flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  marginTop: '-6rem',
-});
-
 export const heroStyle = css({
   flex: 1,
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  animation: 'fadeInUp 0.6s ease-out',
+  display: 'grid',
+  alignItems: 'center',
+  paddingBlock: { base: '5.6rem 6.4rem', tablet: '7.2rem 9.6rem' },
 });
 
 export const heroInnerStyle = css({
-  display: 'flex',
-  flexDirection: { base: 'column', desktop: 'row' },
-  alignItems: { base: 'flex-start', desktop: 'center' },
-  gap: { base: '0', desktop: '2rem' },
-});
-
-export const heroTextStyle = css({
-  flex: { base: 1, desktop: 'none' },
-  display: 'flex',
-  flexDirection: 'column',
+  display: 'grid',
+  gridTemplateColumns: { tablet: 'minmax(0, 1fr) auto' },
+  alignItems: 'center',
+  gap: { base: '3.2rem', tablet: '4rem', desktop: '8rem' },
+  width: '100%',
+  maxWidth: '96rem',
+  marginInline: 'auto',
 });
 
 export const avatarStyle = css({
-  width: { base: '16rem', tablet: '20rem' },
-  height: { base: '16rem', tablet: '20rem' },
-  borderRadius: '50%',
-  marginBottom: { base: '2rem', desktop: '0' },
-  objectFit: 'cover',
-  border: '3px solid',
+  display: 'block',
+  width: { base: '10.4rem', tablet: '21.6rem', desktop: '28rem' },
+  height: 'auto',
+  aspectRatio: '1',
+  borderRadius: { base: '0.6rem', tablet: '0.8rem' },
+  border: '1px solid',
   borderColor: 'border',
-  flexShrink: 0,
-  order: { base: 0, desktop: 1 },
+  objectFit: 'cover',
+  gridRow: { base: 1, tablet: 'auto' },
 });
 
-export const terminalPromptStyle = css({
-  fontSize: { base: '1.3rem', tablet: '1.4rem' },
-  color: 'textMuted',
-  fontFamily: '{fonts.mono}',
-  marginBottom: '1.6rem',
-  letterSpacing: '0.02em',
-});
-
-export const greetingStyle = css({
-  fontSize: { base: '2rem', tablet: '3rem' },
+export const careerStyle = css({
   color: 'primary',
-  fontWeight: 600,
-  marginBottom: '1.2rem',
-  letterSpacing: '0.02em',
+  fontSize: { base: '1.5rem', tablet: '1.7rem' },
+  fontWeight: 650,
+  marginBottom: '1.6rem',
 });
 
 export const nameStyle = css({
-  fontSize: { base: '3.2rem', tablet: '4.8rem' },
-  fontWeight: 800,
-  lineHeight: 1.1,
+  fontSize: 'clamp(3.8rem, 6.6vw, 7.6rem)',
+  fontWeight: 700,
+  fontFamily: '"Gowun Batang", Batang, "AppleMyungjo", serif',
+  lineHeight: 1.14,
+  letterSpacing: '-0.055em',
   color: 'textPrimary',
-  marginBottom: '1.6rem',
-  textWrap: 'balance',
-  letterSpacing: '-0.03em',
-  wordBreak: 'auto-phrase',
-});
-
-export const nameHighlight = css({
-  color: 'primary',
+  marginBottom: '2rem',
+  wordBreak: 'keep-all',
 });
 
 export const descriptionStyle = css({
-  fontSize: { base: '1.5rem', tablet: '1.8rem' },
+  fontSize: { base: '1.7rem', tablet: '1.9rem' },
   color: 'textSecondary',
   lineHeight: 1.7,
-  maxWidth: '56rem',
-  marginBottom: '3.2rem',
+  maxWidth: '34ch',
+  wordBreak: 'keep-all',
 });
 
-export const cursorStyle = css({
-  display: 'inline-block',
-  width: '2px',
-  height: '1em',
-  backgroundColor: 'primary',
-  marginLeft: '0.2rem',
-  verticalAlign: 'text-bottom',
-  animation: 'blink 1s step-end infinite',
-});
-
-export const buttonGroupStyle = css({
+export const quickLinksStyle = css({
   display: 'flex',
-  gap: '1.2rem',
+  alignItems: 'center',
   flexWrap: 'wrap',
+  gap: '0.4rem 2.4rem',
+  marginTop: '3.2rem',
+  paddingTop: '1.2rem',
+  borderTop: '1px solid var(--colors-border)',
+  width: 'fit-content',
+  '& a': {
+    display: 'inline-flex',
+    alignItems: 'center',
+    gap: '0.6rem',
+    minHeight: '4.4rem',
+    fontSize: '1.5rem',
+    fontWeight: 650,
+    _hover: { textDecoration: 'underline', textUnderlineOffset: '0.3em' },
+  },
+  '& a:first-child': { color: 'primary' },
 });

@@ -44,7 +44,6 @@ export const markdownStyles = css({
   },
   '& strong': {
     fontWeight: 'bold',
-    color: 'primary',
   },
   '& em': {
     fontStyle: 'italic',
@@ -81,16 +80,16 @@ export const markdownStyles = css({
     marginBottom: '0',
   },
   '& blockquote': {
-    borderLeft: '3px solid',
-    borderColor: 'primary.light',
-    paddingLeft: { base: '1.6rem', tablet: '2rem' },
+    border: '1px solid',
+    borderColor: 'border',
+    paddingInline: { base: '1.6rem', tablet: '2rem' },
     paddingBlock: '1.2rem',
     marginTop: '2.4rem',
     marginBottom: '2.4rem',
     marginInline: 0,
     color: 'textSecondary',
     backgroundColor: 'surfaceHover',
-    borderRadius: '0 0.8rem 0.8rem 0',
+    borderRadius: '0.5rem',
     fontStyle: 'italic',
     lineHeight: '1.8',
 

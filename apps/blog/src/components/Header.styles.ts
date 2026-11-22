@@ -4,31 +4,18 @@ export const headerStyle = css({
   position: 'sticky',
   top: 0,
   zIndex: 100,
+  background: 'background',
+  borderBottom: '1px solid var(--colors-border)',
+});
+
+export const headerInnerStyle = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  height: '6rem',
-  // paddingTop: 'env(safe-area-inset-top, 0px)',
-  paddingLeft: { base: '1.6rem', tablet: '2.4rem' },
-  paddingRight: { base: '0.4rem', tablet: '2.4rem' },
-  background: {
-    base: 'background',
-    tablet: 'color-mix(in srgb, var(--colors-background) 35%, transparent)',
-  },
-  backdropFilter: { base: 'none', tablet: 'blur(20px) saturate(1.8)' },
-  borderBottom: {
-    base: '1px solid var(--colors-border)',
-    tablet:
-      '1px solid color-mix(in srgb, var(--colors-border) 70%, transparent)',
-  },
-  boxShadow: {
-    base: 'none',
-    tablet:
-      '0 4px 30px color-mix(in srgb, var(--colors-surface) 10%, transparent)',
-  },
-  transition:
-    'background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease',
-  overflow: 'visible',
+  minHeight: '6rem',
+  maxWidth: '120rem',
+  marginInline: 'auto',
+  paddingInline: { base: '1.6rem', tablet: '2.4rem', desktop: '3.2rem' },
 });
 
 export const logoAreaStyle = css({
@@ -95,7 +82,7 @@ export const mobileMenuStyle = css({
   display: { base: 'flex', tablet: 'none' },
   flexDirection: 'column',
   position: 'fixed',
-  top: '6rem',
+  top: 'calc(6rem + env(safe-area-inset-top, 0px))',
   left: 0,
   right: 0,
   zIndex: 99,
@@ -124,8 +111,7 @@ export const mobileNavLinkStyle = css({
   textDecoration: 'none',
   padding: '1.2rem 0.8rem',
   display: 'block',
-  borderBottom: '1px solid',
-  borderColor: 'border',
+  borderBottom: '1px solid var(--colors-border)',
   transition: 'color 0.2s ease',
   _hover: {
     color: 'textPrimary',
@@ -138,8 +124,7 @@ export const mobileNavLinkStyle = css({
 export const activeNavStyle = css({
   color: 'primary',
   fontWeight: 600,
-  borderBottom: '2px solid',
-  borderColor: 'primary',
+  borderBottom: '2px solid var(--colors-primary)',
 });
 
 export const activeMobileNavStyle = css({

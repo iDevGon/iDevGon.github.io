@@ -1,21 +1,15 @@
-import { Container, Typo } from '@idevgon/design-system';
-import { createFileRoute } from '@tanstack/react-router';
-import { Button } from '@/components/Button';
+import { Container } from '@idevgon/design-system';
+import { createFileRoute, Link } from '@tanstack/react-router';
 import { useWebSiteJsonLd } from '@/hooks/useJsonLd';
 import { useSeo } from '@/hooks/useSeo';
 import {
   avatarStyle,
-  buttonGroupStyle,
-  cursorStyle,
+  careerStyle,
   descriptionStyle,
-  greetingStyle,
   heroInnerStyle,
   heroStyle,
-  heroTextStyle,
-  nameHighlight,
   nameStyle,
-  pageStyle,
-  terminalPromptStyle,
+  quickLinksStyle,
 } from './-styles';
 
 export const Route = createFileRoute('/')({
@@ -45,52 +39,35 @@ function RouteComponent() {
   useWebSiteJsonLd();
 
   return (
-    <div className={pageStyle}>
-      <Container css={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <div className={heroStyle}>
-          <div className={heroInnerStyle}>
-            <img
-              src="https://avatars.githubusercontent.com/u/106735547?v=4"
-              alt="DevGon 프로필"
-              width={320}
-              height={320}
-              className={avatarStyle}
-              fetchPriority="high"
-            />
-            <div className={heroTextStyle}>
-              <span className={terminalPromptStyle}>
-                $ whoami
-                <span className={cursorStyle} />
-              </span>
-              <Typo asChild variant="body1">
-                <span className={greetingStyle}>안녕하세요! 👋🏻</span>
-              </Typo>
-              <Typo asChild variant="h1">
-                <h1 className={nameStyle}>
-                  만 {careerYear}년차 프론트엔드 개발자
-                  <br />
-                  <strong className={nameHighlight}>DevGon</strong>
-                  이에요.
-                </h1>
-              </Typo>
-              <Typo asChild variant="body1">
-                <p className={descriptionStyle}>
-                  사용자 경험을 고민하고, 깔끔한 코드를 추구하고 있어요.
-                </p>
-              </Typo>
-              <div className={buttonGroupStyle}>
-                <Button to="/articles">생각들</Button>
-                <Button to="/resume" outline>
-                  이력서
-                </Button>
-                <Button to="/contact" outline>
-                  연락처
-                </Button>
-              </div>
-            </div>
-          </div>
+    <Container className={heroStyle}>
+      <section className={heroInnerStyle} aria-labelledby="home-intro">
+        <div>
+          <p className={careerStyle}>만 {careerYear}년차 프론트엔드 개발자</p>
+          <h1 id="home-intro" className={nameStyle}>
+            안녕하세요,
+            <br />
+            DevGon이에요.
+          </h1>
+          <p className={descriptionStyle}>
+            쓰기 편한 화면을 만들고, 개발하면서 배운 것들을 이곳에 적어요.
+          </p>
+          <nav className={quickLinksStyle} aria-label="주요 페이지">
+            <Link to="/articles">
+              생각들 <span aria-hidden="true">→</span>
+            </Link>
+            <Link to="/resume">이력서</Link>
+            <Link to="/contact">연락처</Link>
+          </nav>
         </div>
-      </Container>
-    </div>
+        <img
+          src="https://avatars.githubusercontent.com/u/106735547?v=4"
+          alt="DevGon 프로필"
+          width={320}
+          height={320}
+          className={avatarStyle}
+          fetchPriority="high"
+        />
+      </section>
+    </Container>
   );
 }

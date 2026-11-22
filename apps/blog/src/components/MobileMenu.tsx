@@ -13,7 +13,7 @@ interface MobileMenuProps {
 }
 
 export const MobileMenu = ({ ref, onClose }: MobileMenuProps) => (
-  <nav ref={ref} className={mobileMenuStyle}>
+  <nav ref={ref} className={`${mobileMenuStyle} no-print`}>
     {NAV_LINKS.map((link) => (
       <Link
         key={link.to}

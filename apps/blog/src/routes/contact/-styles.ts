@@ -1,16 +1,19 @@
 import { css } from 'styled-system/css';
 
 export const pageStyle = css({
-  animation: 'fadeInUp 0.6s ease-out',
+  maxWidth: '72rem',
+  marginInline: 'auto',
+  paddingBlock: { base: '1.6rem 3.2rem', tablet: '3.2rem 4.8rem' },
 });
 
 export const titleStyle = css({
-  fontSize: { base: '2.4rem', tablet: '2.8rem' },
-  fontWeight: 700,
+  fontSize: 'clamp(3.6rem, 6vw, 6rem)',
+  fontWeight: 750,
+  lineHeight: 1.15,
   color: 'textPrimary',
   marginBottom: '1.2rem',
   textWrap: 'balance',
-  letterSpacing: '-0.02em',
+  letterSpacing: '-0.055em',
 });
 
 export const subtitleStyle = css({
@@ -23,23 +26,22 @@ export const subtitleStyle = css({
 export const contactListStyle = css({
   display: 'flex',
   flexDirection: 'column',
-  gap: '2rem',
+  borderTop: '1px solid var(--colors-border)',
 });
 
 export const contactItemStyle = css({
   display: 'flex',
   alignItems: 'center',
   gap: { base: '1.2rem', tablet: '1.6rem' },
-  padding: { base: '1.6rem', tablet: '2rem' },
-  borderRadius: '1.2rem',
-  backgroundColor: 'cardBg',
-  border: '1px solid',
-  borderColor: 'border',
+  paddingBlock: '1.6rem',
+  borderBottom: '1px solid var(--colors-border)',
   touchAction: 'manipulation',
-  transition: 'border-color 0.2s ease, transform 0.2s ease',
-  '&:hover': {
-    borderColor: 'borderHover',
-    transform: { base: 'none', tablet: 'translateX(4px)' },
+  _hover: {
+    '& [data-contact-address]': {
+      color: 'primary',
+      textDecoration: 'underline',
+      textUnderlineOffset: '0.25em',
+    },
   },
 });
 
@@ -49,8 +51,9 @@ export const iconStyle = css({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
-  borderRadius: '1rem',
+  borderRadius: '0.5rem',
   backgroundColor: 'surfaceHover',
+  color: 'primary',
   flexShrink: 0,
 });
 
@@ -70,10 +73,7 @@ export const contactLabelStyle = css({
 
 export const contactLinkStyle = css({
   fontSize: '1.6rem',
-  color: 'primary',
-  fontWeight: 500,
-  textDecoration: 'none',
-  '&:hover': {
-    textDecoration: 'underline',
-  },
+  color: 'textPrimary',
+  fontWeight: 600,
+  overflowWrap: 'anywhere',
 });

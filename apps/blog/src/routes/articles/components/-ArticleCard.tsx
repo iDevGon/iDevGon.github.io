@@ -1,4 +1,3 @@
-import type React from 'react';
 import { Flex, Typo } from '@idevgon/design-system';
 import { Link } from '@tanstack/react-router';
 import { css } from 'styled-system/css';
@@ -6,52 +5,43 @@ import { TagList } from '@/components/TagList';
 import type { ArticleMeta } from '@/interfaces/article';
 
 const cardStyle = css({
-  position: 'relative',
-  display: 'block',
-  overflow: 'hidden',
-  padding: { base: '1.6rem', tablet: '2rem 2.4rem' },
-  borderRadius: '1rem',
-  border: '1px solid',
-  borderColor: 'border',
-  borderLeft: '3px solid',
-  borderLeftColor: 'secondary',
-  contentVisibility: 'auto',
-  containIntrinsicSize: '0 200px',
-  transition:
-    'border-color 0.2s, border-left-color 0.2s, transform 0.2s, box-shadow 0.2s',
+  display: 'grid',
+  gridTemplateColumns: 'minmax(0, 1fr)',
+  alignItems: 'start',
+  gap: '1.6rem',
+  paddingBlock: { base: '2.4rem', tablet: '2.8rem' },
+  borderBottom: '1px solid var(--colors-border)',
+  '&:has(img:not([hidden]))': {
+    gridTemplateColumns: { tablet: 'minmax(0, 1fr) 18rem' },
+    columnGap: { tablet: '3.2rem' },
+  },
   _hover: {
-    borderColor: 'borderHover',
-    borderLeftColor: 'primary',
-    transform: { base: 'none', tablet: 'translateY(-2px)' },
-    boxShadow: { base: 'none', tablet: '0 4px 16px rgba(0,0,0,0.06)' },
-    '& h2': { color: 'primary' },
-    '& > [data-cover-bg]': { opacity: 0.18 },
+    '& h2': { color: 'primary', textDecoration: 'underline' },
   },
 });
 
-const coverBgStyle = css({
-  position: 'absolute',
-  inset: 0,
-  backgroundImage: 'var(--cover-image)',
-  backgroundSize: 'cover',
-  backgroundPosition: 'center',
-  maskImage: 'linear-gradient(to right, transparent 20%, black 80%)',
-  WebkitMaskImage: 'linear-gradient(to right, transparent 20%, black 80%)',
-  opacity: 0.1,
-  transition: 'opacity 0.3s ease',
-  pointerEvents: 'none',
-});
-
-const cardContentStyle = css({
-  position: 'relative',
+const coverStyle = css({
+  display: 'block',
+  width: { base: 'min(100%, 24rem)', tablet: '100%' },
+  height: 'auto',
+  aspectRatio: '2 / 1',
+  objectFit: 'cover',
+  borderRadius: '0.5rem',
+  border: '1px solid',
+  borderColor: 'border',
+  '&[hidden]': { display: 'none' },
 });
 
 const titleStyle = css({
-  fontSize: { base: '1.6rem', tablet: '1.8rem' },
-  fontWeight: 600,
+  fontSize: { base: '2.1rem', tablet: '2.5rem' },
+  fontWeight: 700,
   marginBottom: '0.8rem',
   transition: 'color 0.2s',
-  letterSpacing: '-0.01em',
+  letterSpacing: '-0.035em',
+  wordBreak: 'keep-all',
+  overflowWrap: 'anywhere',
+  textUnderlineOffset: '0.2em',
+  textDecorationThickness: '1px',
   lineHeight: 1.4,
 });
 
@@ -59,15 +49,16 @@ const metaStyle = css({
   gap: { base: '0.8rem', tablet: '1.6rem' },
   color: 'textMuted',
   fontSize: { base: '1.2rem', tablet: '1.4rem' },
-  fontFamily: '{fonts.mono}',
+  flexWrap: 'wrap',
+  fontVariantNumeric: 'tabular-nums',
   letterSpacing: '0.01em',
 });
 
 const excerptStyle = css({
   marginTop: '1.2rem',
-  fontSize: '1.4rem',
+  fontSize: '1.5rem',
   color: 'textSecondary',
-  lineHeight: '1.6',
+  lineHeight: '1.7',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   lineClamp: { base: 2, tablet: 3 },
@@ -80,22 +71,8 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
       params={{ articleId: article.id }}
       className={cardStyle}
     >
-      {article.coverImage && (
-        <div
-          data-cover-bg
-          className={coverBgStyle}
-          style={
-            {
-              '--cover-image': `url(${article.coverImage})`,
-            } as React.CSSProperties
-          }
-        />
-      )}
-
-      <div className={cardContentStyle}>
-        <Typo asChild variant="h2">
-          <h2 className={titleStyle}>{article.title}</h2>
-        </Typo>
+      <div>
+        <h2 className={titleStyle}>{article.title}</h2>
 
         <Flex className={metaStyle}>
           <Typo asChild variant="body2">
@@ -114,6 +91,18 @@ export function ArticleCard({ article }: { article: ArticleMeta }) {
 
         <TagList tags={article.tags} />
       </div>
+
+      {article.coverImage && (
+        <img
+          src={article.coverImage}
+          className={coverStyle}
+          alt=""
+          loading="lazy"
+          onError={(event) => {
+            event.currentTarget.hidden = true;
+          }}
+        />
+      )}
     </Link>
   );
 }

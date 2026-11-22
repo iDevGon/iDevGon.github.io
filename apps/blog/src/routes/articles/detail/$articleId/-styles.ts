@@ -6,8 +6,7 @@ export const articleLayoutStyle = css({
 });
 
 export const containerPaddingStyle = css({
-  padding: '4',
-  animation: 'fadeInUp 0.6s ease-out',
+  paddingBlock: { base: '3.2rem 6.4rem', tablet: '5.6rem 8rem' },
 });
 
 export const notFoundTitleStyle = css({
@@ -49,7 +48,7 @@ export const backLinkStyle = css({
 });
 
 export const articleTitleStyle = css({
-  fontSize: { base: '2.6rem', tablet: '3.4rem' },
+  fontSize: 'clamp(2.8rem, 4.2vw, 4.6rem)',
   fontWeight: 'bold',
   lineHeight: '1.25',
   marginBottom: '2rem',
@@ -62,18 +61,17 @@ export const metaStyle = css({
   gap: { base: '0.8rem', tablet: '1.6rem' },
   color: 'textMuted',
   fontSize: { base: '1.3rem', tablet: '1.4rem' },
-  fontFamily: '{fonts.mono}',
+  fontVariantNumeric: 'tabular-nums',
   letterSpacing: '0.01em',
 });
 
 export const coverImageWrapperStyle = css({
-  marginBottom: '2.8rem',
+  marginBottom: { base: '3.2rem', tablet: '4.8rem' },
   borderRadius: '{radii.lg}',
   overflow: 'hidden',
   border: '1px solid',
   borderColor: 'border',
   aspectRatio: '2 / 1',
-  animation: 'fadeIn 0.8s ease-out',
 });
 
 export const coverImageStyle = css({
@@ -84,10 +82,9 @@ export const coverImageStyle = css({
 });
 
 export const articleHeaderStyle = css({
-  marginBottom: { base: '3.2rem', tablet: '4.8rem' },
-  paddingBottom: '2.4rem',
-  borderBottom: '1px solid',
-  borderColor: 'border',
+  marginBottom: { base: '2.4rem', tablet: '3.2rem' },
+  paddingBottom: '1.6rem',
+  borderBottom: '1px solid var(--colors-border)',
 });
 
 /* ── Page layout ── */
@@ -165,7 +162,7 @@ export const articleNavContentStyle = css({
 
 export const articleNavLabelStyle = css({
   fontSize: '1.2rem',
-  fontFamily: '{fonts.mono}',
+  fontVariantNumeric: 'tabular-nums',
   color: 'textMuted',
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
@@ -224,7 +221,6 @@ export const tocTitleStyle = css({
   fontWeight: 'semibold',
   color: 'textMuted',
   marginBottom: '1rem',
-  fontFamily: '{fonts.mono}',
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
 });
@@ -252,7 +248,7 @@ export const tocLinkStyle = css({
   paddingLeft: '0.8rem',
   color: 'textMuted',
   textDecoration: 'none',
-  borderLeft: '2px solid transparent',
+  borderLeft: '1px solid transparent',
   transition: 'color 0.2s, border-color 0.2s',
   _hover: {
     color: 'textPrimary',
@@ -268,7 +264,7 @@ export const tocActiveLinkStyle = css({
   color: 'primary',
   textDecoration: 'none',
   fontWeight: 'medium',
-  borderLeft: '2px solid',
+  borderLeft: '1px solid',
   borderColor: 'primary',
   transition: 'color 0.2s, border-color 0.2s',
 });

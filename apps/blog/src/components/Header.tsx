@@ -4,6 +4,7 @@ import { ColorModeSwitch } from '@/components/ColorModeSwitch';
 import { Logo } from '@/components/Logo';
 import { DesktopNav } from './DesktopNav';
 import {
+  headerInnerStyle,
   headerStyle,
   logoAreaStyle,
   mobileActionsStyle,
@@ -42,24 +43,24 @@ export const Header = () => {
   return (
     <>
       <header className={`${headerStyle} no-print`}>
-        <Link to="/" className={logoAreaStyle}>
-          <Logo height={36} />
-        </Link>
+        <div className={headerInnerStyle}>
+          <Link to="/" className={logoAreaStyle}>
+            <Logo />
+          </Link>
 
-        <DesktopNav />
+          <DesktopNav />
 
-        {/* Mobile Actions */}
-        <div className={mobileActionsStyle}>
-          <ColorModeSwitch />
-          <MobileMenuButton
-            open={mobileMenuOpen}
-            onToggle={() => setMobileMenuOpen((prev) => !prev)}
-            ref={hamburgerRef}
-          />
+          <div className={mobileActionsStyle}>
+            <ColorModeSwitch />
+            <MobileMenuButton
+              open={mobileMenuOpen}
+              onToggle={() => setMobileMenuOpen((prev) => !prev)}
+              ref={hamburgerRef}
+            />
+          </div>
         </div>
       </header>
 
-      {/* Mobile Menu - header 바깥에 위치해야 backdrop-filter 독립 적용 */}
       {mobileMenuOpen && (
         <MobileMenu ref={menuRef} onClose={() => setMobileMenuOpen(false)} />
       )}

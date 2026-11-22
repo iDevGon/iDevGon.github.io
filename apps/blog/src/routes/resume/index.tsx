@@ -1,8 +1,8 @@
 import { Container } from '@idevgon/design-system';
+import { TimelineChart, type TimelineItem } from '@idevgon/timeline-chart';
 import { createFileRoute } from '@tanstack/react-router';
 import { useCallback } from 'react';
 import { useSeo } from '@/hooks/useSeo';
-import { TimelineChart, type TimelineItem } from '@idevgon/timeline-chart';
 import resumeData from '../../data/resume.json';
 import type { ResumeData } from '../../interfaces/resume';
 import {
@@ -23,6 +23,7 @@ export const Route = createFileRoute('/resume/')({
 
 const data = resumeData as ResumeData;
 const timelineItems = experiencesToTimelineItems(data.experiences);
+const timelineColors = ['#b35f40', '#c9af85'];
 
 function RouteComponent() {
   useSeo({
@@ -47,7 +48,11 @@ function RouteComponent() {
       <hr className={dividerStyle} />
 
       <ExperienceSection experiences={data.experiences}>
-        <TimelineChart items={timelineItems} onBarClick={handleBarClick}>
+        <TimelineChart
+          items={timelineItems}
+          colors={timelineColors}
+          onBarClick={handleBarClick}
+        >
           <TimelineChart.Title>경력 타임라인</TimelineChart.Title>
           <TimelineChart.Chart />
           <TimelineChart.Legend />

@@ -9,6 +9,7 @@ import { useHashScroll } from '@/hooks/useHashScroll';
 import { useColorMode } from '@/store';
 import { getAdjacentArticles, getArticle } from '@/utils/articleLoader';
 import { markdownStyles } from '../-styles';
+import { ArticleNav } from './-article-nav';
 import { MARKDOWN_COMPONENTS } from './-markdown-components';
 import { ArticleNotFound } from './-not-found';
 import { ArticleSkeleton } from './-skeleton';
@@ -26,7 +27,6 @@ import {
   metaStyle,
 } from './-styles';
 import { TableOfContents } from './-toc';
-import { ArticleNav } from './-article-nav';
 import { resolveImageUrl } from './-utils';
 
 const markdownImport = import('react-markdown');
@@ -79,21 +79,8 @@ function RouteComponent() {
               &larr; cd ..
             </Link>
 
-            {coverImageUrl && (
-              <div className={coverImageWrapperStyle}>
-                <img
-                  src={coverImageUrl}
-                  alt={article.title}
-                  className={coverImageStyle}
-                  fetchPriority="high"
-                />
-              </div>
-            )}
-
             <header className={articleHeaderStyle}>
-              <Typo asChild variant="h1">
-                <h1 className={articleTitleStyle}>{article.title}</h1>
-              </Typo>
+              <h1 className={articleTitleStyle}>{article.title}</h1>
 
               <Flex className={metaStyle}>
                 <Typo asChild variant="body2">
@@ -106,6 +93,17 @@ function RouteComponent() {
 
               <TagList tags={article.tags} />
             </header>
+
+            {coverImageUrl && (
+              <div className={coverImageWrapperStyle}>
+                <img
+                  src={coverImageUrl}
+                  alt={article.title}
+                  className={coverImageStyle}
+                  fetchPriority="high"
+                />
+              </div>
+            )}
           </div>
 
           <article className={markdownStyles}>

@@ -49,12 +49,12 @@ export const idevgonPreset = definePreset({
         },
         colors: {
           brand: {
-            primary: { value: '#3D6B99' },
-            primaryLight: { value: '#6B9AC4' },
-            primaryDark: { value: '#3A5F8A' },
-            secondary: { value: '#C0E0DE' },
-            secondaryLight: { value: '#D4EDEB' },
-            secondaryDark: { value: '#9CCBC8' },
+            primary: { value: 'oklch(45% 0.12 43)' },
+            primaryLight: { value: 'oklch(79% 0.12 56)' },
+            primaryDark: { value: 'oklch(38% 0.105 43)' },
+            secondary: { value: 'oklch(90% 0.04 62)' },
+            secondaryLight: { value: 'oklch(94% 0.025 62)' },
+            secondaryDark: { value: 'oklch(35% 0.06 52)' },
           },
         },
         fonts: {
@@ -71,28 +71,28 @@ export const idevgonPreset = definePreset({
       semanticTokens: {
         colors: {
           background: {
-            value: { base: '#F8F9FA', _light: '#F8F9FA', _dark: '#1A1D23' },
+            value: { base: '#faf8f4', _light: '#faf8f4', _dark: '#201d1a' },
           },
           surface: {
-            value: { base: '#FFFFFF', _light: '#FFFFFF', _dark: '#242830' },
+            value: { base: '#fffdf8', _light: '#fffdf8', _dark: '#292520' },
           },
           surfaceHover: {
-            value: { base: '#F0F2F5', _light: '#F0F2F5', _dark: '#2D3139' },
+            value: { base: '#f2ede5', _light: '#f2ede5', _dark: '#332d27' },
           },
           textPrimary: {
-            value: { base: '#2D3436', _light: '#2D3436', _dark: '#E4E6EB' },
+            value: { base: '#292521', _light: '#292521', _dark: '#eee8df' },
           },
           textSecondary: {
-            value: { base: '#636E72', _light: '#636E72', _dark: '#A0A4AB' },
+            value: { base: '#625a50', _light: '#625a50', _dark: '#c3b8aa' },
           },
           textMuted: {
-            value: { base: '#6B7280', _light: '#6B7280', _dark: '#9CA3AF' },
+            value: { base: '#6e655a', _light: '#6e655a', _dark: '#aca092' },
           },
           border: {
-            value: { base: '#E1E8ED', _light: '#E1E8ED', _dark: '#363A42' },
+            value: { base: '#e3dbd0', _light: '#e3dbd0', _dark: '#483f36' },
           },
           borderHover: {
-            value: { base: '#CBD2D9', _light: '#CBD2D9', _dark: '#4A4F5A' },
+            value: { base: '#bdad9b', _light: '#bdad9b', _dark: '#66584a' },
           },
           primary: {
             DEFAULT: {
@@ -106,14 +106,14 @@ export const idevgonPreset = definePreset({
               value: {
                 base: '{colors.brand.primaryDark}',
                 _light: '{colors.brand.primaryDark}',
-                _dark: '{colors.brand.primary}',
+                _dark: 'oklch(87% 0.085 56)',
               },
             },
             light: {
               value: {
                 base: '{colors.brand.primaryLight}',
                 _light: '{colors.brand.primaryLight}',
-                _dark: '{colors.brand.primaryDark}',
+                _dark: '{colors.brand.primaryLight}',
               },
             },
           },
@@ -127,7 +127,7 @@ export const idevgonPreset = definePreset({
             },
           },
           tagBg: {
-            value: { base: '#EBF2F8', _light: '#EBF2F8', _dark: '#2A3444' },
+            value: { base: '#f1e9dd', _light: '#f1e9dd', _dark: '#3a3026' },
           },
           tagText: {
             value: {
@@ -137,10 +137,10 @@ export const idevgonPreset = definePreset({
             },
           },
           cardBg: {
-            value: { base: '#FFFFFF', _light: '#FFFFFF', _dark: '#242830' },
+            value: { base: '#fffdf8', _light: '#fffdf8', _dark: '#292520' },
           },
           codeBg: {
-            value: { base: '#F1F5F9', _light: '#F1F5F9', _dark: '#1E2028' },
+            value: { base: '#f1ede6', _light: '#f1ede6', _dark: '#29241f' },
           },
           codeBlockBg: {
             value: { base: '#1E293B', _light: '#1E293B', _dark: '#0F1219' },
@@ -206,8 +206,6 @@ export const idevgonPreset = definePreset({
     '@page': { size: 'A4', margin: '15mm' },
     '@media print': {
       'html, body': {
-        width: '210mm',
-        height: '297mm',
         margin: 0,
         padding: 0,
         fontSize: '10pt',
@@ -215,9 +213,23 @@ export const idevgonPreset = definePreset({
         color: '#1a1a1a !important',
         WebkitPrintColorAdjust: 'exact',
         printColorAdjust: 'exact',
+        colorScheme: 'light !important',
+        transition: 'none !important',
       },
-      '.no-print': { display: 'none !important' },
-      a: { color: '#3182ce !important', textDecoration: 'underline' },
+      '[data-color-mode]': {
+        '--colors-background': '#ffffff !important',
+        '--colors-surface': '#ffffff !important',
+        '--colors-surface-hover': '#f4f2ee !important',
+        '--colors-text-primary': '#1a1a1a !important',
+        '--colors-text-secondary': '#404040 !important',
+        '--colors-text-muted': '#525252 !important',
+        '--colors-border': '#d6d2cd !important',
+        '--colors-primary': '#743b26 !important',
+        '--colors-tag-bg': '#f3f0eb !important',
+        '--colors-tag-text': '#34302c !important',
+      },
+      '.no-print, .skip-link': { display: 'none !important' },
+      a: { color: '#1a1a1a !important', textDecoration: 'underline' },
       'h1, h2, h3, h4': { pageBreakAfter: 'avoid', breakAfter: 'avoid' },
       'p, li': { orphans: 3, widows: 3 },
     },
