@@ -40,17 +40,14 @@ export const Route = createFileRoute('/articles/detail/$articleId/')({
   component: RouteComponent,
 });
 
-const GISCUS_THEME_MAP = {
-  light: 'light_protanopia',
-  dark: 'dark_protanopia',
-  system: 'preferred_color_scheme',
-} as const;
-
 function RouteComponent() {
   const { articleId } = Route.useParams();
   const article = getArticle(articleId);
   const { prev, next } = getAdjacentArticles(articleId);
-  const colorMode = useColorMode((s) => s.colorMode);
+  const giscusColorMode = useColorMode((s) =>
+    s.colorMode === 'dark' ? 'dark' : 'light',
+  );
+  const giscusTheme = `${window.location.origin}/giscus/${giscusColorMode}.css`;
 
   const coverImageUrl = article?.coverImage
     ? resolveImageUrl(article.coverImage)
@@ -131,7 +128,7 @@ function RouteComponent() {
                 reactionsEnabled="1"
                 emitMetadata="0"
                 inputPosition="top"
-                theme={GISCUS_THEME_MAP[colorMode]}
+                theme={giscusTheme}
                 lang="ko"
                 loading="lazy"
               />

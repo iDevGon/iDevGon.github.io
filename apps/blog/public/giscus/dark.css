@@ -1,0 +1,57 @@
+/* The Giscus iframe cannot inherit the blog's Panda CSS tokens. */
+:root {
+  color-scheme: dark;
+}
+
+main {
+  --color-fg-default: #eee8df;
+  --color-fg-muted: #c3b8aa;
+  --color-fg-subtle: #aca092;
+  --color-canvas-default: #201d1a;
+  --color-canvas-overlay: #292520;
+  --color-canvas-inset: #29241f;
+  --color-canvas-subtle: #332d27;
+  --color-border-default: #483f36;
+  --color-border-muted: #483f36;
+  --color-neutral-muted: #3a3026;
+  --color-accent-fg: oklch(79% 0.12 56);
+  --color-accent-emphasis: oklch(79% 0.12 56);
+  --color-accent-muted: #66584a;
+  --color-accent-subtle: #3a3026;
+  --color-btn-text: #eee8df;
+  --color-btn-bg: #292520;
+  --color-btn-border: #66584a;
+  --color-btn-hover-bg: #332d27;
+  --color-btn-hover-border: oklch(79% 0.12 56);
+  --color-btn-active-bg: #3a3026;
+  --color-btn-active-border: oklch(79% 0.12 56);
+  --color-btn-selected-bg: #3a3026;
+  --color-btn-primary-text: #201d1a;
+  --color-btn-primary-bg: oklch(79% 0.12 56);
+  --color-btn-primary-border: oklch(79% 0.12 56);
+  --color-btn-primary-hover-bg: oklch(87% 0.085 56);
+  --color-btn-primary-hover-border: oklch(87% 0.085 56);
+  --color-btn-primary-selected-bg: oklch(87% 0.085 56);
+  --color-btn-primary-disabled-text: #c3b8aa;
+  --color-btn-primary-disabled-bg: #3a3026;
+  --color-btn-primary-disabled-border: #483f36;
+  --color-action-list-item-default-hover-bg: #332d27;
+  --color-segmented-control-bg: #332d27;
+  --color-segmented-control-button-bg: #292520;
+  --color-segmented-control-button-selected-border: #66584a;
+  --color-social-reaction-bg-hover: #332d27;
+  --color-social-reaction-bg-reacted-hover: #3a3026;
+  --color-success-fg: #8ecd93;
+  --color-attention-fg: #efc173;
+  --color-danger-fg: #ffa1a8;
+  --color-btn-shadow: 0 0 transparent;
+  --color-btn-inset-shadow: 0 0 transparent;
+  --color-btn-primary-shadow: 0 0 transparent;
+  --color-btn-primary-inset-shadow: 0 0 transparent;
+  --color-btn-primary-selected-shadow: 0 0 transparent;
+  --color-primer-shadow-inset: 0 0 transparent;
+  --color-attention-muted: color-mix(in srgb, var(--color-attention-fg) 40%, transparent);
+  --color-attention-subtle: color-mix(in srgb, var(--color-attention-fg) 12%, transparent);
+  --color-danger-muted: color-mix(in srgb, var(--color-danger-fg) 40%, transparent);
+  --color-danger-subtle: color-mix(in srgb, var(--color-danger-fg) 12%, transparent);
+}
