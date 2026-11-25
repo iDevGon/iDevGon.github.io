@@ -73,13 +73,6 @@ export const projectGrid = css({
   },
   columnGap: { tablet: '2.4rem', desktop: '3.2rem' },
   rowGap: { base: '4rem', tablet: '6.4rem' },
-  '&[data-featured]': {
-    gridTemplateColumns: {
-      base: 'minmax(0, 1fr)',
-      tablet: 'repeat(2, minmax(0, 1fr))',
-      desktop: 'minmax(0, 1.16fr) minmax(0, 1fr)',
-    },
-  },
 });
 
 export const cardStyle = css({

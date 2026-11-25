@@ -61,7 +61,7 @@ function RouteComponent() {
         <h2 id="live-title" className={sectionHeading}>
           운영 중인 서비스
         </h2>
-        <div className={projectGrid} data-featured>
+        <div className={projectGrid}>
           {liveProjects.map((project) => (
             <ProjectCard key={project.id} project={project} featured />
           ))}
